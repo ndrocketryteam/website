@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership | Notre Dame Rocketry Team</title>
+    <link rel="icon" type="image/png" href="patch@4x.png">
+
+    <!-- Google Fonts: Orbitron for technical headings, Inter for clean body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS with Custom ND Brand Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-space': '#050914',
+                        'nd-blue': '#0C2340',
+                        'dome-gold': '#C99700',
+                        'metal-gold': '#AE9142',
+                        'irish-green': '#00843D'
+                    },
+                    fontFamily: {
+                        'space': ['Orbitron', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'leadership-hero': "url('Image from iOS (1).jpg')"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050914;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050914;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0C2340;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #AE9142;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-75 {
+            transition-delay: 75ms;
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-150 {
+            transition-delay: 150ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-225 {
+            transition-delay: 225ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+
+        /* Cinematic Tint Reveal for the 40% overlay */
+        @keyframes fade-in-tint {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .reveal-tint {
+            opacity: 0;
+            animation: fade-in-tint 1.5s ease-in-out forwards;
+            animation-delay: 0.3s;
+            /* Waits a split second before fading in */
+        }
+
+        .profile-card {
+            background-color: #03060d;
+            border: 1px solid rgba(12, 35, 64, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .profile-card:hover {
+            border-color: rgba(201, 151, 0, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(201, 151, 0, 0.1);
+        }
+
+        html {
+            font-size: 80%;
+            /* Scales down the entire Tailwind framework to your target 80% reference system */
+        }
+    </style>
+        <link rel="stylesheet" href="navbar.css">
+        <script src="navbar.js"></script>
+    
+</head>
+
+<body class="font-inter antialiased selection:bg-dome-gold selection:text-deep-space">
+    <div id="navbar-container"></div>        
+
+    <!-- Header Section -->
+    <!-- bg-fixed makes the background stuck, overflow-hidden hides the text as it flies up -->
+    <header
+        class="relative min-h-screen w-full bg-leadership-hero bg-cover bg-center bg-no-repeat bg-fixed overflow-hidden flex flex-col items-center justify-center text-center px-4 border-b border-nd-blue">
+        
+        <!-- 1. The scrolling dark bottom-fade -->
+        <div class="absolute inset-0 z-0 pointer-events-none" style="background: linear-gradient(to bottom, rgba(5, 9, 20, 0.2) 0%, rgba(5, 9, 20, 0.2) 70%, rgba(5, 9, 20, 1) 100%);"></div>
+
+        <!-- 2. The animated dark overlay for text readability -->
+        <div class="absolute inset-0 bg-deep-space/40 reveal-tint z-0 pointer-events-none"></div>
+        
+        <!-- Added id="hero-text" and will-change-transform for the parallax script -->
+        <div id="hero-text" class="max-w-4xl relative z-10 will-change-transform">
+            <h1
+                class="reveal delay-100 font-space font-black text-5xl md:text-6xl tracking-tight text-white mb-6 uppercase">
+                Team <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-dome-gold to-metal-gold">Leadership</span>
+            </h1>
+            <p
+                class="reveal delay-200 font-inter text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+                Meet the dedicated engineering directors and project leads spearheading our technical challenges and
+                guiding the future of Notre Dame aerospace.
+            </p>
+        </div>
+    </header>
+
+    <!-- 1. PROJECT MANAGERS -->
+    <section class="py-24 bg-deep-space border-b border-nd-blue/40">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="reveal font-space font-bold text-3xl uppercase tracking-widest text-white mb-16">Project Managers
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- USLI PM -->
+                <!-- Mary Daniher -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Mary Daniher" data-position="Project Manager" data-email="mdaniher@nd.edu"
+                    data-linkedin="" data-year="2027" data-hometown="Redwood City, California"
+                    data-major="Aerospace Engineering" data-minor="None"
+                    data-summer="This past summer, I was an Aerothermal Fluids Intern working in the high pressure compressor group at Pratt and Whitney."
+                    data-fact="My ideal day includes a long hike and a good cup of coffee."
+                    data-interests="I enjoy running and hiking." data-casual="IMG_3832 - Mary Daniher.jpeg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="IMG_0054 - Mary Daniher.jpeg" alt="Mary Daniher"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Mary Daniher</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">
+                        Project Manager</p>
+                </div>
+
+                <!-- NDXP PM -->
+                <!-- Luke Tocco -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Luke Tocco" data-position="NDXP Project Manager" data-email="ltocco2@nd.edu"
+                    data-linkedin="" data-year="2028" data-hometown="Eastchester, New York"
+                    data-major="Aerospace Engineering" data-minor="Space Exploration"
+                    data-summer="This past summer, I interned at Notre Dame Propulsion and Power, working on Computational Fluid Dynamics and force recovery techniques."
+                    data-fact="I have caught two sharks before."
+                    data-interests="I enjoy playing basketball and reading." data-casual="IMG_9121 - Luke Tocco.jpeg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="IMG_2476 - Luke Tocco.jpeg" alt="Luke Tocco"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Luke Tocco</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">NDXP
+                        Project Manager</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. USLI LEADS (9 Leads) - Fixed to 4 columns -->
+    <section class="py-24 bg-[#03060d] border-b border-nd-blue/40">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="reveal font-space font-bold text-3xl uppercase tracking-widest text-white mb-16">NASA USLI Leads
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Lead 1 -->
+                <!-- Margaret Meim -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Margaret Meim" data-position="Electrical Lead" data-email="mei@nd.edu" data-linkedin=""
+                    data-year="2028" data-hometown="Sunnyvale, California" data-major="Electrical Engineering"
+                    data-minor="Engineering Corporate Practice"
+                    data-summer="This past summer, I studied abroad in Ireland."
+                    data-fact="I really like tomatoes, and I have grown my own in my garden."
+                    data-interests="I enjoy playing sports and creating music." data-casual="mmei casual.jpeg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="Headshot - Margaret Mei.heic" alt="Margaret Meim"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Margaret Meim</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">
+                        Electrical Lead</p>
+                </div>
+
+                <!-- Noah Janchar -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Noah Janchar" data-position="Payload Lead" data-email="Njanchar@nd.edu" data-linkedin=""
+                    data-year="2027" data-hometown="Weston, Massachusetts" data-major="Mechanical Engineering"
+                    data-minor="None"
+                    data-summer="This past summer, I independently developed a robotics curriculum for StarStack, a STEM education startup."
+                    data-fact="I have a level 2 High Power Rocketry certification."
+                    data-interests="I enjoy scuba diving and playing board games." data-casual="IMG_1916.jpeg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="IMG_2876 - Noah Janchar.jpeg" alt="Noah Janchar"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Noah Janchar</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">
+                        Payload Lead</p>
+                </div>
+
+
+
+                <!-- Lainie Wilkins -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Lainie Wilkins" data-position="Safety Officer" data-email="lwilkin2@nd.edu"
+                    data-linkedin="" data-year="2029" data-hometown="Chesterfield, Michigan"
+                    data-major="Mechanical Engineering" data-minor="Engineering Corporate Practice"
+                    data-summer="This past summer, I traveled and spent quality time with my family."
+                    data-fact="I love the outdoors and being in nature!"
+                    data-interests="I enjoy playing soccer and running." data-casual="IMG_5908 - Lainie Wilkins.jpeg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="IMG_5908 - Lainie Wilkins.jpeg" alt="Lainie Wilkins"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Lainie Wilkins</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">Safety
+                        Officer</p>
+                </div>
+
+                <!-- Dalton Leitz -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Dalton Leitz" data-position="Vehicles Lead" data-email="dleitz@nd.edu" data-linkedin=""
+                    data-year="2028" data-hometown="Lake Zurich, Illinois" data-major="Aerospace Engineering"
+                    data-minor="Space Exploration"
+                    data-summer="This past summer, I interned at Notre Dame Power & Propulsion."
+                    data-fact="I have an L1 High Power Rocketry certification!"
+                    data-interests="I enjoy running and rock climbing." data-casual="unnamed - Dalton Leitz.jpg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="1x1 aspect ratio pro photo - Dalton Leitz.JPG" alt="Dalton Leitz"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Dalton Leitz</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">
+                        Vehicles Lead</p>
+                </div>
+
+                <!-- Claire Pettit -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Claire Pettit" data-position="Educational Outreach Lead" data-email="cpettit2@nd.edu"
+                    data-linkedin="" data-year="2029" data-hometown="Los Altos Hills, California"
+                    data-major="Aerospace Engineering" data-minor="None"
+                    data-summer="This past summer, I studied abroad in Berlin, Germany through the Notre Dame Engineering program."
+                    data-fact="I have been to 28 states and 15 countries." data-interests="I enjoy baking and hiking."
+                    data-casual="BA63FB57-236B-413B-A994-522E2449D974 - Claire Pettit.jpeg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="IMG_5617 - Claire Pettit.jpeg" alt="Claire Pettit"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Claire Pettit</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">
+                        Educational Outreach Lead</p>
+                </div>
+
+
+                <!-- Jenna Pucciani -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Jenna Pucciani" data-position="Apogee Control System (ACS) Lead"
+                    data-email="jpuccian@nd.edu" data-linkedin="" data-year="2028" data-hometown="Dayton, Ohio"
+                    data-major="Aerospace Engineering" data-minor="None"
+                    data-summer="This past summer, I learned how to do CFD simulations with ANSYS Fluent and worked at Olive Garden."
+                    data-fact="I have a cat named Cat!" data-interests="I enjoy reading and playing video games."
+                    data-casual="jenna_casual_photo - Jenna Pucciani.png">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="jenna_formal_photo - Jenna Pucciani.jpg" alt="Jenna Pucciani"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Jenna Pucciani</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">ACS
+                        Lead</p>
+                </div>
+
+
+                <!-- AJ Allen -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="AJ Allen" data-position="Outreach Co-Lead" data-email="aallen25@nd.edu" data-linkedin=""
+                    data-year="2029" data-hometown="Osceola, Indiana" data-major="Chemical Engineering"
+                    data-minor="Bioengineering" data-summer="This past summer, I studied abroad in Berlin."
+                    data-fact="I predicted both March madness winners this year."
+                    data-interests="I enjoy playing Euchre and disc golf." data-casual="IMG_1137 - AJ Allen.jpeg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="IMG_6677 - AJ Allen.jpeg" alt="AJ Allen"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">AJ Allen</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">
+                        Outreach Co-Lead</p>
+                </div>
+
+                <!-- Saitta Roy -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Saitta Roy" data-position="Recovery Lead" data-email="sroy3@nd.edu" data-linkedin=""
+                    data-year="2028" data-hometown="Long Island, New York" data-major="Mechanical Engineering"
+                    data-minor="Engineering Corporate Practice"
+                    data-summer="This past summer, I taught myself CFD and worked as a summer school teacher assistant."
+                    data-fact="During the COVID lockdown, I used to run a niche nail art account with over 3k followers."
+                    data-interests="I enjoy crocheting and playing pickleball." data-casual="IMG_0808 - Saitta Roy.jpg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="headshot - Saitta Roy.jpeg" alt="Saitta Roy"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Saitta Roy</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">
+                        Recovery Lead</p>
+                </div>
+
+                <!-- Aidan Flynn -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Aidan Flynn" data-position="Systems Lead" data-email="aflynn4@nd.edu" data-linkedin=""
+                    data-year="2027" data-hometown="Aurora, Ohio" data-major="Aerospace Engineering" data-minor="None"
+                    data-summer="This past summer, I traveled to San Antonio to see Kanye West perform."
+                    data-fact="I went through more launches than Heat Transfer classes last year."
+                    data-interests="I enjoy watching the Cleveland Browns and hanging out with Golden Retrievers."
+                    data-casual="IMG_2288 - Aidan Flynn.PNG">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="Aidan_Flynn_Headshot - Aidan Flynn.jpg" alt="Aidan Flynn"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Aidan Flynn</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">
+                        Systems Lead</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. NDXP LEADS (4 Leads) - 4 columns -->
+    <section class="py-24 bg-deep-space border-b border-nd-blue/40">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="reveal font-space font-bold text-3xl uppercase tracking-widest text-white mb-16">Project NDXP
+                Leads</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- NDXP Lead 1 -->
+                <!-- Alex Kulta -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Alex Kulta" data-position="NDXP Engines Lead" data-email="kult@nd.edu" data-linkedin=""
+                    data-year="2028" data-hometown="Indianapolis, Indiana" data-major="Aerospace Engineering"
+                    data-minor="Engineering Corporate Practice"
+                    data-summer="This past summer, I spent 3 months as a quality engineering intern at SAAB working on the T-7A Redhawk."
+                    data-fact="I've been to over 75 concerts in the past 5 years."
+                    data-interests="I enjoy going to live concerts and cycling." data-casual="">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="akult@nd.edu-fc1d582c - Alex Kult.jpg" alt="Alex Kulta"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Alex Kulta</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">NDXP
+                        Engines Lead</p>
+                </div>
+                <!-- NDXP Lead 2 -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Owen Chacon" data-position="NDXP Fluids Lead" data-email="ochacon@nd.edu"
+                    data-linkedin="" data-year="2027" data-hometown="Los Angeles, California"
+                    data-major="Aerospace Engineering" data-minor="None"
+                    data-summer="This past summer, I did research for NDXP while making paint colors for Los Angeles’ buildings like Dodger Stadium!"
+                    data-fact="I have been running since I was 7 years old and ran the LA marathon when I was 12."
+                    data-interests="I enjoy golfing and mountain biking." data-casual="IMG_0915 - Owen C.jpeg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="IMG_1958 - Owen C.jpeg" alt="Owen Chacon"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Owen Chacon</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">NDXP
+                        Fluids Lead</p>
+                </div>
+                <!-- NDXP Lead 3 -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="David Scully" data-position="NDXP Structures Lead" data-email="dscully@nd.edu"
+                    data-linkedin="" data-year="2028" data-hometown="Rochester, Minnesota"
+                    data-major="Aerospace Engineering" data-minor="Space Exploration"
+                    data-summer="This past summer, I worked at ND Power and Propulsion."
+                    data-fact="I have met LeBron James and shook his hand."
+                    data-interests="I enjoy playing basketball and playing the guitar."
+                    data-casual="informalscully - David Scully.jpeg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="formalscully - David Scully.jpg" alt="David Scully"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">David Scully</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">NDXP
+                        Structures Lead</p>
+                </div>
+                <!-- NDXP Lead 4 -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Luke Scholler" data-position="NDXP Avionics Lead" data-email="lscholle@nd.edu"
+                    data-linkedin="" data-year="2027" data-hometown="Germantown, Ohio"
+                    data-major="Electrical Engineering" data-minor="Theology"
+                    data-summer="This past summer, I worked in Dayton for AFRL developing payloads for small UAVs, and worked on the RadioHound project for the ND Wireless Institute."
+                    data-fact="My phone number has 6 consecutive numbers in it."
+                    data-interests="I enjoy playing guitar and mountain biking."
+                    data-casual="T0F5Q673M-U08EHCDQ6N7-d0fbf81a0842-512 - Lucas Scholler.jpg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="T0F5Q673M-U08EHCDQ6N7-d0fbf81a0842-512 - Lucas Scholler.jpg" alt="Luke Scholler"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Luke Scholler</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">NDXP
+                        Avionics Lead</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. GENERAL OPERATIONS (5 Leads total: 2 PR + 3 Technical Writers) - Fixed to 4 columns -->
+    <section class="py-24 bg-[#03060d] border-b border-nd-blue/40">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="reveal font-space font-bold text-3xl uppercase tracking-widest text-white mb-16">General
+                Operations</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- PR Officer 1 -->
+                <!-- Caitlyn Zito -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Victor Edelbrink" data-position="Public Relations Officer" data-email="hedelbri@nd.edu"
+                    data-linkedin="" data-year="2029" data-hometown="Stockholm, Sweden"
+                    data-major="Aerospace Engineering" data-minor="Finance" data-summer="" data-interests=""
+                    data-casual="">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="victor.png" alt="Caitlyn Zito"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Victor Edelbrink</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">Public
+                        Relations Officer</p>
+                </div>
+
+                <!-- PR Officer 2 -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Joseph Collins" data-position="Public Relations Officer" data-email="N/A"
+                    data-linkedin="" data-year="2028" data-hometown="N/A" data-major="Mechanical Engineering"
+                    data-minor="None" data-summer="" data-interests="" data-casual="">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="joseph.png" alt="Caitlyn Zito"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Joseph Collins</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">Public
+                        Relations Officer</p>
+                </div>
+
+                <!-- Technical Writer 1 -->
+                <!-- Caitlyn Zito -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Caitlyn Zito" data-position="Technical Editor" data-email="czito@nd.edu" data-linkedin=""
+                    data-year="2028" data-hometown="Howell, New Jersey" data-major="Mechanical Engineering"
+                    data-minor="None"
+                    data-summer="This past summer, I was an engineering research intern at Notre Dame Power & Propulsion working on designing a test section for a transonic wind tunnel."
+                    data-fact="I've been collecting rubber ducks since I was a kid."
+                    data-interests="I enjoy collecting vinyl records and working out."
+                    data-casual="IMG_8149_SnapseedCopy - Caitlyn Zito.jpg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="Caitlyn Zito - Caitlyn Zito.jpg" alt="Caitlyn Zito"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Caitlyn Zito</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">
+                        Technical Editor</p>
+                </div>
+
+                <!-- Eddie-Tomas Baute -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Eddie-Tomas Baute" data-position="Tech Editor" data-email="ebaute@nd.edu"
+                    data-linkedin="" data-year="2028" data-hometown="Hialeah, Florida"
+                    data-major="Mechanical Engineering" data-minor="None"
+                    data-summer="This past summer, I practiced writing LaTeX documents and went to the beach with my friends."
+                    data-fact="I love Oreos." data-interests="I enjoy playing football and spending time with friends."
+                    data-casual="Eddie_Baute_Casual - Eddie-Tomas Baute.jpeg">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="Eddie_Baute_Headshot - Eddie-Tomas Baute.jpeg" alt="Eddie-Tomas Baute"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Eddie-Tomas Baute</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">Tech
+                        Editor</p>
+                </div>
+
+                <!-- Technical Writer 3 -->
+                <!-- Reid Anderson -->
+                <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
+                    data-name="Reid Anderson" data-position="Technical Editor" data-email="rander23@nd.edu"
+                    data-linkedin="" data-year="2029" data-hometown="Malvern, Pennsylvania"
+                    data-major="Mechanical Engineering" data-minor="Energy Engineering"
+                    data-summer="This past summer, I learned Computational Fluid Dynamics and designed the thrust mount for NDXP."
+                    data-fact="I'm rated over 2000 Elo in online chess."
+                    data-interests="I enjoy playing soccer and chess." data-casual="Reid Photo - Reid Anderson.png">
+                    <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
+                        <img src="Headshot - Reid Anderson.jpg" alt="Reid Anderson"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Reid Anderson</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm text-center">
+                        Technical Editor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ADVISORS -->
+    <section class="py-24 bg-deep-space border-b border-nd-blue/40">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="reveal font-space font-bold text-3xl uppercase tracking-widest text-white mb-16">Team Advisors
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Faculty Advisor -->
+                <div class="reveal delay-100 flex flex-col items-center group">
+                    <div
+                        class="w-64 h-64 overflow-hidden rounded-full border-4 border-nd-blue mb-6 relative hover:border-dome-gold transition-colors duration-300 shadow-xl">
+                        <img src="juliano-hs_8649-1-768x768-1-300x300.jpg" alt="Faculty Advisor"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Assoc. Prof. Thomas Juliano
+                    </h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm">Faculty Advisor
+                    </p>
+                </div>
+
+                <!-- Graduate Advisor -->
+                <div class="reveal delay-200 flex flex-col items-center group">
+                    <div
+                        class="w-64 h-64 overflow-hidden rounded-full border-4 border-nd-blue mb-6 relative hover:border-dome-gold transition-colors duration-300 shadow-xl">
+                        <img src="attachment-106656087_orig.png" alt="Graduate Advisor"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">J. Jacobowitz​</h3>
+                    <p class="font-inter text-dome-gold font-light tracking-widest uppercase text-sm">Graduate Student
+                        advisor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#03060d] pt-16 pb-8 border-t border-nd-blue">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4">
+                    <a href="index.html" class="hover:opacity-80 transition-opacity duration-300">
+                        <img src="NDRT logo white.png" alt="NDRT Logo" class="h-12 w-auto drop-shadow-md">
+                    </a>
+                </div>
+                <p class="font-inter text-sm text-gray-500 mb-6">
+                    Notre Dame Rocketry Team
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/ndrocketryteam/" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/ndrt" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@ndrocketryteam" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Navigation</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="index.html" class="hover:text-dome-gold transition-colors">Home</a></li>
+                    <li><a href="coming soon.html" class="hover:text-dome-gold transition-colors">About Us</a></li>
+                    <li><a href="leadership.html" class="hover:text-dome-gold transition-colors">Leadership</a></li>
+                    <li><a href="sponsors.html" class="hover:text-dome-gold transition-colors">Sponsors</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Resources</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="Sponsor Partnership Brochure 2026 - 2027.pdf"
+                            class="hover:text-dome-gold transition-colors"><i class="fa-regular fa-file-pdf mr-2"></i>
+                            Sponsorship Brochure</a></li>
+                    <li><button id="openReportsModalBtn" class="hover:text-dome-gold transition-colors text-left"><i
+                                class="fa-solid fa-lock mr-2"></i> Request Reports</button></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Contact</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-dome-gold"></i>
+                        <a href="https://maps.google.com/?q=257+Fitzpatrick+Hall+of+Engineering,+Notre+Dame,+IN+46556"
+                            target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                            257 Fitzpatrick Hall of Engineering<br>Notre Dame, IN 46556<br>United States
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-dome-gold"></i>
+                        <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-6 lg:px-12 border-t border-nd-blue pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-inter text-xs text-gray-600">
+                &copy; <span id="year">2026</span> Notre Dame Rocketry Team. All rights reserved.
+            </p>
+            <p class="font-inter text-xs text-gray-600">
+                Ad Astra.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Profile Pop-up Modal -->
+    <div id="profileModal"
+        class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300">
+        <!-- Dark background overlay -->
+        <div id="profileModalBackdrop" class="absolute inset-0 bg-black/90 backdrop-blur-md cursor-pointer"></div>
+
+        <!-- Modal Content -->
+        <div class="relative w-full max-w-5xl bg-[#03060d] border border-nd-blue/60 rounded-2xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col"
+            id="profileModalContent">
+            <!-- Close Button -->
+            <button id="closeProfileModalBtn"
+                class="absolute top-5 right-5 z-20 text-gray-400 hover:text-white transition-colors p-2 bg-[#03060d]/80 rounded-full border border-nd-blue/40 hover:bg-nd-blue/20">
+                <i class="fa-solid fa-xmark text-2xl w-6 h-6 flex items-center justify-center"></i>
+            </button>
+
+            <!-- Scrollable Inner Container -->
+            <div class="overflow-y-auto p-6 sm:p-8 md:p-12 flex flex-col gap-10">
+
+                <!-- TOP SECTION: Profile & Metadata -->
+                <div class="flex flex-col md:flex-row gap-8 lg:gap-12 items-center md:items-start">
+
+                    <!-- Left: Square Formal Photo -->
+                    <div class="w-48 sm:w-56 md:w-64 flex-shrink-0">
+                        <div
+                            class="w-full aspect-square rounded-2xl overflow-hidden bg-nd-blue/10 flex items-center justify-center border border-nd-blue/30 shadow-lg relative">
+                            <img id="modalImage" src="" alt="Profile Image" class="w-full h-full object-cover hidden">
+                            <i id="modalIconFallback" class="fa-solid fa-user text-6xl text-nd-blue/40 hidden"></i>
+                        </div>
+                    </div>
+
+                    <!-- Right: Header & Badges -->
+                    <div class="flex-1 w-full flex flex-col justify-center text-center md:text-left">
+                        <p id="modalPosition"
+                            class="font-inter text-dome-gold font-bold tracking-widest uppercase text-sm mb-2"></p>
+                        <h2 id="modalName"
+                            class="font-space font-bold text-4xl md:text-5xl text-white mb-4 tracking-wide"></h2>
+
+                        <!-- Large Social Icons -->
+                        <div class="flex items-center justify-center md:justify-start gap-4 mb-8">
+                            <a id="modalEmail" href="#"
+                                class="text-gray-400 hover:text-dome-gold transition-colors p-2 rounded-full hover:bg-white/5"
+                                title="Email">
+                                <i class="fa-solid fa-envelope text-3xl"></i>
+                            </a>
+                            <a id="modalLinkedIn" href="#" target="_blank"
+                                class="text-gray-400 hover:text-dome-gold transition-colors p-2 rounded-full hover:bg-white/5"
+                                title="LinkedIn">
+                                <i class="fa-brands fa-linkedin text-3xl"></i>
+                            </a>
+                        </div>
+
+                        <!-- Flexible Academic Badges -->
+                        <div class="flex flex-wrap justify-center md:justify-start gap-3 font-inter">
+                            <div class="bg-nd-blue/10 border border-nd-blue/30 px-4 py-2 rounded-lg">
+                                <span
+                                    class="text-gray-400 block text-[10px] uppercase tracking-wider mb-0.5">Class</span>
+                                <span id="modalYear" class="text-gray-100 text-sm md:text-base font-medium"></span>
+                            </div>
+                            <div class="bg-nd-blue/10 border border-nd-blue/30 px-4 py-2 rounded-lg">
+                                <span
+                                    class="text-gray-400 block text-[10px] uppercase tracking-wider mb-0.5">Hometown</span>
+                                <span id="modalHometown" class="text-gray-100 text-sm md:text-base font-medium"></span>
+                            </div>
+                            <div class="bg-nd-blue/10 border border-nd-blue/30 px-4 py-2 rounded-lg">
+                                <span
+                                    class="text-gray-400 block text-[10px] uppercase tracking-wider mb-0.5">Major</span>
+                                <span id="modalMajor" class="text-gray-100 text-sm md:text-base font-medium"></span>
+                            </div>
+                            <!-- Minor Badge (Hidden automatically if empty) -->
+                            <div id="modalMinorContainer"
+                                class="bg-nd-blue/10 border border-nd-blue/30 px-4 py-2 rounded-lg hidden">
+                                <span
+                                    class="text-gray-400 block text-[10px] uppercase tracking-wider mb-0.5">Minor</span>
+                                <span id="modalMinor" class="text-gray-100 text-sm md:text-base font-medium"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOTTOM SECTION: Narrative & Casual Photo -->
+                <div class="flex flex-col lg:flex-row gap-10 border-t border-nd-blue/20 pt-10" id="modalBottomTier">
+
+                    <!-- Text Narrative (Takes full width if no casual photo, half width if photo exists) -->
+                    <div id="modalTextContainer"
+                        class="w-full space-y-8 font-inter text-gray-300 text-base leading-relaxed transition-all duration-300">
+                        <div>
+                            <h4
+                                class="text-white font-space uppercase tracking-wider text-sm font-bold mb-2 flex items-center gap-2 border-b border-nd-blue/30 pb-2">
+                                <i class="fa-solid fa-sun text-dome-gold"></i> Past Summer
+                            </h4>
+                            <p id="modalSummer" class="pt-1"></p>
+                        </div>
+                        <div>
+                            <h4
+                                class="text-white font-space uppercase tracking-wider text-sm font-bold mb-2 flex items-center gap-2 border-b border-nd-blue/30 pb-2">
+                                <i class="fa-solid fa-star text-dome-gold"></i> Fun Fact
+                            </h4>
+                            <p id="modalFact" class="pt-1"></p>
+                        </div>
+                        <div>
+                            <h4
+                                class="text-white font-space uppercase tracking-wider text-sm font-bold mb-2 flex items-center gap-2 border-b border-nd-blue/30 pb-2">
+                                <i class="fa-solid fa-compass text-dome-gold"></i> Free Time & Interests
+                            </h4>
+                            <p id="modalInterests" class="pt-1"></p>
+                        </div>
+                    </div>
+
+                    <!-- Casual Photo Container (Hidden by default) -->
+                    <div id="modalCasualContainer" class="w-full lg:w-5/12 hidden flex items-start justify-center">
+                        <div class="bg-nd-blue/5 border border-nd-blue/20 p-3 rounded-2xl w-full">
+                            <img id="modalCasualImg" src="" alt="Casual Photo"
+                                class="w-full max-h-[400px] object-contain rounded-xl shadow-md">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> <!-- Request Reports Modal -->
+    <div id="reportsModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6">
+        <div id="reportsModalBackdrop"
+            class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer transition-opacity"></div>
+        <div
+            class="relative w-full max-w-3xl bg-[#03060d] border border-nd-blue rounded-xl shadow-2xl p-6 md:p-10 transform transition-all overflow-y-auto max-h-[90vh]">
+            <button id="closeReportsModalBtn"
+                class="absolute top-4 right-4 text-gray-400 hover:text-dome-gold transition-colors p-2">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+            <h2 class="font-space font-bold text-2xl md:text-3xl text-white mb-4 uppercase tracking-wide">
+                NASA Student Launch Reports
+            </h2>
+            <p class="font-inter text-gray-400 mb-8 leading-relaxed text-sm md:text-base">
+                While our detailed NASA Student Launch reports and technical documents are not available to the general
+                public, we gladly share them with current sponsors, prospective partners, and fellow collegiate rocketry
+                teams upon request. Please fill out the form below detailing why you need access, and our team will
+                review your request.
+            </p>
+            <form action="https://splitforms.com/api/submit" method="POST" class="flex flex-col gap-6">
+                <input type="hidden" name="access_key" value="0ecf7af2bf834c49a08fdda432a8293c">
+                <input type="hidden" name="Page Source" value="Request Reports Modal">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex flex-col gap-2">
+                        <label for="req-name" class="font-space text-xs text-gray-500 uppercase tracking-widest">Full
+                            Name *</label>
+                        <input type="text" id="req-name" name="Name" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label for="req-org"
+                            class="font-space text-xs text-gray-500 uppercase tracking-widest">Organization / Team
+                            *</label>
+                        <input type="text" id="req-org" name="Organization" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex flex-col gap-2">
+                        <label for="req-email" class="font-space text-xs text-gray-500 uppercase tracking-widest">Email
+                            Address *</label>
+                        <input type="email" id="req-email" name="Email" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                    <div class="flex flex-col gap-2 justify-end">
+                        <button type="submit"
+                            class="w-full bg-dome-gold text-deep-space font-space font-bold py-3 rounded-md hover:bg-white transition-colors duration-300 uppercase tracking-wider">Submit
+                            Request</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scroll_to_top_script.js"></script>
+    <script src="ParallaxEffect.js"></script>
+
+
+
+    <!-- Scroll Reveal Animation Script -->
+    <script>
+        
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger once on load
+
+        // Modal functionality
+        document.getElementById('openReportsModalBtn')?.addEventListener('click', () => {
+            document.getElementById('reportsModal').classList.remove('hidden');
+        });
+        document.getElementById('closeReportsModalBtn')?.addEventListener('click', () => {
+            document.getElementById('reportsModal').classList.add('hidden');
+        });
+        document.getElementById('reportsModalBackdrop')?.addEventListener('click', () => {
+            document.getElementById('reportsModal').classList.add('hidden');
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('profileModal');
+            const backdrop = document.getElementById('profileModalBackdrop');
+            const closeBtn = document.getElementById('closeProfileModalBtn');
+            const modalContent = document.getElementById('profileModalContent');
+
+            const elements = {
+                image: document.getElementById('modalImage'),
+                iconFallback: document.getElementById('modalIconFallback'),
+                name: document.getElementById('modalName'),
+                position: document.getElementById('modalPosition'),
+                email: document.getElementById('modalEmail'),
+                linkedin: document.getElementById('modalLinkedIn'),
+                year: document.getElementById('modalYear'),
+                hometown: document.getElementById('modalHometown'),
+                major: document.getElementById('modalMajor'),
+                minor: document.getElementById('modalMinor'),
+                minorContainer: document.getElementById('modalMinorContainer'),
+                summer: document.getElementById('modalSummer'),
+                fact: document.getElementById('modalFact'),
+                interests: document.getElementById('modalInterests'),
+                casualContainer: document.getElementById('modalCasualContainer'),
+                casualImg: document.getElementById('modalCasualImg'),
+                textContainer: document.getElementById('modalTextContainer')
+            };
+
+            const openModal = (card) => {
+                // Setup Formal Profile Image
+                const cardImg = card.querySelector('img');
+                if (cardImg && cardImg.src) {
+                    elements.image.src = cardImg.src;
+                    elements.image.classList.remove('hidden');
+                    elements.iconFallback.classList.add('hidden');
+                } else {
+                    elements.image.classList.add('hidden');
+                    elements.iconFallback.classList.remove('hidden');
+                }
+
+                // Setup Text Content
+                elements.name.textContent = card.dataset.name || 'Team Member';
+                elements.position.textContent = card.dataset.position || '';
+
+                // Setup Links (Icons)
+                if (card.dataset.email) {
+                    elements.email.href = `mailto:${card.dataset.email}`;
+                    elements.email.style.display = 'block';
+                } else {
+                    elements.email.style.display = 'none';
+                }
+                if (card.dataset.linkedin) {
+                    elements.linkedin.href = card.dataset.linkedin;
+                    elements.linkedin.style.display = 'block';
+                } else {
+                    elements.linkedin.style.display = 'none';
+                }
+
+                // Setup Academic Data
+                elements.year.textContent = card.dataset.year || 'N/A';
+                elements.hometown.textContent = card.dataset.hometown || 'N/A';
+                elements.major.textContent = card.dataset.major || 'N/A';
+
+                // Handle Optional Minor
+                const minorData = card.dataset.minor;
+                if (minorData && minorData.trim() !== '' && minorData.toLowerCase() !== 'none') {
+                    elements.minor.textContent = minorData;
+                    elements.minorContainer.classList.remove('hidden');
+                    elements.minorContainer.classList.add('block');
+                } else {
+                    elements.minorContainer.classList.add('hidden');
+                    elements.minorContainer.classList.remove('block');
+                }
+
+                // Setup Narrative Data
+                elements.summer.textContent = card.dataset.summer || 'Information not provided.';
+                elements.fact.textContent = card.dataset.fact || 'Information not provided.';
+                elements.interests.textContent = card.dataset.interests || 'Information not provided.';
+
+                // Setup Casual Image & adjust layout widths
+                if (card.dataset.casual) {
+                    elements.casualImg.src = card.dataset.casual;
+                    elements.casualContainer.classList.remove('hidden');
+                    // Make text take up only part of the width if image exists
+                    elements.textContainer.classList.remove('lg:w-full');
+                    elements.textContainer.classList.add('lg:w-7/12');
+                } else {
+                    // If no casual image, hide container and let text stretch full width
+                    elements.casualContainer.classList.add('hidden');
+                    elements.textContainer.classList.remove('lg:w-7/12');
+                    elements.textContainer.classList.add('lg:w-full');
+                }
+
+                // Animate Modal In
+                modal.classList.remove('hidden');
+                document.body.classList.add('modal-open');
+
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    modalContent.classList.remove('scale-95');
+                    modalContent.classList.add('scale-100');
+                }, 10);
+            };
+
+            const closeModal = () => {
+                modal.classList.add('opacity-0');
+                modalContent.classList.remove('scale-100');
+                modalContent.classList.add('scale-95');
+
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    document.body.classList.remove('modal-open');
+                    elements.casualImg.src = ''; // Clear image to prevent layout flashing next time
+                }, 300);
+            };
+
+            // Attach Listeners
+            document.querySelectorAll('.profile-card').forEach(card => {
+                card.addEventListener('click', () => openModal(card));
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            backdrop.addEventListener('click', closeModal);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

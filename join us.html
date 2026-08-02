@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Involved | Notre Dame Rocketry Team</title>
+    <!-- Add your favicon here -->
+    <link rel="icon" type="image/png" href="patch@4x.png">
+    <!-- Google Fonts: Orbitron for technical headings, Inter for clean body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS with Custom ND Brand Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-space': '#050914',
+                        'nd-blue': '#0C2340',
+                        'dome-gold': '#C99700',
+                        'metal-gold': '#AE9142',
+                        'irish-green': '#00843D'
+                    },
+                    fontFamily: {
+                        'space': ['Orbitron', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('IMG_7540.PNG')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050914;
+            /* deep-space */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050914;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0C2340;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #AE9142;
+        }
+
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-75 {
+            transition-delay: 75ms;
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-150 {
+            transition-delay: 150ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-225 {
+            transition-delay: 225ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        /* Cinematic Tint Reveal for the 40% overlay */
+        @keyframes fade-in-tint {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .reveal-tint {
+            opacity: 0;
+            animation: fade-in-tint 1.5s ease-in-out forwards;
+            animation-delay: 0.3s;
+            /* Waits a split second before fading in */
+        }
+
+        html {
+            font-size: 80%;
+            /* Scales down the entire Tailwind framework to your target 80% reference system */
+        }
+    </style>
+        <link rel="stylesheet" href="navbar.css">
+        <script src="navbar.js"></script>
+    
+</head>
+
+<body class="font-inter antialiased selection:bg-dome-gold selection:text-deep-space">
+
+    <!-- Navigation -->
+        <!-- External Navbar Container -->
+        <div id="navbar-container"></div>
+
+
+    
+    <!-- Hero Section -->
+    <header
+        class="relative min-h-screen w-full bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed overflow-hidden flex flex-col items-center justify-center text-center px-4 border-b border-nd-blue">
+        <!-- The scrolling dark bottom-fade -->
+        <div class="absolute inset-0 z-0 pointer-events-none"
+            style="background: linear-gradient(to bottom, rgba(5, 9, 20, 0.2) 0%, rgba(5, 9, 20, 0.2) 70%, rgba(5, 9, 20, 1) 100%);">
+        </div>
+
+        <div class="absolute inset-0 bg-deep-space/40 reveal-tint z-0 pointer-events-none"></div>
+
+        <!-- Text wrapper with parallax ID -->
+        <div id="hero-text" class="max-w-4xl relative z-10 will-change-transform">
+            <h1
+                class="reveal delay-100 font-space font-black text-5xl md:text-6xl tracking-tight text-white mb-6 uppercase">
+                JOIN THE <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-dome-gold to-metal-gold">TEAM</span>
+            </h1>
+            <p
+                class="reveal delay-200 font-inter text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+                Are you a student looking to get involved with our work? NDRT is entirely student-led, designing,
+                building, and launching some of the most advanced undergraduate projects in the country.
+            </p>
+        </div>
+    </header>
+    <!-- Why Join / Core Philosophy -->
+    <section class="py-20 bg-deep-space relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="reveal bg-nd-blue/20 border border-nd-blue p-8 rounded-lg hover:border-dome-gold/50 transition-colors duration-300">
+                    <div
+                        class="w-14 h-14 bg-nd-blue rounded-full flex items-center justify-center mb-6 text-dome-gold text-2xl">
+                        <i class="fa-solid fa-ban"></i>
+                    </div>
+                    <h3 class="font-space font-bold text-xl uppercase mb-3">Zero Barriers</h3>
+                    <p class="font-inter text-gray-400 text-sm leading-relaxed">
+                        We believe passion is the most important prerequisite. We require <strong>no application or
+                            dues</strong> to join the team. If you're willing to put in the work and learn, there is a
+                        place for you here.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="reveal delay-100 bg-nd-blue/20 border border-nd-blue p-8 rounded-lg hover:border-dome-gold/50 transition-colors duration-300">
+                    <div
+                        class="w-14 h-14 bg-nd-blue rounded-full flex items-center justify-center mb-6 text-dome-gold text-2xl">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="font-space font-bold text-xl uppercase mb-3">All Majors Welcome</h3>
+                    <p class="font-inter text-gray-400 text-sm leading-relaxed">
+                        While we have many aerospace and mechanical engineers, we welcome students of <strong>all majors
+                            and backgrounds</strong>. We need software developers, business minds, media creators, and
+                        scientists.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="reveal delay-200 bg-nd-blue/20 border border-nd-blue p-8 rounded-lg hover:border-dome-gold/50 transition-colors duration-300">
+                    <div
+                        class="w-14 h-14 bg-nd-blue rounded-full flex items-center justify-center mb-6 text-dome-gold text-2xl">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="font-space font-bold text-xl uppercase mb-3">Undergrad & Grad</h3>
+                    <p class="font-inter text-gray-400 text-sm leading-relaxed">
+                        Whether you are a first-year student looking to learn the ropes, or a graduate student bringing
+                        advanced fluid dynamics knowledge, our projects scale to challenge every experience level.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- How to Join / Mid-Semester Section -->
+    <section class="py-24 bg-gradient-to-b from-deep-space to-[#03060d] border-t border-nd-blue/50">
+        <div class="max-w-6xl mx-auto px-6 lg:px-12">
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+
+                <!-- Info Side (Steps) -->
+                <div class="w-full lg:w-1/2 reveal">
+                    <h2 class="font-space font-bold text-3xl md:text-4xl uppercase tracking-wider mb-8 text-white">
+                        How to <span class="text-dome-gold">Join</span>
+                    </h2>
+
+                    <div class="space-y-6">
+                        <!-- Step 1 -->
+                        <div
+                            class="bg-nd-blue/20 border border-nd-blue p-6 rounded-lg flex gap-6 items-start hover:border-dome-gold/50 transition-colors duration-300 group">
+                            <div
+                                class="flex items-center justify-center w-12 h-12 rounded-full border-2 border-dome-gold bg-deep-space text-dome-gold font-space font-bold text-xl shrink-0 group-hover:shadow-[0_0_15px_rgba(201,151,0,0.4)] transition-shadow duration-300">
+                                1
+                            </div>
+                            <div>
+                                <h4 class="font-space font-bold text-xl text-white mb-2 uppercase tracking-wide">Fall
+                                    Callout</h4>
+                                <p class="font-inter text-gray-400 text-sm leading-relaxed">
+                                    Come to our main callout meeting next fall to learn more about what we do, meet the
+                                    subteam leads, and see the hardware up close.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div
+                            class="bg-nd-blue/20 border border-nd-blue p-6 rounded-lg flex gap-6 items-start hover:border-dome-gold/50 transition-colors duration-300 group">
+                            <div
+                                class="flex items-center justify-center w-12 h-12 rounded-full border-2 border-dome-gold bg-deep-space text-dome-gold font-space font-bold text-xl shrink-0 group-hover:shadow-[0_0_15px_rgba(201,151,0,0.4)] transition-shadow duration-300">
+                                2
+                            </div>
+                            <div>
+                                <h4 class="font-space font-bold text-xl text-white mb-2 uppercase tracking-wide">Connect
+                                    Online</h4>
+                                <p class="font-inter text-gray-400 text-sm leading-relaxed mb-4">
+                                    Be sure to follow us on social media to stay up-to-date with exactly when and where
+                                    our callouts will be held, and catch our latest test fires.
+                                </p>
+                                <div class="flex gap-4">
+                                    <a href="https://www.instagram.com/ndrocketryteam/"
+                                        class="w-10 h-10 rounded bg-deep-space border border-nd-blue flex items-center justify-center text-gray-400 hover:text-deep-space hover:bg-dome-gold hover:border-dome-gold transition-all duration-300">
+                                        <i class="fa-brands fa-instagram text-lg"></i>
+                                    </a>
+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mid-Semester Box Side (UPDATED) -->
+                <div class="w-full lg:w-1/2 reveal delay-200">
+                    <div
+                        class="bg-gradient-to-br from-nd-blue/30 to-deep-space border border-nd-blue p-8 md:p-10 rounded-xl relative overflow-hidden group hover:border-dome-gold/40 transition-colors duration-500 shadow-xl">
+                        <!-- Decorative glow -->
+                        <div
+                            class="absolute -top-20 -right-20 w-64 h-64 bg-dome-gold/10 rounded-full blur-3xl group-hover:bg-dome-gold/20 transition-all duration-700">
+                        </div>
+
+                        <div class="flex items-center gap-5 mb-8 relative z-10">
+                            <div
+                                class="w-14 h-14 bg-nd-blue border border-dome-gold/30 text-dome-gold rounded-lg flex items-center justify-center text-2xl shadow-lg">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                            <h3 class="font-space font-bold text-2xl md:text-3xl uppercase tracking-wider text-white">
+                                Mid-Semester?</h3>
+                        </div>
+
+                        <p class="font-inter text-gray-400 mb-10 relative z-10 leading-relaxed">
+                            Looking to join partway through the semester? You don't have to wait until next fall. Fill
+                            out the contact form below and our leadership team will help you get integrated into a
+                            subteam immediately.
+                        </p>
+
+                        <!-- Updated button to link to the separate form below -->
+                        <a href="#join-contact-form"
+                            class="inline-flex items-center justify-center w-full px-8 py-4 bg-transparent border border-dome-gold text-dome-gold font-space font-bold text-sm tracking-widest uppercase rounded hover:bg-dome-gold hover:text-deep-space transition-colors duration-300 relative z-10">
+                            Fill Out Form <i class="fa-solid fa-arrow-down ml-3"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SEPARATE SECTION: Mid-Semester Contact Form -->
+    <section id="join-contact-form" class="py-24 bg-[#03060d]">
+        <div class="max-w-4xl mx-auto px-6 lg:px-12 reveal">
+            <div class="text-center mb-12">
+                <h2 class="font-space font-bold text-3xl md:text-4xl uppercase tracking-wider text-white mb-4">
+                    Get In <span class="text-dome-gold">Touch</span>
+                </h2>
+                <p class="font-inter text-gray-400">Tell us a bit about yourself, and we'll reach out to get you
+                    started.</p>
+            </div>
+
+            <!-- SplitForms Integration -->
+            <form action="https://splitforms.com/api/submit" method="POST"
+                class="flex flex-col gap-6 bg-deep-space/50 p-8 md:p-10 rounded-xl border border-nd-blue shadow-2xl relative overflow-hidden">
+                <!-- Decorative subtle glow in the form background -->
+                <div
+                    class="absolute -bottom-32 -left-32 w-64 h-64 bg-nd-blue/10 rounded-full blur-3xl pointer-events-none">
+                </div>
+
+                <!-- Required Hidden Fields -->
+                <input type="hidden" name="access_key" value="0ecf7af2bf834c49a08fdda432a8293c">
+                <input type="hidden" name="Page Source" value="Join Team Mid-Semester Form">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                    <div class="flex flex-col gap-2">
+                        <label for="join-name" class="font-space text-xs text-gray-500 uppercase tracking-widest">Full
+                            Name *</label>
+                        <input type="text" id="join-name" name="Name" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 focus:border-dome-gold focus:outline-none focus:ring-1 focus:ring-dome-gold">
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label for="join-email" class="font-space text-xs text-gray-500 uppercase tracking-widest">ND
+                            Email Address *</label>
+                        <input type="email" id="join-email" name="Email" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 focus:border-dome-gold focus:outline-none focus:ring-1 focus:ring-dome-gold">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                    <div class="flex flex-col gap-2">
+                        <label for="join-major"
+                            class="font-space text-xs text-gray-500 uppercase tracking-widest">Major</label>
+                        <input type="text" id="join-major" name="Major" placeholder="e.g. Aerospace Engineering"
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 focus:border-dome-gold focus:outline-none focus:ring-1 focus:ring-dome-gold">
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label for="join-year"
+                            class="font-space text-xs text-gray-500 uppercase tracking-widest">Graduation Year</label>
+                        <input type="text" id="join-year" name="Graduation Year" placeholder="e.g. 2027"
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 focus:border-dome-gold focus:outline-none focus:ring-1 focus:ring-dome-gold">
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-2 relative z-10">
+                    <label for="join-message" class="font-space text-xs text-gray-500 uppercase tracking-widest">Message
+                        / Subteam Interest *</label>
+                    <textarea id="join-message" name="Message" rows="5" required
+                        placeholder="Tell us why you want to join and which subteam(s) you are interested in (Aerodynamics, Propulsion, Avionics, Recovery, etc.)..."
+                        class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 resize-none focus:border-dome-gold focus:outline-none focus:ring-1 focus:ring-dome-gold"></textarea>
+                </div>
+
+                <button type="submit"
+                    class="mt-4 w-full px-8 py-4 bg-dome-gold text-black font-space font-bold tracking-widest uppercase rounded hover:bg-white transition-colors duration-300 flex items-center justify-center gap-3 shadow-[0_0_15px_rgba(201,151,0,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] relative z-10">
+                    Send Message <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#03060d] pt-16 pb-8 border-t border-nd-blue">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4">
+                    <a href="index.html" class="hover:opacity-80 transition-opacity duration-300">
+                        <img src="NDRT logo white.png" alt="NDRT Logo" class="h-8 w-auto drop-shadow-md">
+                    </a>
+                </div>
+                <p class="font-inter text-sm text-gray-500 mb-6">
+                    Notre Dame Rocketry Team
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/ndrocketryteam/" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/ndrt" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@ndrocketryteam" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Navigation</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="index.html" class="hover:text-dome-gold transition-colors">Home</a></li>
+                    <li><a href="about us.html" class="hover:text-dome-gold transition-colors">About Us</a></li>
+                    <li><a href="leadership.html" class="hover:text-dome-gold transition-colors">Leadership</a></li>
+                    <li><a href="sponsors.html" class="hover:text-dome-gold transition-colors">Sponsors</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Resources</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="Sponsor Partnership Brochure 2026 - 2027.pdf"
+                            class="hover:text-dome-gold transition-colors"><i class="fa-regular fa-file-pdf mr-2"></i>
+                            Sponsorship Brochure</a></li>
+                    <li><button id="openReportsModalBtn" class="hover:text-dome-gold transition-colors text-left"><i
+                                class="fa-solid fa-lock mr-2"></i> Request Reports</button></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Contact</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-dome-gold"></i>
+                        <a href="https://maps.google.com/?q=257+Fitzpatrick+Hall+of+Engineering,+Notre+Dame,+IN+46556"
+                            target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                            257 Fitzpatrick Hall of Engineering<br>Notre Dame, IN 46556<br>United States
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-dome-gold"></i>
+                        <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-6 lg:px-12 border-t border-nd-blue pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-inter text-xs text-gray-600">
+                &copy; <span id="year"></span> Notre Dame Rocketry Team. All rights reserved.
+            </p>
+            <p class="font-inter text-xs text-gray-600">
+                Ad Astra.
+            </p>
+        </div>
+    </footer>
+    <!-- Request Reports Modal -->
+    <div id="reportsModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6">
+        <!-- Dark Blur Backdrop -->
+        <div id="reportsModalBackdrop"
+            class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer transition-opacity"></div>
+
+        <!-- Modal Content Container -->
+        <div
+            class="relative w-full max-w-3xl bg-[#03060d] border border-nd-blue rounded-xl shadow-2xl p-6 md:p-10 transform transition-all overflow-y-auto max-h-[90vh]">
+
+            <!-- Close Button -->
+            <button id="closeReportsModalBtn"
+                class="absolute top-4 right-4 text-gray-400 hover:text-dome-gold transition-colors p-2">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+
+            <!-- Header -->
+            <h2 class="font-space font-bold text-2xl md:text-3xl text-white mb-4 uppercase tracking-wide">
+                NASA Student Launch Reports
+            </h2>
+
+            <!-- Description -->
+            <p class="font-inter text-gray-400 mb-8 leading-relaxed text-sm md:text-base">
+                While our detailed NASA Student Launch reports and technical documents are not available to the general
+                public, we gladly share them with current sponsors, prospective partners, and fellow collegiate rocketry
+                teams upon request. Please fill out the form below detailing why you need access, and our team will
+                review your request.
+            </p>
+
+            <!-- Request Form connected to SplitForms -->
+            <form action="https://splitforms.com/api/submit" method="POST" class="flex flex-col gap-6">
+                <!-- Required Hidden Fields -->
+                <input type="hidden" name="access_key" value="0ecf7af2bf834c49a08fdda432a8293c">
+                <input type="hidden" name="Page Source" value="Request Reports Modal">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Full Name -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-name" class="font-space text-xs text-gray-500 uppercase tracking-widest">Full
+                            Name *</label>
+                        <input type="text" id="req-name" name="Name" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                    <!-- Organization / Affiliation -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-org"
+                            class="font-space text-xs text-gray-500 uppercase tracking-widest">Organization / Team
+                            *</label>
+                        <input type="text" id="req-org" name="Organization" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Email -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-email" class="font-space text-xs text-gray-500 uppercase tracking-widest">Email
+                            Address *</label>
+                        <input type="email" id="req-email" name="Email" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                    <!-- Phone (Optional) -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-phone" class="font-space text-xs text-gray-500 uppercase tracking-widest">Phone
+                            Number <span class="text-gray-600 lowercase normal-case ml-1">(Optional)</span></label>
+                        <input type="tel" id="req-phone" name="Phone"
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                </div>
+
+                <!-- Reason for Request -->
+                <div class="flex flex-col gap-2">
+                    <label for="req-reason" class="font-space text-xs text-gray-500 uppercase tracking-widest">Reason
+                        for Request *</label>
+                    <textarea id="req-reason" name="Reason for Request" rows="4" required
+                        placeholder="Please explain why you are requesting access to this data (e.g., 'Reviewing team structure for a potential sponsorship' or 'Cross-team technical review')..."
+                        class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 resize-none"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full px-8 py-4 bg-dome-gold text-black font-space font-bold tracking-widest uppercase rounded hover:bg-white transition-colors duration-300 flex items-center justify-center gap-3 mt-2 shadow-[0_0_15px_rgba(201,151,0,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Scroll to Top Button -->
+    <script src="scroll_to_top_script.js"></script>
+    <script src="ParallaxEffect.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Modal Elements
+            const openModalBtn = document.getElementById("openReportsModalBtn");
+            const closeModalBtn = document.getElementById("closeReportsModalBtn");
+            const modal = document.getElementById("reportsModal");
+            const modalBackdrop = document.getElementById("reportsModalBackdrop");
+
+            // Function to open modal
+            const openModal = (e) => {
+                e.preventDefault(); // Prevents page from jumping to top
+                modal.classList.remove("hidden");
+                // Disable scrolling on the main page while modal is open
+                document.body.style.overflow = "hidden";
+            };
+
+            // Function to close modal
+            const closeModal = () => {
+                modal.classList.add("hidden");
+                // Re-enable scrolling on the main page
+                document.body.style.overflow = "auto";
+            };
+
+            // Event Listeners
+            if (openModalBtn) {
+                openModalBtn.addEventListener("click", openModal);
+            }
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener("click", closeModal);
+            }
+            if (modalBackdrop) {
+                // Clicking the dark background outside the modal closes it
+                modalBackdrop.addEventListener("click", closeModal);
+            }
+
+            // Pressing the "Escape" key closes the modal
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+
+
+
+    <script>
+        
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+
+</html>

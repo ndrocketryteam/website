@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | Notre Dame Rocketry Team</title>
+    <link rel="icon" type="image/png" href="patch@4x.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-space': '#050914',
+                        'nd-blue': '#0C2340',
+                        'dome-gold': '#C99700',
+                        'metal-gold': '#AE9142',
+                        'irish-green': '#00843D'
+                    },
+                    fontFamily: {
+                        'space': ['Orbitron', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050914;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-75 { transition-delay: 75ms; }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-150 { transition-delay: 150ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-225 { transition-delay: 225ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Glowing text effect */
+        .glow-text {
+            text-shadow: 0 0 25px rgba(201, 151, 0, 0.4);
+        }
+        html {
+    font-size: 80%; /* Scales down the entire Tailwind framework to your target 80% reference system */
+}
+    </style>
+</head>
+<body class="font-inter antialiased selection:bg-dome-gold selection:text-deep-space min-h-screen flex flex-col items-center justify-center relative">
+
+    <!-- Background Grid Effect -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#0C2340_1px,transparent_1px),linear-gradient(to_bottom,#0C2340_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_80%,transparent_100%)] opacity-30"></div>
+
+    <!-- Gold ambient glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-dome-gold/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <!-- Main Content -->
+    <main class="relative z-10 text-center px-6 flex flex-col items-center">
+        
+        <!-- Optional Logo Placeholder (Replace src if you want the logo here) -->
+        <img src="NDRT logo white.png" alt="NDRT Logo" class="reveal h-20 w-auto drop-shadow-md mb-12">
+
+        <h1 class="reveal delay-100 font-space font-black text-5xl md:text-8xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-dome-gold to-metal-gold uppercase mb-6 glow-text">
+            Coming Soon
+        </h1>
+        
+        <p class="reveal delay-200 font-inter text-gray-400 text-lg md:text-xl max-w-lg mx-auto mb-12 font-light">
+            We are currently building this section. Check back later for updates on our latest engineering and aerospace projects.
+        </p>
+        
+        <!-- Single Home Link -->
+        <a href="index.html" class="reveal delay-200 inline-flex items-center gap-3 px-8 py-4 border border-dome-gold text-dome-gold font-space font-bold tracking-widest uppercase rounded-md hover:bg-dome-gold hover:text-deep-space hover:shadow-[0_0_20px_rgba(201,151,0,0.5)] transition-all duration-300">
+            <i class="fa-solid fa-arrow-left"></i> Return to Home
+        </a>
+
+    </main>
+
+    <script>
+        // Intersection Observer for scroll animations (even though it's single view, keeps the fade-in smooth)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Add a tiny delay to ensure CSS has loaded before triggering reveal
+        setTimeout(() => {
+            document.querySelectorAll('.reveal').forEach((element) => {
+                observer.observe(element);
+            });
+        }, 100);
+    </script>
+</body>
+</html>

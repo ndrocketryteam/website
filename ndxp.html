@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDXP | Notre Dame Experimental Propulsion</title>
+    <link rel="icon" type="image/png" href="patch@4x.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-space': '#050914',
+                        'nd-blue': '#0C2340',
+                        'dome-gold': '#C99700',
+                        'metal-gold': '#AE9142',
+                        'irish-green': '#00843D'
+                    },
+                    fontFamily: {
+                        'space': ['Orbitron', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'ndxp-hero': "url('NDXP header bg.png')",
+                        'engine-pattern': "linear-gradient(to right, rgba(5, 9, 20, 0.95), rgba(12, 35, 64, 0.9)), url('spacex-TV2gg2kZD1o-unsplash.jpg')"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050914;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050914;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0C2340;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #AE9142;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-75 {
+            transition-delay: 75ms;
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-150 {
+            transition-delay: 150ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-225 {
+            transition-delay: 225ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        /* Cinematic Tint Reveal for the 40% overlay */
+        @keyframes fade-in-tint {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .reveal-tint {
+            opacity: 0;
+            animation: fade-in-tint 1.5s ease-in-out forwards;
+            animation-delay: 0.3s;
+            /* Waits a split second before fading in */
+        }
+
+        /* Timeline specific styles */
+        .timeline-node::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #C99700, #0C2340);
+            left: 24px;
+            top: 40px;
+            z-index: 0;
+        }
+
+        .timeline-node:last-child::before {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-horizontal::before {
+                content: '';
+                position: absolute;
+                height: 2px;
+                width: 100%;
+                background: linear-gradient(to right, #0C2340, #C99700, #0C2340);
+                top: 24px;
+                left: 0;
+                z-index: 0;
+            }
+
+            .timeline-node::before {
+                display: none;
+                /* Hide vertical line on desktop */
+            }
+        }
+
+        /* Glowing text effect */
+        .glow-text {
+            text-shadow: 0 0 15px rgba(201, 151, 0, 0.5);
+        }
+
+        html {
+            font-size: 80%;
+            /* Scales down the entire Tailwind framework to your target 80% reference system */
+        }
+    </style>
+    <link rel="stylesheet" href="navbar.css">
+    <script src="navbar.js"></script>
+
+</head>
+
+<body class="font-inter antialiased selection:bg-dome-gold selection:text-deep-space">
+
+    <!-- Navigation -->
+    <!-- External Navbar Container -->
+    <div id="navbar-container"></div>
+
+
+
+    <header
+        class="relative min-h-screen w-full bg-ndxp-hero bg-cover bg-center bg-no-repeat bg-fixed overflow-hidden flex flex-col items-center justify-center text-center px-4 border-b border-nd-blue">
+        <!-- The scrolling dark bottom-fade -->
+        <div class="absolute inset-0 z-0 pointer-events-none"
+            style="background: linear-gradient(to bottom, rgba(5, 9, 20, 0.2) 0%, rgba(5, 9, 20, 0.2) 70%, rgba(5, 9, 20, 1) 100%);">
+        </div>
+
+        <div class="absolute inset-0 bg-deep-space/40 reveal-tint z-0 pointer-events-none"></div>
+
+        <!-- Text wrapper with parallax ID -->
+        <div id="hero-text" class="max-w-4xl relative z-10 will-change-transform">
+            <h1
+                class="reveal delay-100 font-space font-black text-5xl md:text-6xl tracking-tight text-white mb-6 uppercase">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-dome-gold to-metal-gold">NDXP</span>
+            </h1>
+            <p
+                class="reveal delay-200 font-inter text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+                Notre Dame Experimental Propulsion: Pioneering the university's first liquid-propelled launch vehicle
+                and a new frontier of aerospace engineering at Notre Dame.
+            </p>
+        </div>
+    </header>
+
+    <!-- The Origin Section -->
+    <section class="py-24 bg-deep-space relative overflow-hidden">
+        <!-- Background Grid Effect -->
+        <div
+            class="absolute inset-0 bg-[linear-gradient(to_right,#0C2340_1px,transparent_1px),linear-gradient(to_bottom,#0C2340_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+                <div class="reveal relative">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-dome-gold/20 to-transparent rounded-lg transform -rotate-3 scale-105 opacity-50 blur-xl">
+                    </div>
+                    <div class="relative border border-nd-blue/50 rounded-lg overflow-hidden">
+                        <img src="NDXP Liquid.jpg" alt="Engine Machining"
+                            class="object-cover w-full h-[500px]  transition-all duration-700 opacity-80 hover:opacity-100">
+
+                    </div>
+                </div>
+
+                <div class="reveal delay-200">
+                    <h2
+                        class="font-space font-bold text-3xl md:text-5xl uppercase tracking-wider mb-6 text-white leading-tight">
+                        Joining the Collegiate <br><span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-dome-gold to-metal-gold">Space
+                            Race</span>
+                    </h2>
+                    <div class="h-1 w-20 bg-dome-gold mb-8"></div>
+                    <p class="font-inter text-gray-300 leading-relaxed mb-6 text-lg">
+                        Fresh off the team's first USLI win in the 2023-24 cycle, we took a bold step forward, splitting
+                        our resources and personnel to begin an experimental propulsion arm of the team.
+                    </p>
+                    <p class="font-inter text-gray-400 leading-relaxed mb-8">
+                        Notre Dame Experimental Propulsion (NDXP) represents the most technically ambitious project in
+                        the history of the university's aerospace programs. Our goal is singular: to launch Notre Dame's
+                        first liquid-propelled vehicle at a major competition by May 2029.
+                    </p>
+
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Roadmap -->
+    <section class="py-32 bg-engine-pattern bg-cover relative border-y border-nd-blue/50">
+        <div class="absolute inset-0 bg-deep-space/90"></div>
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+
+            <div class="reveal text-center max-w-3xl mx-auto mb-20">
+
+                <h2
+                    class="font-space font-bold text-3xl md:text-4xl uppercase tracking-wider mb-6 text-white glow-text">
+                    Target Milestones
+                </h2>
+                <p class="font-inter text-gray-400">
+                    The road to orbit requires precise engineering and relentless testing. Here is the operational
+                    timeline leading up to the 2029 competition.
+                </p>
+            </div>
+
+            <!-- Roadmap Container -->
+            <div class="relative timeline-horizontal w-full">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-6 relative z-10">
+
+                    <!-- Milestone 1 -->
+                    <div
+                        class="reveal delay-100 timeline-node relative flex flex-col md:items-center text-left md:text-center pl-16 md:pl-0 group">
+                        <div
+                            class="absolute left-0 md:left-auto md:relative w-12 h-12 rounded-full bg-deep-space border-4 border-nd-blue group-hover:border-dome-gold flex items-center justify-center text-gray-500 group-hover:text-dome-gold group-hover:shadow-[0_0_20px_rgba(201,151,0,0.5)] transition-all duration-300 z-10 top-0 md:-top-6 mb-0 md:mb-8">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+                        <div
+                            class="bg-nd-blue/20 border border-nd-blue p-6 rounded-lg backdrop-blur-md w-full group-hover:-translate-y-2 group-hover:border-dome-gold/50 transition-all duration-300">
+                            <p class="font-space font-bold text-dome-gold text-lg mb-1 tracking-wider">MAY 2026</p>
+                            <h3 class="font-space font-bold text-white text-xl uppercase mb-2">Engine Alpha<br>Hotfire
+                            </h3>
+                            <p class="font-inter text-xs text-gray-400 leading-relaxed">
+                                Initial static fire test of the first generation liquid propulsion system to validate
+                                plumbing, ignition, and thrust parameters.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 2 -->
+                    <div
+                        class="reveal delay-200 timeline-node relative flex flex-col md:items-center text-left md:text-center pl-16 md:pl-0 group">
+                        <div
+                            class="absolute left-0 md:left-auto md:relative w-12 h-12 rounded-full bg-deep-space border-4 border-nd-blue group-hover:border-dome-gold flex items-center justify-center text-gray-500 group-hover:text-dome-gold group-hover:shadow-[0_0_20px_rgba(201,151,0,0.5)] transition-all duration-300 z-10 top-0 md:-top-6 mb-0 md:mb-8">
+                            <i class="fa-solid fa-gauge-high"></i>
+                        </div>
+                        <div
+                            class="bg-nd-blue/20 border border-nd-blue p-6 rounded-lg backdrop-blur-md w-full group-hover:-translate-y-2 group-hover:border-dome-gold/50 transition-all duration-300">
+                            <p class="font-space font-bold text-dome-gold text-lg mb-1 tracking-wider">MAY 2027</p>
+                            <h3 class="font-space font-bold text-white text-xl uppercase mb-2">Engine Beta<br>Hotfire
+                            </h3>
+                            <p class="font-inter text-xs text-gray-400 leading-relaxed">
+                                Second iteration engine test. Incorporating regenerative cooling data, optimizing
+                                specific impulse, and ensuring flight-weight tolerances.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 3 -->
+                    <div
+                        class="reveal delay-300 timeline-node relative flex flex-col md:items-center text-left md:text-center pl-16 md:pl-0 group">
+                        <div
+                            class="absolute left-0 md:left-auto md:relative w-12 h-12 rounded-full bg-deep-space border-4 border-nd-blue group-hover:border-dome-gold flex items-center justify-center text-gray-500 group-hover:text-dome-gold group-hover:shadow-[0_0_20px_rgba(201,151,0,0.5)] transition-all duration-300 z-10 top-0 md:-top-6 mb-0 md:mb-8">
+                            <i class="fa-solid fa-compass-drafting"></i>
+                        </div>
+                        <div
+                            class="bg-nd-blue/20 border border-nd-blue p-6 rounded-lg backdrop-blur-md w-full group-hover:-translate-y-2 group-hover:border-dome-gold/50 transition-all duration-300">
+                            <p class="font-space font-bold text-dome-gold text-lg mb-1 tracking-wider">MAY 2027</p>
+                            <h3 class="font-space font-bold text-white text-xl uppercase mb-2">First Vehicle<br>Design
+                                Finalized</h3>
+                            <p class="font-inter text-xs text-gray-400 leading-relaxed">
+                                Completion of CAD and structural simulations for the airframe, tanks, and avionics bays
+                                required to house the Beta engine.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 4 -->
+                    <div
+                        class="reveal delay-[400ms] relative flex flex-col md:items-center text-left md:text-center pl-16 md:pl-0 group">
+                        <div
+                            class="absolute left-0 md:left-auto md:relative w-12 h-12 rounded-full bg-deep-space border-4 border-irish-green flex items-center justify-center text-irish-green shadow-[0_0_20px_rgba(0,132,61,0.5)] transition-all duration-300 z-10 top-0 md:-top-6 mb-0 md:mb-8">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+                        <div
+                            class="bg-gradient-to-b from-nd-blue/40 to-nd-blue/10 border border-irish-green/50 p-6 rounded-lg backdrop-blur-md w-full group-hover:-translate-y-2 group-hover:border-irish-green transition-all duration-300">
+                            <p class="font-space font-bold text-irish-green text-lg mb-1 tracking-wider">MAY 2029</p>
+                            <h3 class="font-space font-bold text-white text-xl uppercase mb-2">First
+                                Competition<br>Launch</h3>
+                            <p class="font-inter text-xs text-gray-400 leading-relaxed">
+                                Integration complete. Transport to the pad and ignition. Notre Dame's inaugural liquid
+                                launch at a major collegiate competition.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Footer -->
+    <footer class="bg-[#03060d] pt-16 pb-8 border-t border-nd-blue">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4">
+                    <a href="index.html" class="hover:opacity-80 transition-opacity duration-300">
+                        <img src="NDRT logo white.png" alt="NDRT Logo" class="h-8 w-auto drop-shadow-md">
+                    </a>
+                </div>
+                <p class="font-inter text-sm text-gray-500 mb-6">
+                    Notre Dame Rocketry Team
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/ndrocketryteam/" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/ndrt" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@ndrocketryteam" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Navigation</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="index.html" class="hover:text-dome-gold transition-colors">Home</a></li>
+                    <li><a href="about us.html" class="hover:text-dome-gold transition-colors">About Us</a></li>
+                    <li><a href="leadership.html" class="hover:text-dome-gold transition-colors">Leadership</a></li>
+                    <li><a href="sponsors.html" class="hover:text-dome-gold transition-colors">Sponsors</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Resources</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="Sponsor Partnership Brochure 2026 - 2027.pdf"
+                            class="hover:text-dome-gold transition-colors"><i class="fa-regular fa-file-pdf mr-2"></i>
+                            Sponsorship Brochure</a></li>
+                    <li><button id="openReportsModalBtn" class="hover:text-dome-gold transition-colors text-left"><i
+                                class="fa-solid fa-lock mr-2"></i> Request Reports</button></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Contact</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-dome-gold"></i>
+                        <a href="https://maps.google.com/?q=257+Fitzpatrick+Hall+of+Engineering,+Notre+Dame,+IN+46556"
+                            target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                            257 Fitzpatrick Hall of Engineering<br>Notre Dame, IN 46556<br>United States
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-dome-gold"></i>
+                        <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-6 lg:px-12 border-t border-nd-blue pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-inter text-xs text-gray-600">
+                &copy; <span id="year"></span> Notre Dame Rocketry Team. All rights reserved.
+            </p>
+            <p class="font-inter text-xs text-gray-600">
+                Ad Astra.
+            </p>
+        </div>
+    </footer>
+    <!-- Request Reports Modal -->
+    <div id="reportsModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6">
+        <!-- Dark Blur Backdrop -->
+        <div id="reportsModalBackdrop"
+            class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer transition-opacity"></div>
+
+        <!-- Modal Content Container -->
+        <div
+            class="relative w-full max-w-3xl bg-[#03060d] border border-nd-blue rounded-xl shadow-2xl p-6 md:p-10 transform transition-all overflow-y-auto max-h-[90vh]">
+
+            <!-- Close Button -->
+            <button id="closeReportsModalBtn"
+                class="absolute top-4 right-4 text-gray-400 hover:text-dome-gold transition-colors p-2">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+
+            <!-- Header -->
+            <h2 class="font-space font-bold text-2xl md:text-3xl text-white mb-4 uppercase tracking-wide">
+                NASA Student Launch Reports
+            </h2>
+
+            <!-- Description -->
+            <p class="font-inter text-gray-400 mb-8 leading-relaxed text-sm md:text-base">
+                While our detailed NASA Student Launch reports and technical documents are not available to the general
+                public, we gladly share them with current sponsors, prospective partners, and fellow collegiate rocketry
+                teams upon request. Please fill out the form below detailing why you need access, and our team will
+                review your request.
+            </p>
+
+            <!-- Request Form connected to SplitForms -->
+            <form action="https://splitforms.com/api/submit" method="POST" class="flex flex-col gap-6">
+                <!-- Required Hidden Fields -->
+                <input type="hidden" name="access_key" value="0ecf7af2bf834c49a08fdda432a8293c">
+                <input type="hidden" name="Page Source" value="Request Reports Modal">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Full Name -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-name" class="font-space text-xs text-gray-500 uppercase tracking-widest">Full
+                            Name *</label>
+                        <input type="text" id="req-name" name="Name" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                    <!-- Organization / Affiliation -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-org"
+                            class="font-space text-xs text-gray-500 uppercase tracking-widest">Organization / Team
+                            *</label>
+                        <input type="text" id="req-org" name="Organization" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Email -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-email" class="font-space text-xs text-gray-500 uppercase tracking-widest">Email
+                            Address *</label>
+                        <input type="email" id="req-email" name="Email" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                    <!-- Phone (Optional) -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-phone" class="font-space text-xs text-gray-500 uppercase tracking-widest">Phone
+                            Number <span class="text-gray-600 lowercase normal-case ml-1">(Optional)</span></label>
+                        <input type="tel" id="req-phone" name="Phone"
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                </div>
+
+                <!-- Reason for Request -->
+                <div class="flex flex-col gap-2">
+                    <label for="req-reason" class="font-space text-xs text-gray-500 uppercase tracking-widest">Reason
+                        for Request *</label>
+                    <textarea id="req-reason" name="Reason for Request" rows="4" required
+                        placeholder="Please explain why you are requesting access to this data (e.g., 'Reviewing team structure for a potential sponsorship' or 'Cross-team technical review')..."
+                        class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 resize-none"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full px-8 py-4 bg-dome-gold text-black font-space font-bold tracking-widest uppercase rounded hover:bg-white transition-colors duration-300 flex items-center justify-center gap-3 mt-2 shadow-[0_0_15px_rgba(201,151,0,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- Scroll to Top Button -->
+    <script src="scroll_to_top_script.js"></script>
+    <script src="ParallaxEffect.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Modal Elements
+            const openModalBtn = document.getElementById("openReportsModalBtn");
+            const closeModalBtn = document.getElementById("closeReportsModalBtn");
+            const modal = document.getElementById("reportsModal");
+            const modalBackdrop = document.getElementById("reportsModalBackdrop");
+
+            // Function to open modal
+            const openModal = (e) => {
+                e.preventDefault(); // Prevents page from jumping to top
+                modal.classList.remove("hidden");
+                // Disable scrolling on the main page while modal is open
+                document.body.style.overflow = "hidden";
+            };
+
+            // Function to close modal
+            const closeModal = () => {
+                modal.classList.add("hidden");
+                // Re-enable scrolling on the main page
+                document.body.style.overflow = "auto";
+            };
+
+            // Event Listeners
+            if (openModalBtn) {
+                openModalBtn.addEventListener("click", openModal);
+            }
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener("click", closeModal);
+            }
+            if (modalBackdrop) {
+                // Clicking the dark background outside the modal closes it
+                modalBackdrop.addEventListener("click", closeModal);
+            }
+
+            // Pressing the "Escape" key closes the modal
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+
+    <script>
+
+        // Set year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Run once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA USLI | Notre Dame Rocketry Team</title>
+    <link rel="icon" type="image/png" href="patch@4x.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-space': '#050914',
+                        'nd-blue': '#0C2340',
+                        'dome-gold': '#C99700',
+                        'metal-gold': '#AE9142',
+                        'irish-green': '#00843D'
+                    },
+                    fontFamily: {
+                        'space': ['Orbitron', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'usli-hero': "url('USLI main image.jpg')",
+                        'blueprint-pattern': "linear-gradient(to right, rgba(5, 9, 20, 0.95), rgba(12, 35, 64, 0.9)), url('https://www.transparenttextures.com/patterns/blueprint.png')"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utility to help with smooth display toggling */
+        .fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .fade-in {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Ensure the list icons look sharp */
+        #detail-list li {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        #detail-list li i {
+            margin-top: 0.3rem;
+            margin-right: 0.75rem;
+            color: #c99700;
+            /* dome-gold */
+        }
+
+        /* Infinite Scroll Animation */
+        @keyframes infinite-scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .scroll-track {
+            display: flex;
+            width: max-content;
+            animation: infinite-scroll 60s linear infinite;
+            /* Increase or decrease 60s to change speed */
+        }
+
+        .scroll-track:hover {
+            animation-play-state: paused;
+            /* Pauses the scroll when the user hovers over the images */
+        }
+
+        body {
+            background-color: #050914;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050914;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0C2340;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #AE9142;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-75 {
+            transition-delay: 75ms;
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-150 {
+            transition-delay: 150ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-225 {
+            transition-delay: 225ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        /* Cinematic Tint Reveal for the 40% overlay */
+        @keyframes fade-in-tint {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .reveal-tint {
+            opacity: 0;
+            animation: fade-in-tint 1.5s ease-in-out forwards;
+            animation-delay: 0.3s;
+            /* Waits a split second before fading in */
+        }
+
+        /* Custom glowing border effect for squad cards */
+        .squad-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 0.5rem;
+            padding: 1px;
+            background: linear-gradient(45deg, transparent, transparent, #C99700);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .squad-card:hover::before {
+            opacity: 1;
+        }
+
+        html {
+            font-size: 80%;
+            /* Scales down the entire Tailwind framework to your target 80% reference system */
+        }
+    </style>
+    <link rel="stylesheet" href="navbar.css">
+
+</head>
+
+<body class="font-inter antialiased selection:bg-dome-gold selection:text-deep-space">
+
+    <!-- External Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <header
+        class="relative min-h-screen w-full bg-usli-hero bg-cover bg-center bg-no-repeat bg-fixed overflow-hidden flex flex-col items-center justify-center text-center px-4 border-b border-nd-blue">
+        <!-- The scrolling dark bottom-fade -->
+        <div class="absolute inset-0 z-0 pointer-events-none"
+            style="background: linear-gradient(to bottom, rgba(5, 9, 20, 0.2) 0%, rgba(5, 9, 20, 0.2) 70%, rgba(5, 9, 20, 1) 100%);">
+        </div>
+
+        <div class="absolute inset-0 bg-deep-space/40 reveal-tint z-0 pointer-events-none"></div>
+
+        <!-- Text wrapper with parallax ID -->
+        <div id="hero-text" class="max-w-4xl relative z-10 will-change-transform">
+            <h1
+                class="reveal delay-100 font-space font-black text-5xl md:text-6xl tracking-tight text-white mb-6 uppercase">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-dome-gold to-metal-gold">USLI</span>
+            </h1>
+            <p
+                class="reveal delay-200 font-inter text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+                University Student Launch Initiative: Designing, building, and launching a reusable high-power rocket to
+                an exact target apogee while completing complex scientific payload challenges for NASA.
+            </p>
+        </div>
+    </header>
+    <!-- ========================================== -->
+    <!-- SECTION 1: MISSION & LEGACY                -->
+    <!-- ========================================== -->
+    <section id="mission-legacy" class="py-24 bg-deep-space border-b border-nd-blue/40">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-24">
+
+            <!-- Part A: The NASA Mandate -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="reveal lg:col-span-5 order-2 lg:order-1">
+                    <div class="relative rounded-lg overflow-hidden border border-nd-blue shadow-2xl group">
+                        <img src="student-launch-hb-cover.webp"
+                            alt="Rocket liftoff at NASA Marshall Space Flight Center"
+                            class="w-full h-80 md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-deep-space/80 via-transparent to-transparent">
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal delay-100 lg:col-span-7 flex flex-col items-start order-1 lg:order-2">
+                    <span class="font-space text-sm tracking-widest uppercase text-dome-gold mb-2">The Competition at a
+                        Glance</span>
+                    <h2 class="font-space font-bold text-3xl md:text-4xl uppercase tracking-wider mb-6 text-white">The
+                        NASA Challenge</h2>
+                    <p class="font-inter text-gray-300 text-lg leading-relaxed mb-4 font-light">
+                        Administered annually by the NASA Office of STEM Engagement, the University Student Launch
+                        Initiative (USLI) challenges elite collegiate teams to design and construct a rocket that meets
+                        rigorous, predetermined criteria.
+                    </p>
+                    <p class="font-inter text-gray-300 text-lg leading-relaxed mb-8 font-light">
+                        The objective is straightforward but incredibly demanding: design a launch vehicle that safely
+                        ascends to an exact target apogee between 4,000 and 6,000 feet, safely descends via parachutes,
+                        and executes a complex scientific payload. At the start of the academic year, the team must
+                        formally apply, outlining our approach to the competition's major challenges, strict deadlines,
+                        and rigorous safety precautions.
+                    </p>
+                    <a href="https://www.nasa.gov/stem/studentlaunch/home/index.html" target="_blank"
+                        class="inline-flex items-center gap-3 px-6 py-3 bg-nd-blue hover:bg-dome-gold hover:text-deep-space text-white font-space font-bold tracking-widest uppercase rounded border border-dome-gold/40 transition-all duration-300">
+                        <span>Explore USLI Rules</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Part B: National Championship Legacy -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="reveal lg:col-span-7 flex flex-col items-start order-1">
+                    <span class="font-space text-sm tracking-widest uppercase text-dome-gold mb-2">The Fighting Irish in
+                        Huntsville</span>
+                    <h2 class="font-space font-bold text-3xl md:text-4xl uppercase tracking-wider mb-6 text-white">
+                        Championship Legacy</h2>
+                    <p class="font-inter text-gray-300 text-lg leading-relaxed mb-4 font-light">
+                        Since its founding in the 2011-2012 academic year, Notre Dame Rocketry has been a relentless
+                        competitor on the national stage. Every year, the Fighting Irish design and document the
+                        construction of a flight-ready launch vehicle, launching several sub-scale and full-scale
+                        prototypes to qualify for the competition launch hosted by the NASA Marshall Space Flight Center
+                        in Huntsville, Alabama.
+                    </p>
+                    <p class="font-inter text-gray-300 text-lg leading-relaxed mb-8 font-light">
+                        Following years of consistent growth, NDRT captured the **2024 USLI Overall National
+                        Championship**. The University Student Launch Initiative provides a unique opportunity for our
+                        students to learn both advanced aerospace concepts and the critical life skills that make them
+                        successful professional engineers.
+                    </p>
+                    <!--   <a href="coming soon.html" class="inline-flex items-center gap-3 px-6 py-3 bg-nd-blue hover:bg-dome-gold hover:text-deep-space text-white font-space font-bold tracking-widest uppercase rounded border border-dome-gold/40 transition-all duration-300">
+                    <span>Read Championship History</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>-->
+                </div>
+                <div class="reveal delay-100 lg:col-span-5 order-2">
+                    <div class="relative rounded-lg overflow-hidden border border-nd-blue shadow-2xl group">
+                        <img src="NASA-group-photo.jpg"
+                            alt="NDRT team celebrating with the National Championship trophy"
+                            class="w-full h-80 md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-deep-space/80 via-transparent to-transparent">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ========================================== -->
+    <!-- SECTION 2: ENGINEERING & SYSTEMS CYCLE     -->
+    <!-- ========================================== -->
+    <section id="engineering-cycle" class="py-24 bg-[#03060d] border-b border-nd-blue/50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+            <!-- Document Milestone Matrix -->
+            <div class="reveal text-center max-w-3xl mx-auto mb-12">
+                <h3 class="font-space font-bold text-3xl uppercase tracking-wider text-white mb-4">The NASA Milestone
+                    Track</h3>
+                <p class="font-inter text-lg text-gray-400 font-light">Once accepted into the annual competition, the
+                    team must keep NASA updated on their progress through major reports and their associated
+                    presentations, running parallel to real-world aerospace contracts.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <!-- PDR -->
+                <div
+                    class="reveal delay-75 bg-deep-space border border-nd-blue p-6 rounded-lg relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-700 to-gray-500 group-hover:from-dome-gold group-hover:to-metal-gold transition-colors duration-300">
+                    </div>
+                    <div class="text-3xl text-gray-700 group-hover:text-dome-gold transition-colors duration-300 mb-4">
+                        <i class="fa-solid fa-file-pen"></i>
+                    </div>
+                    <h4 class="font-space font-bold text-lg text-white mb-1 tracking-wider">01. PDR</h4>
+                    <p class="font-inter text-xs text-metal-gold uppercase tracking-widest mb-3">Preliminary Design</p>
+                    <p class="font-inter text-sm text-gray-400 font-light">Establishing foundational baseline
+                        parameters, dynamic modeling constraints, and baseline payload requirements.</p>
+                </div>
+
+                <!-- CDR -->
+                <div
+                    class="reveal delay-150 bg-deep-space border border-nd-blue p-6 rounded-lg relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-700 to-gray-500 group-hover:from-dome-gold group-hover:to-metal-gold transition-colors duration-300">
+                    </div>
+                    <div class="text-3xl text-gray-700 group-hover:text-dome-gold transition-colors duration-300 mb-4">
+                        <i class="fa-solid fa-cogs"></i>
+                    </div>
+                    <h4 class="font-space font-bold text-lg text-white mb-1 tracking-wider">02. CDR</h4>
+                    <p class="font-inter text-xs text-metal-gold uppercase tracking-widest mb-3">Critical Design</p>
+                    <p class="font-inter text-sm text-gray-400 font-light">Finalizing engineering schematics, sub-scale
+                        fluid dynamic reports, and clearing designs for manufacturing.</p>
+                </div>
+
+                <!-- FRR -->
+                <div
+                    class="reveal delay-225 bg-deep-space border border-nd-blue p-6 rounded-lg relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-700 to-gray-500 group-hover:from-dome-gold group-hover:to-metal-gold transition-colors duration-300">
+                    </div>
+                    <div class="text-3xl text-gray-700 group-hover:text-dome-gold transition-colors duration-300 mb-4">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h4 class="font-space font-bold text-lg text-white mb-1 tracking-wider">03. FRR</h4>
+                    <p class="font-inter text-xs text-metal-gold uppercase tracking-widest mb-3">Flight Readiness</p>
+                    <p class="font-inter text-sm text-gray-400 font-light">Validating vehicle physical fabrication,
+                        structural test logs, and passing full-scale qualifying test flights.</p>
+                </div>
+
+                <!-- FRR ADDENDUM -->
+                <div
+                    class="reveal delay-300 bg-deep-space border border-nd-blue p-6 rounded-lg relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-700 to-gray-500 group-hover:from-dome-gold group-hover:to-metal-gold transition-colors duration-300">
+                    </div>
+                    <div class="text-3xl text-gray-700 group-hover:text-dome-gold transition-colors duration-300 mb-4">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <h4 class="font-space font-bold text-lg text-white mb-1 tracking-wider">04. ADDENDUM</h4>
+                    <p class="font-inter text-xs text-metal-gold uppercase tracking-widest mb-3">Final Adjustments</p>
+                    <p class="font-inter text-sm text-gray-400 font-light">Submitting any late-stage refinements,
+                        payload integrations, and corrective action reports derived from the full-scale flight data.</p>
+                </div>
+
+                <!-- PLAR -->
+                <div
+                    class="reveal delay-[375ms] bg-deep-space border border-nd-blue p-6 rounded-lg relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-700 to-gray-500 group-hover:from-irish-green group-hover:to-emerald-500 transition-colors duration-300">
+                    </div>
+                    <div
+                        class="text-3xl text-gray-700 group-hover:text-irish-green transition-colors duration-300 mb-4">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h4 class="font-space font-bold text-lg text-white mb-1 tracking-wider">05. PLAR</h4>
+                    <p class="font-inter text-xs text-metal-gold uppercase tracking-widest mb-3">Post-Launch Review</p>
+                    <p class="font-inter text-sm text-gray-400 font-light">Compiling downstream black-box engine
+                        analysis, telemetry deviation parameters, and flight recovery performance.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ========================================== -->
+    <!-- SECTION 3: SQUAD DIVISIONS (INTERACTIVE)   -->
+    <!-- ========================================== -->
+    <section id="squads"
+        class="py-24 bg-blueprint-pattern bg-cover relative border-b border-nd-blue/40 min-h-screen transition-all duration-500">
+        <div class="absolute inset-0 bg-deep-space/90"></div>
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+
+            <!-- ========================================== -->
+            <!-- VIEW 1: THE SQUAD MAIN GRID                -->
+            <!-- ========================================== -->
+            <div id="squads-grid-view" class="transition-opacity duration-500 opacity-100">
+                <div class="reveal mb-16 text-center">
+                    <h2 class="font-space font-bold text-4xl md:text-5xl uppercase tracking-wider mb-4 text-white">Meet
+                        The Design <span class="text-dome-gold">Squads</span></h2>
+                    <div class="h-1 w-24 bg-dome-gold mx-auto mb-6"></div>
+                    <p class="font-inter text-gray-400 max-w-2xl mx-auto text-lg font-light">
+                        Our team maps into seven specialized engineering sub-squads. Select a squad to view their
+                        specific operational parameters and leadership.
+                    </p>
+                </div>
+
+                <!-- The Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                    <!-- Vehicles -->
+                    <div class="squad-card cursor-pointer reveal bg-nd-blue/10 border border-nd-blue/30 p-6 rounded-lg backdrop-blur-sm group transition-all duration-300 hover:-translate-y-2 hover:bg-nd-blue/30 hover:border-dome-gold/50 hover:shadow-2xl hover:shadow-dome-gold/10"
+                        data-squad="vehicles">
+                        <div
+                            class="w-12 h-12 rounded-full bg-nd-blue flex items-center justify-center text-metal-gold text-xl mb-6 group-hover:bg-dome-gold group-hover:text-deep-space transition-colors duration-300 shadow-lg">
+                            <i class="fa-solid fa-space-shuttle transform -rotate-45"></i>
+                        </div>
+                        <h3 class="font-space font-bold text-lg text-white uppercase tracking-wider mb-2">Vehicles</h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed font-light">
+                            Responsible for the exterior of the rocket, including body tubes, fins, and nose cone, as
+                            well as flight performance simulations.
+                        </p>
+                        <div
+                            class="mt-4 flex items-center text-dome-gold text-xs font-space tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span>View More</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+
+                    <!-- Recovery -->
+                    <div class="squad-card cursor-pointer reveal delay-75 bg-nd-blue/10 border border-nd-blue/30 p-6 rounded-lg backdrop-blur-sm group transition-all duration-300 hover:-translate-y-2 hover:bg-nd-blue/30 hover:border-dome-gold/50 hover:shadow-2xl hover:shadow-dome-gold/10"
+                        data-squad="recovery">
+                        <div
+                            class="w-12 h-12 rounded-full bg-nd-blue flex items-center justify-center text-metal-gold text-xl mb-6 group-hover:bg-dome-gold group-hover:text-deep-space transition-colors duration-300 shadow-lg">
+                            <i class="fa-solid fa-parachute-box"></i>
+                        </div>
+                        <h3 class="font-space font-bold text-lg text-white uppercase tracking-wider mb-2">Recovery</h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed font-light">
+                            Ensures safe landing using two modules that deploy parachutes via sensors and ejection
+                            charges to meet strict kinetic energy limits.
+                        </p>
+                        <div
+                            class="mt-4 flex items-center text-dome-gold text-xs font-space tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span>View More</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+
+                    <!-- Payload -->
+                    <div class="squad-card cursor-pointer reveal delay-150 bg-nd-blue/10 border border-nd-blue/30 p-6 rounded-lg backdrop-blur-sm group transition-all duration-300 hover:-translate-y-2 hover:bg-nd-blue/30 hover:border-dome-gold/50 hover:shadow-2xl hover:shadow-dome-gold/10"
+                        data-squad="payload">
+                        <div
+                            class="w-12 h-12 rounded-full bg-nd-blue flex items-center justify-center text-metal-gold text-xl mb-6 group-hover:bg-dome-gold group-hover:text-deep-space transition-colors duration-300 shadow-lg">
+                            <i class="fa-solid fa-satellite"></i>
+                        </div>
+                        <h3 class="font-space font-bold text-lg text-white uppercase tracking-wider mb-2">Payload</h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed font-light">
+                            Solves the annually changing NASA design challenge, ranging from self-piloting helicopters
+                            to soil collection devices.
+                        </p>
+                        <div
+                            class="mt-4 flex items-center text-dome-gold text-xs font-space tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span>View More</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+
+                    <!-- ACS -->
+                    <div class="squad-card cursor-pointer reveal delay-225 bg-nd-blue/10 border border-nd-blue/30 p-6 rounded-lg backdrop-blur-sm group transition-all duration-300 hover:-translate-y-2 hover:bg-nd-blue/30 hover:border-dome-gold/50 hover:shadow-2xl hover:shadow-dome-gold/10"
+                        data-squad="acs">
+                        <div
+                            class="w-12 h-12 rounded-full bg-nd-blue flex items-center justify-center text-metal-gold text-xl mb-6 group-hover:bg-dome-gold group-hover:text-deep-space transition-colors duration-300 shadow-lg">
+                            <i class="fa-solid fa-compress-arrows-alt"></i>
+                        </div>
+                        <h3 class="font-space font-bold text-lg text-white uppercase tracking-wider mb-2">Apogee Control
+                        </h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed font-light">
+                            Designs a non-scoring payload that extends active flaps based on IMU data to purposefully
+                            slow an overshooting rocket to exact apogee.
+                        </p>
+                        <div
+                            class="mt-4 flex items-center text-dome-gold text-xs font-space tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span>View More</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+
+                    <!-- Systems -->
+                    <div class="squad-card cursor-pointer reveal delay-75 bg-nd-blue/10 border border-nd-blue/30 p-6 rounded-lg backdrop-blur-sm group transition-all duration-300 hover:-translate-y-2 hover:bg-nd-blue/30 hover:border-dome-gold/50 hover:shadow-2xl hover:shadow-dome-gold/10"
+                        data-squad="systems">
+                        <div
+                            class="w-12 h-12 rounded-full bg-nd-blue flex items-center justify-center text-metal-gold text-xl mb-6 group-hover:bg-dome-gold group-hover:text-deep-space transition-colors duration-300 shadow-lg">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h3 class="font-space font-bold text-lg text-white uppercase tracking-wider mb-2">Systems</h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed font-light">
+                            Outlines requirements verification, ensuring compliance via drag coefficient and center of
+                            pressure wind-tunnel testing.
+                        </p>
+                        <div
+                            class="mt-4 flex items-center text-dome-gold text-xs font-space tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span>View More</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+
+                    <!-- Electrical -->
+                    <div class="squad-card cursor-pointer reveal delay-150 bg-nd-blue/10 border border-nd-blue/30 p-6 rounded-lg backdrop-blur-sm group transition-all duration-300 hover:-translate-y-2 hover:bg-nd-blue/30 hover:border-dome-gold/50 hover:shadow-2xl hover:shadow-dome-gold/10"
+                        data-squad="electrical">
+                        <div
+                            class="w-12 h-12 rounded-full bg-nd-blue flex items-center justify-center text-metal-gold text-xl mb-6 group-hover:bg-dome-gold group-hover:text-deep-space transition-colors duration-300 shadow-lg">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="font-space font-bold text-lg text-white uppercase tracking-wider mb-2">Electrical
+                        </h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed font-light">
+                            Designs custom circuit architecture (PCBs) to integrate sensors/actuators and writes the
+                            embedded code for modules to operate efficiently.
+                        </p>
+                        <div
+                            class="mt-4 flex items-center text-dome-gold text-xs font-space tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span>View More</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+
+                    <!-- Safety -->
+                    <div class="squad-card cursor-pointer reveal delay-225 bg-nd-blue/10 border border-nd-blue/30 p-6 rounded-lg backdrop-blur-sm group transition-all duration-300 hover:-translate-y-2 hover:bg-nd-blue/30 hover:border-dome-gold/50 hover:shadow-2xl hover:shadow-dome-gold/10"
+                        data-squad="safety">
+                        <div
+                            class="w-12 h-12 rounded-full bg-nd-blue flex items-center justify-center text-metal-gold text-xl mb-6 group-hover:bg-dome-gold group-hover:text-deep-space transition-colors duration-300 shadow-lg">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="font-space font-bold text-lg text-white uppercase tracking-wider mb-2">Safety</h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed font-light">
+                            Identifies and mitigates all potential risks to personnel, property, and the environment
+                            across all construction and launch procedures.
+                        </p>
+                        <div
+                            class="mt-4 flex items-center text-dome-gold text-xs font-space tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span>View More</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- VIEW 2: THE DETAILED SQUAD DISPLAY         -->
+            <!-- ========================================== -->
+            <div id="squad-detail-view" class="hidden opacity-0 transition-opacity duration-500 pb-12">
+
+                <!-- Navigation Back -->
+                <button id="back-to-squads"
+                    class="group flex items-center text-gray-400 hover:text-dome-gold font-space tracking-widest uppercase text-sm mb-12 transition-colors duration-300">
+                    <i
+                        class="fa-solid fa-arrow-left mr-3 transform group-hover:-translate-x-1 transition-transform duration-300"></i>
+                    Back to All Squads
+                </button>
+
+                <!-- Detail Grid Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+                    <!-- Left Column: Hero Image & Lead Card -->
+                    <div class="lg:col-span-5 flex flex-col gap-8">
+                        <!-- Squad Hero Image -->
+                        <div
+                            class="relative w-full h-64 md:h-80 rounded-xl overflow-hidden border-2 border-nd-blue/40 shadow-2xl shadow-nd-blue/20">
+                            <img id="detail-hero-image" src="/path/to/placeholder.jpg" alt="Squad Action Shot"
+                                class="absolute inset-0 w-full h-full object-cover  transition-all duration-700">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-deep-space via-deep-space/20 to-transparent">
+                            </div>
+                        </div>
+
+                        <!-- Squad Lead Profile Card -->
+                        <div class="bg-nd-blue/10 border border-dome-gold/30 rounded-xl p-8 relative overflow-hidden">
+                            <div
+                                class="absolute top-0 right-0 w-24 h-24 bg-dome-gold/5 rounded-bl-full -mr-4 -mt-4 pointer-events-none">
+                            </div>
+                            <h4
+                                class="font-space uppercase text-dome-gold text-sm tracking-widest mb-6 border-b border-dome-gold/20 pb-2">
+                                Squad Lead</h4>
+
+                            <div class="flex items-center gap-6">
+                                <!-- Lead Image -->
+                                <div
+                                    class="relative w-36 h-36 rounded-2xl p-1 border-2 border-dome-gold/50 flex-shrink-0 shadow-lg">
+                                    <img id="detail-lead-image" src="/path/to/headshot.jpg" alt="Lead Headshot"
+                                        class="w-full h-full rounded-xl object-cover">
+                                </div>
+                                <!-- Lead Info -->
+                                <div>
+                                    <h3 id="detail-lead-name" class="font-bold text-2xl text-white font-inter mb-1">John
+                                        Doe</h3>
+                                    <p id="detail-lead-major" class="text-gray-400 text-sm mb-3">Senior, Aerospace
+                                        Engineering</p>
+                                    <div class="flex gap-3">
+                                        <a id="detail-lead-email" href="#"
+                                            class="w-8 h-8 rounded-full bg-nd-blue/50 flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300">
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </a>
+                                        <a id="detail-lead-linkedin" href="#" target="_blank"
+                                            class="w-8 h-8 rounded-full bg-nd-blue/50 flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300">
+                                            <i class="fa-brands fa-linkedin-in"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Content & Specs -->
+                    <div class="lg:col-span-7 flex flex-col justify-center">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div id="detail-icon"
+                                class="w-16 h-16 rounded-full bg-dome-gold flex items-center justify-center text-deep-space text-3xl shadow-[0_0_20px_rgba(201,151,0,0.4)]">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                            <h2 id="detail-title"
+                                class="font-space font-bold text-4xl md:text-5xl uppercase tracking-wider text-white">
+                                Squad Name</h2>
+                        </div>
+
+                        <div class="h-[1px] w-full bg-gradient-to-r from-nd-blue via-nd-blue/50 to-transparent mb-8">
+                        </div>
+
+                        <div class="prose prose-invert max-w-none">
+                            <p id="detail-description-1"
+                                class="font-inter text-gray-300 text-lg leading-relaxed mb-4 font-light">
+                                Detailed paragraph 1 goes here.
+                            </p>
+                            <p id="detail-description-2" class="font-inter text-gray-400 leading-relaxed mb-8">
+                                Detailed paragraph 2 goes here.
+                            </p>
+
+                            <h4 class="font-space text-white uppercase tracking-widest text-lg mb-4 flex items-center">
+                                <i class="fa-solid fa-crosshairs text-dome-gold mr-3"></i> Core Directives &
+                                Deliverables
+                            </h4>
+
+                            <ul id="detail-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 font-inter text-gray-400">
+                                <!-- Populated by JS -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ========================================== -->
+    <!-- SECTION 4: IMPACT & OUTREACH               -->
+    <!-- ========================================== -->
+    <section id="impact-outreach" class="py-24 bg-deep-space border-b border-nd-blue/40">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+                <div class="reveal lg:col-span-7 flex flex-col items-start order-1">
+                    <span class="font-space text-sm tracking-widest uppercase text-dome-gold mb-2">Beyond the
+                        Launchpad</span>
+                    <h2 class="font-space font-bold text-3xl md:text-4xl uppercase tracking-wider mb-6 text-white">STEM
+                        Outreach</h2>
+                    <p class="font-inter text-gray-300 text-lg leading-relaxed mb-4 font-light">
+                        The team is responsible for paying their learning experiences forward through different
+                        educational outreach events. We host workshops and rocket builds for local schools and community
+                        groups, serving the youth of the South Bend area to inspire the next generation of engineers.
+                    </p>
+
+                    <a href="outreach.html"
+                        class="inline-flex items-center gap-3 px-6 py-3 bg-nd-blue hover:bg-dome-gold hover:text-deep-space text-white font-space font-bold tracking-widest uppercase rounded border border-dome-gold/40 transition-all duration-300">
+                        <span>View Community Operations</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="reveal delay-100 lg:col-span-5 order-2">
+                    <div class="relative rounded-lg overflow-hidden border border-nd-blue shadow-2xl group">
+                        <img src="img-4483.jpg" alt="Team giving STEM demonstration to local students"
+                            class="w-full h-80 md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-deep-space/80 via-transparent to-transparent">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECTION 5: MEDIA GALLERY                   -->
+    <!-- ========================================== -->
+    <section id="gallery" class="py-24 bg-deep-space overflow-hidden relative">
+
+        <div class="reveal text-center max-w-2xl mx-auto mb-4">
+            <h2 class="font-space font-bold text-3xl uppercase tracking-wider text-white">Flight <span
+                    class="text-dome-gold">Gallery</span></h2>
+            <p class="font-inter text-sm text-gray-400 mt-2 font-light">A visual record of our manufacturing builds,
+                engine integration runs, and flight deployments.</p>
+        </div>
+
+        <!-- Continuous Image Slider Element -->
+        <div class="w-full relative mt-12 reveal delay-100">
+            <!-- Edge Gradient Overlays -->
+            <div
+                class="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-deep-space to-transparent z-10 pointer-events-none">
+            </div>
+            <div
+                class="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-deep-space to-transparent z-10 pointer-events-none">
+            </div>
+
+            <!-- Loop Track Container -->
+            <div class="scroll-track gap-4 px-4">
+                <!-- Array Cycle 1 -->
+                <img src="usli_slider_8.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_2.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_3.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_6.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_5.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_4.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_7.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_1.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_9.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_10.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_11.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+
+                <!-- Duplicated Array Cycle 2 (Preserves loop track seamlessness) -->
+                <img src="usli_slider_8.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_2.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_3.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_6.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_5.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_4.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_7.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_1.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_9.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_10.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+                <img src="usli_slider_11.jpg"
+                    class="h-56 md:h-72 w-auto object-cover rounded-lg shadow-lg border border-nd-blue/30"
+                    alt="USLI Operations Frame">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-[#03060d] pt-16 pb-8 border-t border-nd-blue">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4">
+                    <a href="index.html" class="hover:opacity-80 transition-opacity duration-300">
+                        <img src="NDRT logo.png" alt="NDRT Logo" class="h-8 w-auto drop-shadow-md">
+                    </a>
+                </div>
+                <p class="font-inter text-sm text-gray-500 mb-6">
+                    Notre Dame Rocketry Team
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/ndrocketryteam/" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/ndrt" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@ndrocketryteam" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Navigation</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="index.html" class="hover:text-dome-gold transition-colors">Home</a></li>
+                    <li><a href="about us.html" class="hover:text-dome-gold transition-colors">About Us</a></li>
+                    <li><a href="leadership.html" class="hover:text-dome-gold transition-colors">Leadership</a></li>
+                    <li><a href="sponsors.html" class="hover:text-dome-gold transition-colors">Sponsors</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Resources</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="Sponsor Partnership Brochure 2026 - 2027.pdf"
+                            class="hover:text-dome-gold transition-colors"><i class="fa-regular fa-file-pdf mr-2"></i>
+                            Sponsorship Brochure</a></li>
+                    <li><button id="openReportsModalBtn" class="hover:text-dome-gold transition-colors text-left"><i
+                                class="fa-solid fa-lock mr-2"></i> Request Reports</button></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Contact</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-dome-gold"></i>
+                        <a href="https://maps.google.com/?q=257+Fitzpatrick+Hall+of+Engineering,+Notre+Dame,+IN+46556"
+                            target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                            257 Fitzpatrick Hall of Engineering<br>Notre Dame, IN 46556<br>United States
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-dome-gold"></i>
+                        <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-6 lg:px-12 border-t border-nd-blue pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-inter text-xs text-gray-600">
+                &copy; <span id="year"></span> Notre Dame Rocketry Team. All rights reserved.
+            </p>
+            <p class="font-inter text-xs text-gray-600">
+                Ad Astra.
+            </p>
+        </div>
+    </footer>
+    <!-- Request Reports Modal -->
+    <div id="reportsModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6">
+        <!-- Dark Blur Backdrop -->
+        <div id="reportsModalBackdrop"
+            class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer transition-opacity"></div>
+
+        <!-- Modal Content Container -->
+        <div
+            class="relative w-full max-w-3xl bg-[#03060d] border border-nd-blue rounded-xl shadow-2xl p-6 md:p-10 transform transition-all overflow-y-auto max-h-[90vh]">
+
+            <!-- Close Button -->
+            <button id="closeReportsModalBtn"
+                class="absolute top-4 right-4 text-gray-400 hover:text-dome-gold transition-colors p-2">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+
+            <!-- Header -->
+            <h2 class="font-space font-bold text-2xl md:text-3xl text-white mb-4 uppercase tracking-wide">
+                NASA Student Launch Reports
+            </h2>
+
+            <!-- Description -->
+            <p class="font-inter text-gray-400 mb-8 leading-relaxed text-sm md:text-base">
+                While our detailed NASA Student Launch reports and technical documents are not available to the general
+                public, we gladly share them with current sponsors, prospective partners, and fellow collegiate rocketry
+                teams upon request. Please fill out the form below detailing why you need access, and our team will
+                review your request.
+            </p>
+
+            <!-- Request Form connected to SplitForms -->
+            <form action="https://splitforms.com/api/submit" method="POST" class="flex flex-col gap-6">
+                <!-- Required Hidden Fields -->
+                <input type="hidden" name="access_key" value="0ecf7af2bf834c49a08fdda432a8293c">
+                <input type="hidden" name="Page Source" value="Request Reports Modal">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Full Name -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-name" class="font-space text-xs text-gray-500 uppercase tracking-widest">Full
+                            Name *</label>
+                        <input type="text" id="req-name" name="Name" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                    <!-- Organization / Affiliation -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-org"
+                            class="font-space text-xs text-gray-500 uppercase tracking-widest">Organization / Team
+                            *</label>
+                        <input type="text" id="req-org" name="Organization" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Email -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-email" class="font-space text-xs text-gray-500 uppercase tracking-widest">Email
+                            Address *</label>
+                        <input type="email" id="req-email" name="Email" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                    <!-- Phone (Optional) -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-phone" class="font-space text-xs text-gray-500 uppercase tracking-widest">Phone
+                            Number <span class="text-gray-600 lowercase normal-case ml-1">(Optional)</span></label>
+                        <input type="tel" id="req-phone" name="Phone"
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                </div>
+
+                <!-- Reason for Request -->
+                <div class="flex flex-col gap-2">
+                    <label for="req-reason" class="font-space text-xs text-gray-500 uppercase tracking-widest">Reason
+                        for Request *</label>
+                    <textarea id="req-reason" name="Reason for Request" rows="4" required
+                        placeholder="Please explain why you are requesting access to this data (e.g., 'Reviewing team structure for a potential sponsorship' or 'Cross-team technical review')..."
+                        class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 resize-none"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full px-8 py-4 bg-dome-gold text-black font-space font-bold tracking-widest uppercase rounded hover:bg-white transition-colors duration-300 flex items-center justify-center gap-3 mt-2 shadow-[0_0_15px_rgba(201,151,0,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- Scroll to Top Button -->
+    <script src="scroll_to_top_script.js"></script>
+    <script src="ParallaxEffect.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Modal Elements
+            const openModalBtn = document.getElementById("openReportsModalBtn");
+            const closeModalBtn = document.getElementById("closeReportsModalBtn");
+            const modal = document.getElementById("reportsModal");
+            const modalBackdrop = document.getElementById("reportsModalBackdrop");
+
+            // Function to open modal
+            const openModal = (e) => {
+                e.preventDefault(); // Prevents page from jumping to top
+                modal.classList.remove("hidden");
+                // Disable scrolling on the main page while modal is open
+                document.body.style.overflow = "hidden";
+            };
+
+            // Function to close modal
+            const closeModal = () => {
+                modal.classList.add("hidden");
+                // Re-enable scrolling on the main page
+                document.body.style.overflow = "auto";
+            };
+
+            // Event Listeners
+            if (openModalBtn) {
+                openModalBtn.addEventListener("click", openModal);
+            }
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener("click", closeModal);
+            }
+            if (modalBackdrop) {
+                // Clicking the dark background outside the modal closes it
+                modalBackdrop.addEventListener("click", closeModal);
+            }
+
+            // Pressing the "Escape" key closes the modal
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Set year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((element) => {
+            observer.observe(element);
+        });
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ==========================================
+            // SQUAD DATABASE - UPDATED COPY
+            // ==========================================
+            const squadData = {
+                vehicles: {
+                    title: "Vehicles",
+                    icon: "fa-space-shuttle transform -rotate-45",
+                    heroImage: "ndrt7.jpg",
+                    desc1: "The Vehicles squad is responsible for the design and manufacturing of the exterior of the rocket. This includes the body tubes, fins, and nose cone.",
+                    desc2: "Beyond physical manufacturing, the squad also runs complex aerodynamic simulations to estimate the final altitude, speed, stability, and overall flight performance of the rocket prior to launch.",
+                    deliverables: [
+                        "Body tube, fin, and nose cone manufacturing",
+                        "Flight performance simulations",
+                        "Final altitude and speed estimations",
+                        "Overall flight stability verification"
+                    ],
+                    lead: {
+                        name: "Dalton Leitz",
+                        major: "Junior, Aerospace Engineering",
+                        image: "1x1 aspect ratio pro photo - Dalton Leitz.JPG", // Update with local file name
+                        email: "mailto:dleitz@nd.edu",
+                        linkedin: "https://linkedin.com/"
+                    }
+                },
+                recovery: {
+                    title: "Recovery",
+                    icon: "fa-parachute-box",
+                    heroImage: "ndrt5.jpg",
+                    desc1: "Recovery ensures the safe landing of the rocket. This is done with two distinct modules that deploy parachutes.",
+                    desc2: "Using advanced sensors and ejection charges, the squad separates the launch vehicle at specific points in its descent. The design must meet strict NASA requirements for drift radius and kinetic energy upon landing.",
+                    deliverables: [
+                        "Dual parachute module design",
+                        "Sensor-based ejection charge triggering",
+                        "Drift radius calculations",
+                        "Kinetic energy limit compliance"
+                    ],
+                    lead: {
+                        name: "Saitta Roy", // Placeholder (Not in roster provided)
+                        major: "Junior, Mechanical Engineering",
+                        image: "headshot - Saitta Roy.jpeg",
+                        email: "mailto:sroy3@nd.edu",
+                        linkedin: "https://linkedin.com/"
+                    }
+                },
+                payload: {
+                    title: "Payload",
+                    icon: "fa-satellite",
+                    heroImage: "ndrt1.png",
+                    desc1: "Each year, this squad is responsible for the design we use for the annual NASA Payload Design Challenge, which changes yearly to expose students to different sciences.",
+                    desc2: "The three most recent challenges engineered by this squad have been a self-piloting helicopter that ejects mid-flight, a radio transmitter extending from the body, and a device capable of collecting soil samples upon landing.",
+                    deliverables: [
+                        "Self-piloting helicopter integration",
+                        "Radio transmitter deployment",
+                        "Soil collection mechanism design",
+                        "Annual NASA science requirement fulfillment"
+                    ],
+                    lead: {
+                        name: "Noah Janchar",
+                        major: "Senior, Mechanical Engineering",
+                        image: "IMG_2876 - Noah Janchar.jpeg    ",
+                        email: "mailto:Njanchar@nd.edu",
+                        linkedin: "https://linkedin.com/"
+                    }
+                },
+                acs: {
+                    title: "Apogee Control",
+                    icon: "fa-compress-arrows-alt",
+                    heroImage: "acs.jpeg",
+                    desc1: "ACS designs a secondary non-scoring payload that is responsible for reaching an exact, predetermined apogee for the rocket.",
+                    desc2: "Ensuring the launch vehicle will naturally overshoot the target apogee, ACS designs a mechanical system that extends drag flaps to slow down the rocket mid-flight, calculated in real-time based on data from an onboard IMU and altimeter.",
+                    deliverables: [
+                        "Secondary non-scoring payload design",
+                        "Mechanical drag flap actuation",
+                        "Real-time IMU and altimeter data processing",
+                        "Exact altitude targeting"
+                    ],
+                    lead: {
+                        name: "Jenna Pucciani",
+                        major: "Junior, Aerospace Engineering",
+                        image: "jenna_formal_photo - Jenna Pucciani.jpg",
+                        email: "mailto:jpuccian@nd.edu",
+                        linkedin: "https://linkedin.com/"
+                    }
+                },
+                systems: {
+                    title: "Systems",
+                    icon: "fa-network-wired",
+                    heroImage: "IMG_5267.png",
+                    desc1: "The Systems Squad is responsible for outlining requirements for the team that must be subsequently verified or tested to ensure strict compliance.",
+                    desc2: "For example, they oversee the subscale launch vehicle testing in a wind tunnel to accurately determine the drag coefficients and center of pressure, ensuring our real-world tests match our dynamic modeling.",
+                    deliverables: [
+                        "Requirements outlining and tracking",
+                        "Verification and testing compliance",
+                        "Subscale wind tunnel testing",
+                        "Drag coefficient and CP calculations"
+                    ],
+                    lead: {
+                        name: "Aidan Flynn",
+                        major: "Senior, Aerospace Engineering",
+                        image: "Aidan_Flynn_Headshot - Aidan Flynn.jpg",
+                        email: "mailto:aflynn4@nd.edu",
+                        linkedin: "https://linkedin.com/"
+                    }
+                },
+                electrical: {
+                    title: "Electrical",
+                    icon: "fa-microchip",
+                    heroImage: "ndrt3.png",
+                    desc1: "The electrical design squad engineers the complex electrical systems required so that all the different vehicular modules work as intended.",
+                    desc2: "This includes designing custom Printed Circuit Boards (PCB) to integrate sensors and actuators for the embedded systems, as well as writing all necessary code so that the modules operate efficiently and flawlessly.",
+                    deliverables: [
+                        "Printed Circuit Board (PCB) design",
+                        "Sensor and actuator integration",
+                        "Embedded systems architecture",
+                        "Flight code writing and optimization"
+                    ],
+                    lead: {
+                        name: "Margaret Mei",
+                        major: "Junior, Electrical Engineering",
+                        image: "Headshot - Margaret Mei.heic",
+                        email: "mailto:mmei@nd.edu",
+                        linkedin: "https://linkedin.com/"
+                    }
+                },
+                safety: {
+                    title: "Safety",
+                    icon: "fa-shield-halved",
+                    heroImage: "ndrt6.jpg",
+                    desc1: "The safety squad works to strictly identify and mitigate all potential risks to personnel, property, and the environment.",
+                    desc2: "They are present and authoritative during all rocket construction, transportation, and launch procedures to maintain compliance with all application regulations and secure our consecutive National Safety Awards.",
+                    deliverables: [
+                        "Risk mitigation for personnel and property",
+                        "Construction and transport safety protocols",
+                        "Launch procedure compliance",
+                        "Environmental protection measures"
+                    ],
+                    lead: {
+                        name: "Lainie Wilkins",
+                        major: "Sophomore, Mechanical Engineering",
+                        image: "IMG_5908 - Lainie Wilkins.jpeg",
+                        email: "mailto:lwilkin2@nd.edu",
+                        linkedin: "https://linkedin.com/"
+                    }
+                }
+            };
+            // ==========================================
+            // LOGIC
+            // ==========================================
+            const gridView = document.getElementById('squads-grid-view');
+            const detailView = document.getElementById('squad-detail-view');
+            const backBtn = document.getElementById('back-to-squads');
+            const squadCards = document.querySelectorAll('.squad-card');
+            const squadsSection = document.getElementById('squads');
+
+            const dTitle = document.getElementById('detail-title');
+            const dIcon = document.getElementById('detail-icon');
+            const dHeroImg = document.getElementById('detail-hero-image');
+            const dDesc1 = document.getElementById('detail-description-1');
+            const dDesc2 = document.getElementById('detail-description-2');
+            const dList = document.getElementById('detail-list');
+            const dLeadImg = document.getElementById('detail-lead-image');
+            const dLeadName = document.getElementById('detail-lead-name');
+            const dLeadMajor = document.getElementById('detail-lead-major');
+            const dLeadEmail = document.getElementById('detail-lead-email');
+            const dLeadLinkedIn = document.getElementById('detail-lead-linkedin');
+
+            squadCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    const squadKey = this.getAttribute('data-squad');
+                    const data = squadData[squadKey];
+                    if (!data) return;
+
+                    dTitle.textContent = data.title;
+                    dIcon.innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+                    dHeroImg.src = data.heroImage;
+                    dDesc1.textContent = data.desc1;
+                    dDesc2.textContent = data.desc2;
+
+                    dList.innerHTML = '';
+                    data.deliverables.forEach(item => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<i class="fa-solid fa-check text-dome-gold mt-1 mr-2"></i> <span>${item}</span>`;
+                        li.className = "flex items-start";
+                        dList.appendChild(li);
+                    });
+
+                    dLeadName.textContent = data.lead.name;
+                    dLeadMajor.textContent = data.lead.major;
+                    dLeadImg.src = data.lead.image;
+                    dLeadEmail.href = data.lead.email;
+                    dLeadLinkedIn.href = data.lead.linkedin;
+
+                    gridView.classList.remove('opacity-100');
+                    gridView.classList.add('opacity-0');
+
+                    setTimeout(() => {
+                        gridView.classList.add('hidden');
+                        detailView.classList.remove('hidden');
+
+                        setTimeout(() => {
+                            detailView.classList.remove('opacity-0');
+                            detailView.classList.add('opacity-100');
+                            squadsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 50);
+
+                    }, 500);
+                });
+            });
+
+            backBtn.addEventListener('click', () => {
+                detailView.classList.remove('opacity-100');
+                detailView.classList.add('opacity-0');
+
+                setTimeout(() => {
+                    detailView.classList.add('hidden');
+                    gridView.classList.remove('hidden');
+
+                    setTimeout(() => {
+                        gridView.classList.remove('opacity-0');
+                        gridView.classList.add('opacity-100');
+                        squadsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 50);
+
+                }, 500);
+            });
+        });
+    </script>
+    <script src="navbar.js"></script>
+</body>
+
+</html>

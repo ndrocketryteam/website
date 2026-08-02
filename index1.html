@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Dame Rocketry Team | NDRT</title>
+    <link rel="icon" type="image/png" href="patch@4x.png">
+
+    <!-- Google Fonts: Orbitron for technical headings, Inter for clean body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind CSS with Custom ND Brand Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-space': '#050914',
+                        'nd-blue': '#0C2340',
+                        'dome-gold': '#C99700',
+                        'metal-gold': '#AE9142',
+                        'irish-green': '#00843D'
+                    },
+                    fontFamily: {
+                        'space': ['Orbitron', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        // Background image isolated without the static gradient
+                        'hero-bg': "url('index bg.jpg')",
+                        'engine-pattern': "linear-gradient(to right, rgba(5, 9, 20, 0.9), rgba(12, 35, 64, 0.8)), url('index lower bg.jpg')"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050914;
+            /* deep-space */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050914;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0C2340;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #AE9142;
+        }
+
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-75 {
+            transition-delay: 75ms;
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-150 {
+            transition-delay: 150ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-225 {
+            transition-delay: 225ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        /* Infinite Ticker Animation */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .ticker {
+            display: inline-block;
+            animation: ticker 35s linear infinite;
+        }
+
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        html {
+            font-size: 80%;
+            /* Scales down the entire Tailwind framework to your target 80% reference system */
+        }
+    </style>
+    <link rel="stylesheet" href="navbar.css">
+    <script src="navbar.js"></script>
+
+
+
+</head>
+
+<body class="font-inter antialiased selection:bg-dome-gold selection:text-deep-space">
+
+    <!-- Production Notice Pop-up -->
+    <div id="beta-toast"
+        class="fixed top-28 right-4 md:right-8 z-[100] w-[calc(100%-2rem)] max-w-md bg-deep-space/95 backdrop-blur-md border border-dome-gold/20 border-l-4 border-l-dome-gold rounded-r-lg shadow-2xl p-5 md:p-6 flex items-start gap-4 transition-all duration-500 ease-out translate-x-[120%] opacity-0">
+        <!-- Icon -->
+        <div class="text-dome-gold mt-0.5 text-xl flex-shrink-0">
+            <i class="fa-solid fa-circle-info"></i>
+        </div>
+        <!-- Text Content -->
+        <div class="flex-1 pr-2">
+            <h4 class="font-space font-bold text-base text-white tracking-wide mb-2">Welcome to Our New Website</h4>
+            <p class="font-inter text-xs md:text-sm text-gray-300 leading-relaxed">
+                We are thrilled to share our newly redesigned website with you. As we recently launched, we are still
+                fine-tuning the user experience. You may occasionally experience minor technical issues or encounter
+                pages that are currently being updated. We appreciate your patience and understanding as we work to
+                optimize our platform.
+            </p>
+        </div>
+        <!-- Close Button -->
+        <button id="close-beta-toast"
+            class="text-gray-400 hover:text-dome-gold transition-colors focus:outline-none p-1 -mt-1 -mr-1 flex-shrink-0"
+            aria-label="Close notification">
+            <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <div id="navbar-container"></div>
+
+
+    <!-- Sticky Hero Section -->
+    <!-- Sticky Hero Section with Scroll Buffer -->
+    <header class="relative h-[200vh] w-full -z-0">
+
+        <!-- The sticky container that locks to the screen -->
+        <div class="sticky top-0 h-screen w-full flex items-center justify-center text-center px-4 overflow-hidden">
+
+            <!-- Background Image -->
+            <div class="absolute inset-0 bg-hero-bg bg-cover bg-center bg-no-repeat w-full h-full"></div>
+
+            <!-- Dynamic Dark Gradient Overlay (controlled by JS) -->
+            <div id="scroll-overlay"
+                class="absolute inset-0 bg-gradient-to-t from-deep-space via-deep-space/80 to-transparent opacity-0">
+            </div>
+
+            <!-- Scroll-Revealed Text Content -->
+            <div id="scroll-content"
+                class="relative z-10 max-w-6xl mx-auto mt-20 flex flex-col items-center opacity-0 translate-y-12">
+                <h1
+                    class="font-space font-black text-5xl md:text-6xl lg:text-7xl tracking-tight mb-6 uppercase leading-tight">
+                    <span
+                        class="bg-clip-text text-transparent bg-gradient-to-r from-dome-gold to-metal-gold inline-block">
+                        Notre Dame Rocketry Team
+                    </span>
+                </h1>
+                <p class="font-inter text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto font-light">
+                    Pushing the boundaries of undergraduate aerospace engineering and experimental spaceflight.
+                </p>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div id="scroll-indicator"
+                class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce transition-opacity duration-300">
+                <i class="fa-solid fa-chevron-down text-white/50 text-2xl"></i>
+            </div>
+
+        </div>
+    </header>
+    <div class="relative z-10 bg-deep-space shadow-[0_-20px_50px_rgba(5,9,20,1)]">
+
+        <!-- Quick Stats Section -->
+        <section class="py-16 border-b border-nd-blue/30">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    
+                    <div class="reveal bg-nd-blue/10 border border-nd-blue/30 p-6 md:p-8 rounded-lg hover:border-dome-gold transition-colors flex flex-col items-center justify-center">
+                        <div class="text-4xl md:text-5xl font-space font-bold text-white mb-2">
+                            <span class="counter" data-target="2011">0</span>
+                        </div>
+                        <div class="font-inter text-dome-gold font-bold uppercase tracking-widest text-xs md:text-sm">Established</div>
+                    </div>
+                    
+                    <div class="reveal delay-100 bg-nd-blue/10 border border-nd-blue/30 p-6 md:p-8 rounded-lg hover:border-dome-gold transition-colors flex flex-col items-center justify-center">
+                        <div class="text-4xl md:text-5xl font-space font-bold text-white mb-2">
+                            <span class="counter" data-target="65">0</span><span class="text-3xl text-dome-gold ml-1">+</span>
+                        </div>
+                        <div class="font-inter text-dome-gold font-bold uppercase tracking-widest text-xs md:text-sm">Members</div>
+                    </div>
+                    
+                    <div class="reveal delay-200 bg-nd-blue/10 border border-nd-blue/30 p-6 md:p-8 rounded-lg hover:border-dome-gold transition-colors flex flex-col items-center justify-center">
+                        <div class="text-4xl md:text-5xl font-space font-bold text-white mb-2">
+                            <span class="counter" data-target="2029">0</span>
+                        </div>
+                        <div class="font-inter text-dome-gold font-bold uppercase tracking-widest text-xs md:text-sm">Liquid Engine Launch</div>
+                    </div>
+                    
+                    <div class="reveal delay-300 bg-nd-blue/10 border border-nd-blue/30 p-6 md:p-8 rounded-lg hover:border-dome-gold transition-colors flex flex-col items-center justify-center">
+                        <div class="text-4xl md:text-5xl font-space font-bold text-white mb-2">
+                            <span class="counter" data-target="3">0</span>
+                        </div>
+                        <div class="font-inter text-dome-gold font-bold uppercase tracking-widest text-xs md:text-sm">Active Projects</div>
+                    </div>
+    
+                </div>
+            </div>
+        </section>
+    
+        <!-- About Us Section -->
+        <section class="py-16 md:py-24 bg-deep-space border-b border-nd-blue/30">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+                    
+                    <!-- Image Container -->
+                    <div class="reveal lg:order-1 order-2 w-full">
+                        <div class="relative rounded-lg overflow-hidden border-2 border-nd-blue shadow-2xl group w-full">
+                            <img src="2W8A3599.JPG" alt="NDRT Team Members"
+                                class="w-full h-[350px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-deep-space/80 via-transparent to-transparent"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Text Container -->
+                    <div class="reveal delay-100 flex flex-col items-start lg:order-2 order-1 w-full">
+                        <span class="text-dome-gold font-space text-sm tracking-widest uppercase mb-2">Our Mission</span>
+                        <h2 class="font-space font-bold text-3xl md:text-4xl uppercase tracking-wider mb-4 text-white">
+                            About NDRT
+                        </h2>
+                        <p class="font-inter text-gray-300 text-base md:text-lg leading-relaxed mb-4 font-light">
+                            At the Notre Dame Rocketry Team, we design, manufacture, test, and launch high-powered
+                            rockets. Our mission is to transform classroom theory into real-world engineering solutions.
+                        </p>
+                        <p class="font-inter text-gray-300 text-base md:text-lg leading-relaxed mb-8 font-light">
+                            By developing complex aerospace technologies like custom avionics and our new experimental
+                            liquid propulsion systems, our members gain hands-on experience that goes far beyond
+                            traditional coursework. Ultimately, our goal is to equip the next generation of engineers with practical skills, technical rigor, and a collaborative mindset.
+                        </p>
+                        <a href="about us.html"
+                            class="inline-flex items-center gap-3 px-5 py-3 bg-nd-blue hover:bg-dome-gold hover:text-deep-space text-white font-space font-bold text-xs md:text-sm tracking-widest uppercase rounded border border-dome-gold/40 transition-all duration-300 group shadow-lg">
+                            <span>Learn About Us</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+    
+                </div>
+            </div>
+        </section>
+    
+        <!-- Our Projects Section -->
+        <section id="missions" class="py-16 md:py-24 bg-deep-space border-b border-nd-blue/30">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+                    
+                    <!-- Text Container (Left) -->
+                    <div class="reveal flex flex-col items-start w-full">
+                        <span class="text-dome-gold font-space text-sm tracking-widest uppercase mb-2">What We Build & Share</span>
+                        <h2 class="font-space font-bold text-3xl md:text-4xl uppercase tracking-wider mb-6 text-white">
+                            Our Projects
+                        </h2>
+                        <p class="font-inter text-gray-300 text-base md:text-lg leading-relaxed mb-8 font-light">
+                            We manage several concurrent engineering projects, spanning different technical disciplines to push the boundaries of what our team can achieve.
+                        </p>
+    
+                        <!-- Project Pillars with Individual Links -->
+                        <div class="space-y-8 w-full">
+                            
+                            <!-- NASA USLI -->
+                            <div class="flex gap-4 items-start">
+                                <div class="w-12 h-12 shrink-0 bg-nd-blue/20 rounded-full flex items-center justify-center border border-nd-blue/50">
+                                    <i class="fa-solid fa-rocket text-dome-gold text-lg"></i>
+                                </div>
+                                <div class="flex flex-col items-start">
+                                    <h3 class="font-space text-base font-bold text-white uppercase tracking-wide mb-1">
+                                        NASA USLI
+                                    </h3>
+                                    <p class="font-inter text-gray-400 text-sm md:text-base font-light leading-relaxed mb-2">
+                                        Designing high-power solid motor vehicles to meet rigorous engineering and payload criteria for the NASA Student Launch competition.
+                                    </p>
+                                    <a href="usli.html" class="inline-flex items-center gap-2 font-space text-xs font-bold tracking-widest uppercase text-dome-gold hover:text-white transition-colors group">
+                                        Explore USLI <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                                    </a>
+                                </div>
+                            </div>
+    
+                            <!-- Project NDXP -->
+                            <div class="flex gap-4 items-start">
+                                <div class="w-12 h-12 shrink-0 bg-nd-blue/20 rounded-full flex items-center justify-center border border-nd-blue/50">
+                                    <i class="fa-solid fa-fire text-dome-gold text-lg"></i>
+                                </div>
+                                <div class="flex flex-col items-start">
+                                    <h3 class="font-space text-base font-bold text-white uppercase tracking-wide mb-1">
+                                        Project NDXP
+                                    </h3>
+                                    <p class="font-inter text-gray-400 text-sm md:text-base font-light leading-relaxed mb-2">
+                                        A multi-year initiative dedicated to researching, building, and launching Notre Dame's first-ever liquid bipropellant rocket engine.
+                                    </p>
+                                    <a href="ndxp.html" class="inline-flex items-center gap-2 font-space text-xs font-bold tracking-widest uppercase text-dome-gold hover:text-white transition-colors group">
+                                        Discover NDXP <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                                    </a>
+                                </div>
+                            </div>
+    
+                            <!-- Community Outreach -->
+                            <div class="flex gap-4 items-start">
+                                <div class="w-12 h-12 shrink-0 bg-nd-blue/20 rounded-full flex items-center justify-center border border-nd-blue/50">
+                                    <i class="fa-solid fa-earth-americas text-dome-gold text-lg"></i>
+                                </div>
+                                <div class="flex flex-col items-start">
+                                    <h3 class="font-space text-base font-bold text-white uppercase tracking-wide mb-1">
+                                        Community Outreach
+                                    </h3>
+                                    <p class="font-inter text-gray-400 text-sm md:text-base font-light leading-relaxed mb-2">
+                                        Inspiring the next generation of engineers by hosting STEM engagement events for local schools, proving that space exploration is accessible to everyone.
+                                    </p>
+                                    <a href="outreach.html" class="inline-flex items-center gap-2 font-space text-xs font-bold tracking-widest uppercase text-dome-gold hover:text-white transition-colors group">
+                                        Learn More <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                                    </a>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+    
+                    <!-- Showcase Image Container (Right) -->
+                    <div class="reveal delay-100 w-full h-full flex items-center">
+                        <div class="relative rounded-lg overflow-hidden border-2 border-nd-blue shadow-2xl group w-full">
+                            <img src="IMG_5002 (3).JPG" alt="NDRT Rocket Launch Project"
+                                class="w-full h-[450px] md:h-[550px] object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-deep-space/80 via-transparent to-transparent"></div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </section>
+        
+    </div>
+        <!-- Sponsorship Section -->
+        <section
+            class="py-24 bg-engine-pattern bg-cover bg-center relative border-y border-dome-gold/20 overflow-hidden">
+            <div class="absolute inset-0 bg-deep-space/80"></div>
+            <div class="relative max-w-4xl mx-auto px-6 text-center reveal">
+                <h2 class="font-space font-bold text-4xl md:text-5xl uppercase tracking-wider mb-6">Become A <span
+                        class="text-dome-gold">Sponsor</span></h2>
+                <p class="font-inter text-gray-300 text-lg mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                    Building rockets requires dedication, precision engineering, and essential financial support.
+                    Partner
+                    with Notre Dame's next generation of aerospace leaders and help power our missions.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="sponsors.html"
+                        class="px-8 py-4 bg-dome-gold text-deep-space font-space font-bold tracking-widest uppercase rounded-md hover:bg-white transition-colors duration-300">
+                        Become a Sponsor
+                    </a>
+                    <a href="contact.html"
+                        class="px-8 py-4 bg-transparent border border-white text-white font-space font-bold tracking-widest uppercase rounded-md hover:bg-white hover:text-deep-space transition-colors duration-300">
+                        Contact The Team
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sponsor Marquee -->
+            <div class="relative w-full mt-20 pt-12 border-t border-white/10 reveal delay-200">
+                <h3 class="font-space text-lg font-semibold tracking-widest uppercase text-dome-gold mb-8 text-center">
+                    Join
+                    Our Current Sponsors</h3>
+                <div
+                    class="ticker-wrap w-full overflow-hidden relative bg-white/90 backdrop-blur-md py-6 rounded-2xl border border-white/30 shadow-2xl">
+                    <!-- Inner ticker track containing two identical sets for seamless looping -->
+                    <div class="ticker flex items-center space-x-12 px-6">
+                        <!-- First Set of Logos -->
+                        <img src="Alro Steel.png" alt="Sponsor 1"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" ansys-logo.png" alt="Sponsor 2"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" blue.webp" alt="Sponsor 3"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" boeing-logo-wine.png" alt="Sponsor 4"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" cropped-jordan-family-foundation-01.png" alt="Sponsor 5"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" image-28.png" alt="Sponsor 6"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" lockheed.png" alt="Sponsor 7"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" plc-long-white-logo-removebg-preview.png" alt="Sponsor 7"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" pratt-whitney-dependable-engines-logo-png-transparent.png" alt="Sponsor 7"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" sbg-systems-logo.png" alt="Sponsor 7"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" themarmongroup-logo.png" alt="Sponsor 7"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+
+                        <!-- Second Set of Logos (Duplicate of the first for seamless animation) -->
+                        <img src=" Alro Steel.png" alt="Sponsor 1"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" ansys-logo.png" alt="Sponsor 2"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" blue.webp" alt="Sponsor 3"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" boeing-logo-wine.png" alt="Sponsor 4"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" cropped-jordan-family-foundation-01.png" alt="Sponsor 5"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" image-28.png" alt="Sponsor 6"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" lockheed.png" alt="Sponsor 7"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" plc-long-white-logo-removebg-preview.png" alt="Sponsor 7"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" pratt-whitney-dependable-engines-logo-png-transparent.png" alt="Sponsor 7"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" sbg-systems-logo.png" alt="Sponsor 7"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+                        <img src=" themarmongroup-logo.png" alt="Sponsor 7"
+                            class="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-[#03060d] pt-16 pb-8 border-t border-nd-blue">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <a href="index.html" class="hover:opacity-80 transition-opacity duration-300">
+                            <img src="NDRT logo white.png" alt="NDRT Logo" class="h-12 w-auto drop-shadow-md">
+                        </a>
+                    </div>
+                    <p class="font-inter text-sm text-gray-500 mb-6">
+                        Notre Dame Rocketry Team
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/ndrocketryteam/" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/ndrt" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                                class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/@ndrocketryteam" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                                class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Navigation</h4>
+                    <ul class="font-inter text-sm text-gray-400 space-y-3">
+                        <li><a href="index.html" class="hover:text-dome-gold transition-colors">Home</a></li>
+                        <li><a href="about us.html" class="hover:text-dome-gold transition-colors">About Us</a></li>
+                        <li><a href="leadership.html" class="hover:text-dome-gold transition-colors">Leadership</a></li>
+                        <li><a href="sponsors.html" class="hover:text-dome-gold transition-colors">Sponsors</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Resources</h4>
+                    <ul class="font-inter text-sm text-gray-400 space-y-3">
+                        <li><a href="Sponsor Partnership Brochure 2026 - 2027.pdf"
+                                class="hover:text-dome-gold transition-colors"><i
+                                    class="fa-regular fa-file-pdf mr-2"></i> Sponsorship Brochure</a></li>
+                        <li><button id="openReportsModalBtn" class="hover:text-dome-gold transition-colors text-left"><i
+                                    class="fa-solid fa-lock mr-2"></i> Request Reports</button></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Contact</h4>
+                    <ul class="font-inter text-sm text-gray-400 space-y-3">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-dome-gold"></i>
+                            <a href="https://maps.google.com/?q=257+Fitzpatrick+Hall+of+Engineering,+Notre+Dame,+IN+46556"
+                                target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                                257 Fitzpatrick Hall of Engineering<br>Notre Dame, IN 46556<br>United States
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-dome-gold"></i>
+                            <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="max-w-7xl mx-auto px-6 lg:px-12 border-t border-nd-blue pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="font-inter text-xs text-gray-600">
+                    &copy; <span id="year"></span> Notre Dame Rocketry Team. All rights reserved.
+                </p>
+                <p class="font-inter text-xs text-gray-600">
+                    Ad Astra.
+                </p>
+            </div>
+        </footer>
+        <!-- Request Reports Modal -->
+        <div id="reportsModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6">
+            <!-- Dark Blur Backdrop -->
+            <div id="reportsModalBackdrop"
+                class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer transition-opacity"></div>
+
+            <!-- Modal Content Container -->
+            <div
+                class="relative w-full max-w-3xl bg-[#03060d] border border-nd-blue rounded-xl shadow-2xl p-6 md:p-10 transform transition-all overflow-y-auto max-h-[90vh]">
+
+                <!-- Close Button -->
+                <button id="closeReportsModalBtn"
+                    class="absolute top-4 right-4 text-gray-400 hover:text-dome-gold transition-colors p-2">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+
+                <!-- Header -->
+                <h2 class="font-space font-bold text-2xl md:text-3xl text-white mb-4 uppercase tracking-wide">
+                    NASA Student Launch Reports
+                </h2>
+
+                <!-- Description -->
+                <p class="font-inter text-gray-400 mb-8 leading-relaxed text-sm md:text-base">
+                    While our detailed NASA Student Launch reports and technical documents are not available to the
+                    general public, we gladly share them with current sponsors, prospective partners, and fellow
+                    collegiate rocketry teams upon request. Please fill out the form below detailing why you need
+                    access, and our team will review your request.
+                </p>
+
+                <!-- Request Form connected to SplitForms -->
+                <form action="https://splitforms.com/api/submit" method="POST" class="flex flex-col gap-6">
+                    <!-- Required Hidden Fields -->
+                    <input type="hidden" name="access_key" value="0ecf7af2bf834c49a08fdda432a8293c">
+                    <input type="hidden" name="Page Source" value="Request Reports Modal">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Full Name -->
+                        <div class="flex flex-col gap-2">
+                            <label for="req-name"
+                                class="font-space text-xs text-gray-500 uppercase tracking-widest">Full Name *</label>
+                            <input type="text" id="req-name" name="Name" required
+                                class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                        </div>
+                        <!-- Organization / Affiliation -->
+                        <div class="flex flex-col gap-2">
+                            <label for="req-org"
+                                class="font-space text-xs text-gray-500 uppercase tracking-widest">Organization / Team
+                                *</label>
+                            <input type="text" id="req-org" name="Organization" required
+                                class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Email -->
+                        <div class="flex flex-col gap-2">
+                            <label for="req-email"
+                                class="font-space text-xs text-gray-500 uppercase tracking-widest">Email Address
+                                *</label>
+                            <input type="email" id="req-email" name="Email" required
+                                class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                        </div>
+                        <!-- Phone (Optional) -->
+                        <div class="flex flex-col gap-2">
+                            <label for="req-phone"
+                                class="font-space text-xs text-gray-500 uppercase tracking-widest">Phone Number <span
+                                    class="text-gray-600 lowercase normal-case ml-1">(Optional)</span></label>
+                            <input type="tel" id="req-phone" name="Phone"
+                                class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                        </div>
+                    </div>
+
+                    <!-- Reason for Request -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-reason"
+                            class="font-space text-xs text-gray-500 uppercase tracking-widest">Reason for Request
+                            *</label>
+                        <textarea id="req-reason" name="Reason for Request" rows="4" required
+                            placeholder="Please explain why you are requesting access to this data (e.g., 'Reviewing team structure for a potential sponsorship' or 'Cross-team technical review')..."
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 resize-none"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit"
+                        class="w-full px-8 py-4 bg-dome-gold text-black font-space font-bold tracking-widest uppercase rounded hover:bg-white transition-colors duration-300 flex items-center justify-center gap-3 mt-2 shadow-[0_0_15px_rgba(201,151,0,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                        Submit Request
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+
+        <script src="scroll_to_top_script.js"></script>
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+                // ==========================================
+                // 0. NEW: HERO PARALLAX & TWO-PHASE SCROLL
+                // ==========================================
+                const scrollOverlay = document.getElementById('scroll-overlay');
+                const scrollContent = document.getElementById('scroll-content');
+                const scrollIndicator = document.getElementById('scroll-indicator');
+
+                window.addEventListener('scroll', () => {
+                    const scrollY = window.scrollY;
+                    const windowHeight = window.innerHeight;
+
+                    // PHASE 1: 0 to 100vh (0 to 1 progress)
+                    // Text fades in and moves up its initial 48px offset
+                    const phase1Progress = Math.min(scrollY / windowHeight, 1);
+
+                    // PHASE 2: 100vh to 200vh
+                    // Calculates exactly how many pixels we've scrolled PAST the first screen
+                    const phase2ScrollPixels = Math.max(0, scrollY - windowHeight);
+
+                    if (scrollOverlay && scrollContent) {
+                        // Overlay fades in during Phase 1, stays fully visible in Phase 2
+                        scrollOverlay.style.opacity = phase1Progress;
+
+                        // Text opacity fully reveals by end of Phase 1, stays visible
+                        scrollContent.style.opacity = phase1Progress;
+
+                        // The initial tiny slide up during fade-in
+                        const initialSlideY = 48 - (48 * phase1Progress);
+
+                        // Subtract the Phase 2 scroll pixels so it scrolls up naturally with the page
+                        const totalTranslateY = initialSlideY - phase2ScrollPixels;
+
+                        scrollContent.style.transform = `translateY(${totalTranslateY}px)`;
+                    }
+
+                    // Hide the bouncing arrow quickly in the first 20% of a scroll
+                    if (scrollIndicator) {
+                        scrollIndicator.style.opacity = Math.max(1 - (scrollY / (windowHeight * 0.2)), 0);
+                    }
+                });
+
+                // ==========================================
+                // 1. BETA TOAST LOGIC
+                // ==========================================
+                const betaToast = document.getElementById('beta-toast');
+                const closeToastBtn = document.getElementById('close-beta-toast');
+                if (!sessionStorage.getItem('betaToastDismissed')) {
+                    setTimeout(() => {
+                        betaToast.classList.remove('translate-x-[120%]', 'opacity-0');
+                    }, 1000);
+                } else {
+                    betaToast.style.display = 'none';
+                }
+                closeToastBtn.addEventListener('click', () => {
+                    betaToast.classList.add('translate-x-[120%]', 'opacity-0');
+                    sessionStorage.setItem('betaToastDismissed', 'true');
+                    setTimeout(() => { betaToast.style.display = 'none'; }, 500);
+                });
+
+                // ==========================================
+                // 2. MODAL LOGIC (Untouched)
+                // ==========================================
+                const openModalBtn = document.getElementById("openReportsModalBtn");
+                const closeModalBtn = document.getElementById("closeReportsModalBtn");
+                const modal = document.getElementById("reportsModal");
+                const modalBackdrop = document.getElementById("reportsModalBackdrop");
+
+                const openModal = (e) => {
+                    e.preventDefault();
+                    if (modal) {
+                        modal.classList.remove("hidden");
+                        document.body.style.overflow = "hidden";
+                    }
+                };
+                const closeModal = () => {
+                    if (modal) {
+                        modal.classList.add("hidden");
+                        document.body.style.overflow = "auto";
+                    }
+                };
+                if (openModalBtn) openModalBtn.addEventListener("click", openModal);
+                if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+                if (modalBackdrop) modalBackdrop.addEventListener("click", closeModal);
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape" && modal && !modal.classList.contains("hidden")) {
+                        closeModal();
+                    }
+                });
+
+               
+                // ==========================================
+                // 5. SCROLL REVEAL OBSERVER
+                // ==========================================
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.15
+                };
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+                document.querySelectorAll('.reveal').forEach((element) => {
+                    observer.observe(element);
+                });
+
+                // ==========================================
+                // 6. NUMBER ROLLING COUNTER ANIMATION
+                // ==========================================
+                function startCounter(counterElement) {
+                    const target = +counterElement.getAttribute('data-target');
+                    const duration = 2000;
+                    const increment = target / (duration / 16);
+                    let current = 0;
+                    const updateCount = () => {
+                        current += increment;
+                        if (current < target) {
+                            counterElement.innerText = Math.ceil(current);
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counterElement.innerText = target;
+                        }
+                    };
+                    updateCount();
+                }
+
+                const counterObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counters = entry.target.querySelectorAll('.counter');
+                            counters.forEach(counter => startCounter(counter));
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                const statsSection = document.querySelector('.counter')?.closest('section');
+                if (statsSection) {
+                    counterObserver.observe(statsSection);
+                }
+            });
+        </script>
+</body>
+
+</html>

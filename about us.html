@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Notre Dame Rocketry Team</title>
+    <link rel="icon" type="image/png" href="patch@4x.png">
+
+    <!-- Google Fonts: Orbitron for technical headings, Inter for clean body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS with Custom ND Brand Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-space': '#050914',
+                        'nd-blue': '#0C2340',
+                        'dome-gold': '#C99700',
+                        'metal-gold': '#AE9142',
+                        'irish-green': '#00843D'
+                    },
+                    fontFamily: {
+                        'space': ['Orbitron', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        /* We removed the gradient from here so ONLY the image stays fixed */
+                        'about-hero': "url('2W8A4782.JPG')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        
+
+        body {
+            background-color: #050914;
+            /* deep-space */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050914;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0C2340;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #AE9142;
+        }
+
+        /* Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            ;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-75 {
+            transition-delay: 75ms;
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-150 {
+            transition-delay: 150ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-225 {
+            transition-delay: 225ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        /* Cinematic Tint Reveal for the 40% overlay */
+        @keyframes fade-in-tint {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .reveal-tint {
+            opacity: 0;
+            animation: fade-in-tint 1.5s ease-in-out forwards;
+            animation-delay: 0.3s;
+            /* Waits a split second before fading in */
+        }
+
+
+        /* Timeline specific */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #0C2340, #C99700, #C99700, #0C2340);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+                transform: none;
+            }
+        }
+
+        /* Dynamic Timeline Styles */
+        .timeline-item {
+            will-change: transform, opacity;
+            /* Removed transition so Javascript can map it directly to scroll without lagging behind */
+        }
+
+        /* Moving container acceleration */
+        .will-change-transform {
+            will-change: transform;
+        }
+
+        .shadow-text {
+            text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Animations for active centered items */
+        .timeline-item.active-timeline-item div[class*="border-dashed"] {
+            transform: translateX(-50%) rotate(180deg) scale(1.2);
+        }
+
+        .timeline-item.active-timeline-item div.rounded-full {
+            background-color: #C99700;
+            transform: translateX(-50%) scale(1.3);
+        }
+
+        @media (max-width: 768px) {
+
+            .timeline-item.active-timeline-item div[class*="border-dashed"],
+            .timeline-item.active-timeline-item div.rounded-full {
+                transform: scale(1.3);
+            }
+        }
+
+        html {
+            font-size: 80%;
+            /* Scales down the entire Tailwind framework to your target 80% reference system */
+        }
+    </style>
+    <link rel="stylesheet" href="navbar.css">
+    <script src="navbar.js"></script>
+</head>
+
+<body class="font-inter antialiased selection:bg-dome-gold selection:text-deep-space">
+
+    <div id="navbar-container"></div>        
+<header
+    class="relative min-h-[100svh] w-full bg-cover bg-center bg-no-repeat bg-fixed overflow-hidden flex flex-col items-center justify-center text-center px-6 md:px-4 border-b border-nd-blue"
+    style="background-image: url('2W8A4782.JPG');">
+    
+    <!-- 1. The original dark bottom-fade -->
+    <div class="absolute inset-0 z-0 pointer-events-none"
+        style="background: linear-gradient(to bottom, rgba(5, 9, 20, 0.2) 0%, rgba(5, 9, 20, 0.2) 70%, rgba(5, 9, 20, 1) 100%);">
+    </div>
+
+    <!-- 2. The animated dark overlay for text readability -->
+    <div class="absolute inset-0 bg-deep-space/60 md:bg-deep-space/40 reveal-tint z-0 pointer-events-none"></div>
+
+    <!-- Header Text with Parallax script target -->
+    <div id="hero-text" class="max-w-4xl relative z-10 will-change-transform mt-16 md:mt-0">
+        <h1
+            class="reveal delay-100 font-space font-black text-4xl sm:text-5xl md:text-6xl tracking-tight text-white mb-4 md:mb-6 uppercase leading-tight md:leading-none">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-dome-gold to-metal-gold">Our
+                Mission</span> <br class="md:hidden"> & Story
+        </h1>
+        <p
+            class="reveal delay-200 font-inter text-base sm:text-lg md:text-xl text-gray-200 md:text-gray-300 max-w-sm md:max-w-2xl mx-auto font-light leading-relaxed px-4">
+            Engineering excellence, hands-on experience, and pushing the boundaries of collegiate aerospace.
+        </p>
+    </div>
+</header>   
+    <!-- ========================================== -->
+    <!-- SECTION 1: TEAM, LEADERSHIP, & CORE GOALS   -->
+    <!-- ========================================== -->
+    <section id="team-leadership-goals" class="py-16 md:py-24 bg-deep-space border-b border-nd-blue/30 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-24 md:space-y-32">
+            
+            <!-- PART 1: THE TEAM (Text Left, Image Right) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+                <!-- Text Container -->
+                <div class="reveal flex flex-col items-start w-full">
+                    <span class="text-dome-gold font-space text-sm tracking-widest uppercase mb-2">Who We Are</span>
+                    <h2 class="font-space font-bold text-3xl md:text-4xl uppercase tracking-wider mb-4 text-white">
+                        The Team
+                    </h2>
+                    <p class="font-inter text-gray-300 text-base md:text-lg leading-relaxed mb-4 font-light">
+                        Founded with the vision to bridge the gap between theoretical classroom learning and applied
+                        engineering, the Notre Dame Rocketry Team (NDRT) is a completely student-run organization.
+                    </p>
+                    <p class="font-inter text-gray-300 text-base md:text-lg leading-relaxed font-light">
+                        Our members span multiple engineering disciplines—from Aerospace and Mechanical to Electrical
+                        and Computer Science. By designing, manufacturing, testing, and flying high-powered rocketry
+                        systems, we empower students to solve complex, real-world aerospace challenges.
+                    </p>
+                </div>
+                
+                <!-- Image Container -->
+                <div class="reveal delay-100 w-full">
+                    <div class="relative rounded-lg overflow-hidden border-2 border-nd-blue shadow-2xl group w-full">
+                        <img src="DSC06622.JPG" alt="NDRT Team Working"
+                            class="w-full h-[350px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-space/80 via-transparent to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 2: LEADERSHIP & PILLARS (Image Left, Text Right) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+                <!-- Image Container (Left on Desktop, Bottom on Mobile) -->
+                <div class="reveal order-2 lg:order-1 w-full">
+                    <div class="relative rounded-lg overflow-hidden border-2 border-nd-blue shadow-2xl group w-full">
+                        <img src="2W8A4276.JPG" alt="NDRT Leadership Team"
+                            class="w-full h-[350px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-space/80 via-transparent to-transparent"></div>
+                    </div>
+                </div>
+
+                <!-- Text Container (Right on Desktop, Top on Mobile) -->
+                <div class="reveal delay-100 flex flex-col items-start order-1 lg:order-2 w-full">
+                    <span class="text-dome-gold font-space text-sm tracking-widest uppercase mb-2">Student-Led Excellence</span>
+                    <h2 class="font-space font-bold text-3xl md:text-4xl uppercase tracking-wider mb-4 text-white">
+                        Our 20 Student Leads
+                    </h2>
+                    <p class="font-inter text-gray-300 text-base md:text-lg leading-relaxed mb-6 font-light">
+                        NDRT's success is driven by a highly organized leadership structure. We rely on a dedicated
+                        framework of student leads who oversee complex technical projects, safety protocols, and general
+                        operations.
+                    </p>
+
+                    <!-- 2x2 Grid for Stats -->
+                    <div class="grid grid-cols-2 gap-3 md:gap-4 mb-6 w-full">
+                        <div class="bg-nd-blue/10 border border-nd-blue/30 p-3 md:p-4 rounded-lg hover:border-dome-gold transition-colors">
+                            <div class="text-2xl font-space font-bold text-white mb-1">2</div>
+                            <h3 class="font-space text-[10px] md:text-xs tracking-widest uppercase text-dome-gold mb-1">Project Managers</h3>
+                            <p class="font-inter text-xs text-gray-400 font-light leading-snug">Project NDXP and NASA USLI missions.</p>
+                        </div>
+                        <div class="bg-nd-blue/10 border border-nd-blue/30 p-3 md:p-4 rounded-lg hover:border-dome-gold transition-colors">
+                            <div class="text-2xl font-space font-bold text-white mb-1">8</div>
+                            <h3 class="font-space text-[10px] md:text-xs tracking-widest uppercase text-dome-gold mb-1">USLI Leads</h3>
+                            <p class="font-inter text-xs text-gray-400 font-light leading-snug">Solid-motor rocketry & payloads.</p>
+                        </div>
+                        <div class="bg-nd-blue/10 border border-nd-blue/30 p-3 md:p-4 rounded-lg hover:border-dome-gold transition-colors">
+                            <div class="text-2xl font-space font-bold text-white mb-1">4</div>
+                            <h3 class="font-space text-[10px] md:text-xs tracking-widest uppercase text-dome-gold mb-1">NDXP Leads</h3>
+                            <p class="font-inter text-xs text-gray-400 font-light leading-snug">Liquid bipropellant propulsion.</p>
+                        </div>
+                        <div class="bg-nd-blue/10 border border-nd-blue/30 p-3 md:p-4 rounded-lg hover:border-dome-gold transition-colors">
+                            <div class="text-2xl font-space font-bold text-white mb-1">5</div>
+                            <h3 class="font-space text-[10px] md:text-xs tracking-widest uppercase text-dome-gold mb-1">Gen-Ops Leads</h3>
+                            <p class="font-inter text-xs text-gray-400 font-light leading-snug">Finance, marketing, & team logistics.</p>
+                        </div>
+                    </div>
+
+                    <a href="leadership.html"
+                        class="inline-flex items-center gap-3 px-5 py-3 bg-nd-blue hover:bg-dome-gold hover:text-deep-space text-white font-space font-bold text-xs md:text-sm tracking-widest uppercase rounded border border-dome-gold/40 transition-all duration-300 group shadow-lg">
+                        <span>Meet the Team</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PART 3: PILLARS / CORE GOALS (Text Left, Image Right) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+                <!-- Content Side -->
+                <div class="reveal flex flex-col items-start w-full">
+                    <span class="font-space text-sm tracking-widest uppercase text-dome-gold mb-2">Our Pillars</span>
+                    <h2 class="font-space font-bold text-3xl md:text-4xl uppercase tracking-wider mb-6 text-white">
+                        Core Goals
+                    </h2>
+
+                    <div class="space-y-6 w-full">
+                        <!-- Pillar 1 -->
+                        <div class="flex gap-4 items-start">
+                            <div class="w-12 h-12 shrink-0 bg-nd-blue/20 rounded-full flex items-center justify-center border border-nd-blue/50">
+                                <i class="fa-solid fa-graduation-cap text-dome-gold text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-space text-base md:text-lg font-bold text-white uppercase tracking-wide mb-1">
+                                    Engineering Education
+                                </h3>
+                                <p class="font-inter text-gray-400 text-sm md:text-base font-light leading-relaxed">
+                                    To provide hands-on experience in the complete engineering lifecycle—from initial
+                                    conceptual design and simulation to manufacturing and flight analysis.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Pillar 2 -->
+                        <div class="flex gap-4 items-start">
+                            <div class="w-12 h-12 shrink-0 bg-nd-blue/20 rounded-full flex items-center justify-center border border-nd-blue/50">
+                                <i class="fa-solid fa-microchip text-dome-gold text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-space text-base md:text-lg font-bold text-white uppercase tracking-wide mb-1">
+                                    Technical Innovation
+                                </h3>
+                                <p class="font-inter text-gray-400 text-sm md:text-base font-light leading-relaxed">
+                                    To aggressively push limits by transitioning to advanced projects, such as
+                                    internally developed flight computers, active drag systems, and liquid propulsion
+                                    engines.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Pillar 3 -->
+                        <div class="flex gap-4 items-start">
+                            <div class="w-12 h-12 shrink-0 bg-nd-blue/20 rounded-full flex items-center justify-center border border-nd-blue/50">
+                                <i class="fa-solid fa-earth-americas text-dome-gold text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-space text-base md:text-lg font-bold text-white uppercase tracking-wide mb-1">
+                                    Community Outreach
+                                </h3>
+                                <p class="font-inter text-gray-400 text-sm md:text-base font-light leading-relaxed">
+                                    To inspire the next generation of engineers by hosting STEM engagement events for
+                                    local schools, proving that space exploration is accessible to everyone.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Side -->
+                <div class="reveal delay-100 w-full">
+                    <div class="relative rounded-lg overflow-hidden border-2 border-nd-blue shadow-2xl group w-full">
+                        <img src="IMG_4146.png" alt="NDRT Core Goals and Pillars"
+                            class="w-full h-[350px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-space/80 via-transparent to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+   <!-- Outer Scroll Track: Increased height to 800vh to accommodate 9 timeline items -->
+   <section id="timeline-scroll-track" class="relative w-full bg-deep-space" style="height: 800vh;">
+
+    <!-- Sticky Viewport -->
+    <div class="sticky top-0 h-screen w-full overflow-hidden bg-cover bg-center"
+        style="background-image: url('space_background.png');">
+        <!-- Dark overlay -->
+        <div class="absolute inset-0 bg-deep-space/65 z-0"></div>
+
+        <!-- Top and Bottom Fades (Smooths the background into the rest of the page) -->
+        <div class="absolute top-0 left-0 w-full h-[15vh] bg-gradient-to-b from-deep-space to-transparent z-0 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-full h-[15vh] bg-gradient-to-t from-deep-space to-transparent z-0 pointer-events-none"></div>
+
+        <!-- Fixed Header -->
+        <div class="absolute top-20 left-0 w-full text-center z-20 px-4">
+            <span class="text-dome-gold font-space tracking-widest uppercase text-sm mb-2 block shadow-text">Our
+                Legacy</span>
+            <h2 class="font-space font-bold text-3xl md:text-5xl uppercase tracking-wider text-white shadow-text">
+                Competition & Launch History</h2>
+        </div>
+
+        <!-- The Container that will slowly glide up via JavaScript -->
+        <div id="timeline-moving-container"
+            class="relative w-full max-w-[90rem] mx-auto px-6 lg:px-16 z-10 pt-[55vh] pb-[55vh] will-change-transform">
+
+            <div class="relative w-full flex flex-col items-center">
+                <!-- The Continuous Center Line -->
+                <div
+                    class="absolute top-0 bottom-0 left-[31px] md:left-1/2 md:-translate-x-1/2 w-[2px] bg-nd-blue/30 z-0">
+                </div>
+
+                <!-- Milestone 1: 2011-2012 (Left) -->
+                <div
+                    class="timeline-item relative flex items-center justify-between md:justify-normal w-full mb-32 md:mb-40 group origin-center">
+                    <div class="hidden md:block md:w-1/2 md:pr-20 text-right">
+                        <h3 class="font-space text-3xl md:text-4xl font-bold text-dome-gold">2011 &ndash; 2012</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-2">The Underdog Origins</h4>
+                        <p class="font-inter text-gray-300 mt-3 font-light text-base leading-relaxed">
+                            Founded by Jim Lampariello and a crew of seven students in the basement of Fitzpatrick
+                            Hall. The team started from scratch, initially building rocket bodies out of simple
+                            phenolic resin before aggressively upgrading to aerospace-grade fiberglass and carbon
+                            fiber.
+                        </p>
+                    </div>
+                    <div
+                        class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-nd-blue border-4 border-dome-gold z-10 transition-colors duration-300 shadow-[0_0_10px_rgba(201,151,0,0.5)]">
+                    </div>
+                    <div class="pl-16 md:hidden w-full text-left">
+                        <h3 class="font-space text-2xl font-bold text-dome-gold">2011 &ndash; 2012</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-1">The Underdog Origins</h4>
+                    </div>
+                </div>
+
+                <!-- Milestone 2: 2014 (Right) -->
+                <div
+                    class="timeline-item relative flex items-center justify-between md:justify-normal w-full mb-32 md:mb-40 group md:flex-row-reverse origin-center">
+                    <div class="hidden md:block md:w-1/2 md:pl-20 text-left">
+                        <h3 class="font-space text-3xl md:text-4xl font-bold text-dome-gold">2014</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-2">The Dream Team Catalyst</h4>
+                        <p class="font-inter text-gray-300 mt-3 font-light text-base leading-relaxed">
+                            Under the new guidance of faculty advisor Aleksandar Jemcov, NDRT rapidly expanded its
+                            technical arsenal. The club transformed into an interdisciplinary powerhouse, recruiting
+                            top talent from electrical engineering, physics, and computer science to build complex
+                            custom payloads.
+                        </p>
+                    </div>
+                    <div
+                        class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-nd-blue border-4 border-dome-gold z-10 transition-colors duration-300 shadow-[0_0_10px_rgba(201,151,0,0.5)]">
+                    </div>
+                    <div class="pl-16 md:hidden w-full text-left">
+                        <h3 class="font-space text-2xl font-bold text-dome-gold">2014</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-1">The Dream Team Catalyst</h4>
+                    </div>
+                </div>
+
+                <!-- Milestone 3: 2016-2018 (Left - NEW) -->
+                <div
+                    class="timeline-item relative flex items-center justify-between md:justify-normal w-full mb-32 md:mb-40 group origin-center">
+                    <div class="hidden md:block md:w-1/2 md:pr-20 text-right">
+                        <h3 class="font-space text-3xl md:text-4xl font-bold text-dome-gold">2016 &ndash; 2018</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-2">Breaking Barriers</h4>
+                        <p class="font-inter text-gray-300 mt-3 font-light text-base leading-relaxed">
+                            The era of high-powered certification and supersonic flight. The team standardized Level
+                            2 and Level 3 rocketry certifications for its members, integrated advanced commercial
+                            avionics, and began pushing the boundaries of altitude and mach speeds, laying the
+                            technical foundation for future national titles.
+                        </p>
+                    </div>
+                    <div
+                        class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-nd-blue border-4 border-dome-gold z-10 transition-colors duration-300 shadow-[0_0_10px_rgba(201,151,0,0.5)]">
+                    </div>
+                    <div class="pl-16 md:hidden w-full text-left">
+                        <h3 class="font-space text-2xl font-bold text-dome-gold">2016 &ndash; 2018</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-1">Breaking Barriers</h4>
+                    </div>
+                </div>
+
+                <!-- Milestone 4: 2019-2021 (Right) -->
+                <div
+                    class="timeline-item relative flex items-center justify-between md:justify-normal w-full mb-32 md:mb-40 group md:flex-row-reverse origin-center">
+                    <div class="hidden md:block md:w-1/2 md:pl-20 text-left">
+                        <h3 class="font-space text-3xl md:text-4xl font-bold text-dome-gold">2019 &ndash; 2021</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-2">Pushing Boundaries</h4>
+                        <p class="font-inter text-gray-300 mt-3 font-light text-base leading-relaxed">
+                            Engineered an autonomous Rover and UAV tag-team payload. The team proved they were a
+                            lethal competitive force, capturing the <strong>3rd Place STEM Engagement Award</strong>
+                            and setting the stage for an unprecedented dominant streak.
+                        </p>
+                    </div>
+                    <div
+                        class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-nd-blue border-4 border-dome-gold z-10 transition-colors duration-300 shadow-[0_0_10px_rgba(201,151,0,0.5)]">
+                    </div>
+                    <div class="pl-16 md:hidden w-full text-left">
+                        <h3 class="font-space text-2xl font-bold text-dome-gold">2019 &ndash; 2021</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-1">Pushing Boundaries</h4>
+                    </div>
+                </div>
+
+                <!-- Milestone 5: 2022 (Left) -->
+                <div
+                    class="timeline-item relative flex items-center justify-between md:justify-normal w-full mb-32 md:mb-40 group origin-center">
+                    <div class="hidden md:block md:w-1/2 md:pr-20 text-right">
+                        <h3 class="font-space text-3xl md:text-4xl font-bold text-dome-gold">2022</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-2">A Podium Finish</h4>
+                        <p class="font-inter text-gray-300 mt-3 font-light text-base leading-relaxed">
+                            Celebrating their 10-year anniversary, NDRT unleashed a 12-foot behemoth named
+                            "Camulus", securing a massive <strong>2nd Place Overall</strong> finish using a
+                            360-degree Rotating Optical Imager (TROI) to locate their landing site without GPS.
+                        </p>
+                    </div>
+                    <div
+                        class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-nd-blue border-4 border-dome-gold z-10 transition-colors duration-300 shadow-[0_0_10px_rgba(201,151,0,0.5)]">
+                    </div>
+                    <div class="pl-16 md:hidden w-full text-left">
+                        <h3 class="font-space text-2xl font-bold text-dome-gold">2022</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-1">A Podium Finish</h4>
+                    </div>
+                </div>
+
+                <!-- Milestone 6: Spring 2024 (Right - National Champs) -->
+                <div
+                    class="timeline-item relative flex items-center justify-between md:justify-normal w-full mb-32 md:mb-40 group md:flex-row-reverse origin-center">
+                    <div class="hidden md:block md:w-1/2 md:pl-20 text-left">
+                        <h3 class="font-space text-5xl font-bold text-dome-gold drop-shadow-lg">SPRING 2024</h3>
+                        <h4 class="font-space text-2xl text-white uppercase mt-2 font-bold tracking-wide">Undisputed
+                            National Champions</h4>
+                        <p
+                            class="font-inter text-gray-200 mt-4 font-light text-base leading-relaxed bg-white/5 p-6 rounded-lg border border-dome-gold/30">
+                            <strong>Total Domination:</strong> Out of 49 elite universities, the Fighting Irish were
+                            crowned <strong>1st Place Overall</strong>, sweeping 1st in Safety, 1st in STEM, and 3rd
+                            in Reusable Launch Vehicle. <br><br>
+                            The gold-painted rocket "Dr. Joe" blasted to 5,200 ft. The payload featured a futuristic
+                            crew capsule that safely autorotated four "STEMnauts" back to earth—entirely without a
+                            parachute.
+                        </p>
+                    </div>
+                    <div
+                        class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-10 h-10 rounded-full bg-dome-gold shadow-[0_0_30px_#C99700] z-10 border-4 border-white transition-transform duration-300">
+                    </div>
+                    <div class="pl-16 md:hidden w-full text-left">
+                        <h3 class="font-space text-3xl font-bold text-dome-gold drop-shadow-md">SPRING 2024</h3>
+                        <h4 class="font-space text-xl text-white uppercase mt-1 font-bold">National Champions</h4>
+                    </div>
+                </div>
+
+                <!-- Milestone 7: Fall 2024 (Left - NEW - NDXP Founding) -->
+                <div
+                    class="timeline-item relative flex items-center justify-between md:justify-normal w-full mb-32 md:mb-40 group origin-center">
+                    <div class="hidden md:block md:w-1/2 md:pr-20 text-right">
+                        <h3 class="font-space text-4xl font-bold text-nd-blue-light drop-shadow-md"
+                            style="color: #4A90E2;">FALL 2024</h3>
+                        <h4 class="font-space text-xl text-white uppercase mt-2 font-bold">The Birth of NDXP</h4>
+                        <p class="font-inter text-gray-300 mt-3 font-light text-base leading-relaxed">
+                            Riding the momentum of the national title, the team made its most ambitious pivot in
+                            history. Splitting resources and talent, they officially formed <strong>Notre Dame
+                                Experimental Propulsion (NDXP)</strong>. The mission: transition away from solid
+                            commercial motors and begin the grueling R&D required to design, print, and hot-fire the
+                            university's first custom liquid bi-propellant rocket engine.
+                        </p>
+                    </div>
+                    <div
+                        class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full bg-deep-space border-4 border-[#4A90E2] shadow-[0_0_15px_#4A90E2] z-10 transition-colors duration-300">
+                    </div>
+                    <div class="pl-16 md:hidden w-full text-left">
+                        <h3 class="font-space text-2xl font-bold" style="color: #4A90E2;">FALL 2024</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-1">The Birth of NDXP</h4>
+                    </div>
+                </div>
+
+                <!-- Milestone 8: 2026 (Right) -->
+                <div
+                    class="timeline-item relative flex items-center justify-between md:justify-normal w-full mb-32 md:mb-40 group md:flex-row-reverse origin-center">
+                    <div class="hidden md:block md:w-1/2 md:pl-20 text-left">
+                        <h3 class="font-space text-3xl md:text-4xl font-bold text-dome-gold">2026</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-2">Cementing the Legacy</h4>
+                        <p class="font-inter text-gray-300 mt-3 font-light text-base leading-relaxed">
+                            Tackled the "HAUS" challenge, building a habitat that safely landed four simulated
+                            astronauts and autonomously collected/tested soil samples. Secured <strong>4th Place
+                                Overall</strong> and captured the <strong>1st Place Safety Award</strong> once
+                            again.
+                        </p>
+                    </div>
+                    <div
+                        class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-nd-blue border-4 border-dome-gold z-10 transition-colors duration-300 shadow-[0_0_10px_rgba(201,151,0,0.5)]">
+                    </div>
+                    <div class="pl-16 md:hidden w-full text-left">
+                        <h3 class="font-space text-2xl font-bold text-dome-gold">2026</h3>
+                        <h4 class="font-space text-lg text-white uppercase mt-1">Cementing the Legacy</h4>
+                    </div>
+                </div>
+
+                <!-- Milestone 9: Future 2029 (Left) -->
+                <div
+                    class="timeline-item relative flex items-center justify-between md:justify-normal w-full group origin-center">
+                    <div class="hidden md:block md:w-1/2 md:pr-20 text-right">
+                        <h3 class="font-space text-3xl md:text-4xl font-bold text-white opacity-80">MAY 2029</h3>
+                        <h4 class="font-space text-xl text-nd-blue-light uppercase mt-2 opacity-90 font-bold"
+                            style="color: #4A90E2;">The Liquid Frontier</h4>
+                        <p class="font-inter text-gray-400 mt-3 font-light text-base leading-relaxed">
+                            The targeted launch date for NDXP's ultimate goal: flying the university's first fully
+                            integrated liquid-propelled vehicle. The sky isn't the limit—it's just the starting
+                            line.
+                        </p>
+                    </div>
+                    <div
+                        class="absolute left-[20px] md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 rounded-full bg-transparent border-4 border-dashed border-[#4A90E2] z-10 transition-transform duration-[1.5s]">
+                    </div>
+                    <div class="pl-16 md:hidden w-full text-left">
+                        <h3 class="font-space text-2xl font-bold text-white opacity-80">MAY 2029</h3>
+                        <h4 class="font-space text-lg uppercase mt-1 opacity-90 font-bold" style="color: #4A90E2;">
+                            The Liquid Frontier</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+ <!-- Directory Grid (What We Do) -->
+    <section class="py-24 bg-[#03060d]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16 reveal">
+                <span class="text-dome-gold font-space tracking-widest uppercase text-sm mb-2 block">Directory</span>
+                <h2 class="font-space font-bold text-3xl md:text-4xl uppercase tracking-wider text-white">Explore NDRT
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- USLI Link -->
+                <a href="usli.html"
+                    class="reveal group relative h-64 rounded-xl overflow-hidden border border-nd-blue/50 hover:border-dome-gold transition-colors duration-300">
+                    <img src="IMG_5002 (3).JPG" alt="NASA USLI"
+                        class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-deep-space via-deep-space/10 to-transparent">
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                        <div>
+                            <h3 class="font-space font-bold text-2xl text-white mb-1 uppercase tracking-wide">NASA USLI
+                            </h3>
+                            <p class="font-inter text-gray-300 text-sm font-light">Solid motor competition vehicles.</p>
+                        </div>
+                        <i
+                            class="fa-solid fa-arrow-right text-dome-gold text-xl group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- NDXP Link -->
+                <a href="ndxp.html"
+                    class="reveal delay-100 group relative h-64 rounded-xl overflow-hidden border border-nd-blue/50 hover:border-dome-gold transition-colors duration-300">
+                    <img src="NDXP header bg.png" alt="Project NDXP"
+                        class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-deep-space via-deep-space/10 to-transparent">
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                        <div>
+                            <h3 class="font-space font-bold text-2xl text-white mb-1 uppercase tracking-wide">Project
+                                NDXP</h3>
+                            <p class="font-inter text-gray-300 text-sm font-light">Experimental liquid propulsion
+                                design.</p>
+                        </div>
+                        <i
+                            class="fa-solid fa-arrow-right text-dome-gold text-xl group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Outreach Link -->
+                <a href="outreach.html"
+                    class="reveal delay-200 group relative h-64 rounded-xl overflow-hidden border border-nd-blue/50 hover:border-dome-gold transition-colors duration-300">
+                    <!-- Added Outreach Image -->
+                    <img src="about us outreach1.png" alt="STEM Outreach"
+                        class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-deep-space via-deep-space/10 to-transparent">
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10">
+                        <div>
+                            <h3 class="font-space font-bold text-2xl text-white mb-1 uppercase tracking-wide">STEM
+                                Outreach</h3>
+                            <p class="font-inter text-gray-300 text-sm font-light">Engaging with our local community.
+                            </p>
+                        </div>
+                        <i
+                            class="fa-solid fa-arrow-right text-dome-gold text-xl group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- Sponsors Link -->
+                <a href="sponsors.html"
+                    class="reveal delay-300 group relative h-64 rounded-xl overflow-hidden border border-nd-blue/50 hover:border-dome-gold transition-colors duration-300">
+                    <!-- Added Sponsors Image -->
+                    <img src="marmon1@0.5x.png" alt="Our Sponsors"
+                        class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-deep-space via-deep-space/10 to-transparent">
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end z-10">
+                        <div>
+                            <h3 class="font-space font-bold text-2xl text-white mb-1 uppercase tracking-wide">Sponsors
+                            </h3>
+                            <p class="font-inter text-gray-300 text-sm font-light">The partners powering our missions.
+                            </p>
+                        </div>
+                        <i
+                            class="fa-solid fa-arrow-right text-dome-gold text-xl group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-[#03060d] pt-16 pb-8 border-t border-nd-blue">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4">
+                    <a href="index.html" class="hover:opacity-80 transition-opacity duration-300">
+                        <img src="NDRT logo white.png" alt="NDRT Logo" class="h-12 w-auto drop-shadow-md">
+                    </a>
+                </div>
+                <p class="font-inter text-sm text-gray-500 mb-6">
+                    Notre Dame Rocketry Team
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/ndrocketryteam/" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/ndrt" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@ndrocketryteam" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Navigation</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="index.html" class="hover:text-dome-gold transition-colors">Home</a></li>
+                    <li><a href="about.html" class="hover:text-dome-gold transition-colors">About Us</a></li>
+                    <li><a href="coming soon.html" class="hover:text-dome-gold transition-colors">Leadership</a></li>
+                    <li><a href="sponsors.html" class="hover:text-dome-gold transition-colors">Sponsors</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Resources</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="Sponsor Partnership Brochure 2026 - 2027.pdf"
+                            class="hover:text-dome-gold transition-colors"><i class="fa-regular fa-file-pdf mr-2"></i>
+                            Sponsorship Brochure</a></li>
+                    <li><button id="openReportsModalBtn" class="hover:text-dome-gold transition-colors text-left"><i
+                                class="fa-solid fa-lock mr-2"></i> Request Reports</button></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Contact</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-dome-gold"></i>
+                        <a href="https://maps.google.com/?q=257+Fitzpatrick+Hall+of+Engineering,+Notre+Dame,+IN+46556"
+                            target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                            257 Fitzpatrick Hall of Engineering<br>Notre Dame, IN 46556<br>United States
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-dome-gold"></i>
+                        <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-6 lg:px-12 border-t border-nd-blue pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-inter text-xs text-gray-600">
+                &copy; <span id="year">2026</span> Notre Dame Rocketry Team. All rights reserved.
+            </p>
+            <p class="font-inter text-xs text-gray-600">
+                Ad Astra.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Request Reports Modal -->
+    <div id="reportsModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6">
+        <!-- Dark Blur Backdrop -->
+        <div id="reportsModalBackdrop"
+            class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer transition-opacity"></div>
+
+        <!-- Modal Content Container -->
+        <div
+            class="relative w-full max-w-3xl bg-[#03060d] border border-nd-blue rounded-xl shadow-2xl p-6 md:p-10 transform transition-all overflow-y-auto max-h-[90vh]">
+
+            <!-- Close Button -->
+            <button id="closeReportsModalBtn"
+                class="absolute top-4 right-4 text-gray-400 hover:text-dome-gold transition-colors p-2">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+
+            <!-- Header -->
+            <h2 class="font-space font-bold text-2xl md:text-3xl text-white mb-4 uppercase tracking-wide">
+                NASA Student Launch Reports
+            </h2>
+
+            <!-- Description -->
+            <p class="font-inter text-gray-400 mb-8 leading-relaxed text-sm md:text-base">
+                While our detailed NASA Student Launch reports and technical documents are not available to the general
+                public, we gladly share them with current sponsors, prospective partners, and fellow collegiate rocketry
+                teams upon request. Please fill out the form below detailing why you need access, and our team will
+                review your request.
+            </p>
+
+            <!-- Request Form connected to SplitForms -->
+            <form action="https://splitforms.com/api/submit" method="POST" class="flex flex-col gap-6">
+                <!-- Required Hidden Fields -->
+                <input type="hidden" name="access_key" value="0ecf7af2bf834c49a08fdda432a8293c">
+                <input type="hidden" name="Page Source" value="Request Reports Modal">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Full Name -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-name" class="font-space text-xs text-gray-500 uppercase tracking-widest">Full
+                            Name *</label>
+                        <input type="text" id="req-name" name="Name" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 focus:outline-none focus:border-dome-gold">
+                    </div>
+                    <!-- Organization / Affiliation -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-org"
+                            class="font-space text-xs text-gray-500 uppercase tracking-widest">Organization / Team
+                            *</label>
+                        <input type="text" id="req-org" name="Organization" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 focus:outline-none focus:border-dome-gold">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Email -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-email" class="font-space text-xs text-gray-500 uppercase tracking-widest">Email
+                            Address *</label>
+                        <input type="email" id="req-email" name="Email" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 focus:outline-none focus:border-dome-gold">
+                    </div>
+                    <!-- Phone (Optional) -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-phone" class="font-space text-xs text-gray-500 uppercase tracking-widest">Phone
+                            Number <span class="text-gray-600 lowercase normal-case ml-1">(Optional)</span></label>
+                        <input type="tel" id="req-phone" name="Phone"
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 focus:outline-none focus:border-dome-gold">
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <label for="req-reason" class="font-space text-xs text-gray-500 uppercase tracking-widest">Reason
+                        for Request *</label>
+                    <textarea id="req-reason" name="Reason" rows="4" required
+                        class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 focus:outline-none focus:border-dome-gold"></textarea>
+                </div>
+
+                <button type="submit"
+                    class="mt-4 px-8 py-4 bg-dome-gold text-deep-space font-space font-bold tracking-widest uppercase rounded-md hover:bg-white transition-colors duration-300 self-start">
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Scroll to Top Button -->
+    <script src="scroll_to_top_script.js"></script>
+
+
+    <script src="ParallaxEffect.js"></script>
+
+
+
+    <!-- Scripts -->
+<!-- Scripts -->
+<script>
+    // Set dynamic year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reveal Animation Observer
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 100;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal(); // Trigger on initial load
+
+    
+    // ==========================================
+
+
+    // Request Reports Modal Logic
+    const modal = document.getElementById('reportsModal');
+    const openBtn = document.getElementById('openReportsModalBtn');
+    const closeBtn = document.getElementById('closeReportsModalBtn');
+    const backdrop = document.getElementById('reportsModalBackdrop');
+
+    function openModal() { modal.classList.remove('hidden'); }
+    function closeModal() { modal.classList.add('hidden'); }
+
+    if(openBtn && closeBtn && backdrop && modal) {
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        backdrop.addEventListener('click', closeModal);
+    }
+
+    // Cinematic Timeline Scroll Logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const track = document.getElementById('timeline-scroll-track');
+        const movingContainer = document.getElementById('timeline-moving-container');
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        // Only run if the timeline elements actually exist on the page
+        if(!track || !movingContainer || timelineItems.length === 0) return;
+
+        let ticking = false;
+
+        // HELPER FUNCTION: Finds the exact distance from the item to the top of the moving container
+        // This fixes the offset bug caused by nested divs and padding!
+        function getAccurateTop(element, container) {
+            let offset = 0;
+            let currentEl = element;
+            while (currentEl && currentEl !== container) {
+                offset += currentEl.offsetTop;
+                currentEl = currentEl.offsetParent;
+            }
+            return offset;
+        }
+
+        function handleCinematicScroll() {
+            const trackTop = track.offsetTop;
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const scrollableDistance = track.offsetHeight - windowHeight;
+
+            // 1. Overall scroll progress down the 400vh track (0.0 to 1.0)
+            let scrollProgress = (scrollY - trackTop) / scrollableDistance;
+            if (scrollProgress < 0) scrollProgress = 0;
+            if (scrollProgress > 1) scrollProgress = 1;
+
+            // 2. Map out exactly where each item needs to be to sit perfectly in the center
+            const targets = [];
+            const maxTranslate = movingContainer.offsetHeight - windowHeight;
+
+            timelineItems.forEach((item, index) => {
+                // Use our new accurate helper function
+                const exactTop = getAccurateTop(item, movingContainer);
+                const itemCenter = exactTop + (item.offsetHeight / 2);
+
+                // Calculate translate needed to put this exact center in the middle of the screen
+                let translateNeeded = itemCenter - (windowHeight / 2);
+
+                // Prevent scrolling past the very top or bottom
+                if (translateNeeded < 0) translateNeeded = 0;
+                if (translateNeeded > maxTranslate) translateNeeded = maxTranslate;
+
+                targets.push({
+                    scrollPoint: index / (timelineItems.length - 1), // Distributes items evenly along scroll track
+                    translateValue: translateNeeded
+                });
+            });
+
+            // 3. Find which two timeline items we are currently scrolling between
+            let startTarget = targets[0];
+            let endTarget = targets[targets.length - 1];
+
+            for (let i = 0; i < targets.length - 1; i++) {
+                if (scrollProgress >= targets[i].scrollPoint && scrollProgress <= targets[i + 1].scrollPoint) {
+                    startTarget = targets[i];
+                    endTarget = targets[i + 1];
+                    break;
+                }
+            }
+
+            // 4. Calculate progress specifically between these two targets (0 to 1)
+            let localProgress = 0;
+            if (endTarget.scrollPoint !== startTarget.scrollPoint) {
+                localProgress = (scrollProgress - startTarget.scrollPoint) / (endTarget.scrollPoint - startTarget.scrollPoint);
+            }
+
+            // ==========================================
+            // 5. THE MAGNETIC STICKY PAUSE MAGIC
+            // ==========================================
+            let mappedProgress = 0;
+            const pauseSize = 0.02; // 25% of the scroll time is spent paused dead-center
+
+            if (localProgress < pauseSize) {
+                mappedProgress = 0; // Magnetically locked on current item
+            } else if (localProgress > 1 - pauseSize) {
+                mappedProgress = 1; // Magnetically locked on next item
+            } else {
+                // Smoothly glide between items
+                mappedProgress = (localProgress - pauseSize) / (1 - (pauseSize * 2));
+                // Apply ease-in-out math for a soft glide
+                mappedProgress = mappedProgress * mappedProgress * (3 - 2 * mappedProgress);
+            }
+
+            // Apply final translated math
+            let finalTranslate = startTarget.translateValue + (endTarget.translateValue - startTarget.translateValue) * mappedProgress;
+
+            if (scrollY >= trackTop && scrollY <= trackTop + scrollableDistance) {
+                movingContainer.style.transform = `translateY(-${finalTranslate}px)`;
+            } else if (scrollY < trackTop) {
+                movingContainer.style.transform = `translateY(0px)`;
+            } else if (scrollY > trackTop + scrollableDistance) {
+                movingContainer.style.transform = `translateY(-${maxTranslate}px)`;
+            }
+
+            // 6. Visual Effects (Fade, Scale, and Dot Color)
+            const windowCenter = windowHeight / 2;
+
+            timelineItems.forEach((item) => {
+                const rect = item.getBoundingClientRect();
+                // Get center of item based on where it currently is on the screen
+                const itemCenter = rect.top + (rect.height / 2);
+
+                // Absolute distance from dead center of screen
+                const dist = Math.abs(windowCenter - itemCenter);
+                const maxDist = windowHeight * 0.4;
+
+                // Scale logic: Reaches 1.1x (bigger) when perfectly centered
+                let scale = 1.1 - ((dist / maxDist) * 0.4);
+                if (scale < 0.7) scale = 0.7; // Shrink to 70% when far away
+                if (scale > 1.1) scale = 1.1; // Max out at 110% when centered
+
+                // Opacity logic: Reaches 1 (100%) when centered
+                let opacity = 1 - ((dist / maxDist) * 1.5);
+                if (opacity < 0.1) opacity = 0.1;
+                if (opacity > 1) opacity = 1;
+
+                // Apply directly
+                item.style.transform = `scale(${scale})`;
+                item.style.opacity = opacity;
+
+                // Trigger the golden dot glow when it gets very close to center
+                if (dist < 80) {
+                    item.classList.add('active-timeline-item');
+                } else {
+                    item.classList.remove('active-timeline-item');
+                }
+            });
+
+            ticking = false;
+        }
+
+        // High performance scroll listener
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleCinematicScroll();
+                });
+                ticking = true;
+            }
+        });
+
+        // Run on load and resize to ensure targets are accurate
+        window.addEventListener('resize', handleCinematicScroll);
+        handleCinematicScroll();
+    });
+</script>
+</body>
+
+</html>

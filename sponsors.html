@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsors | Notre Dame Rocketry Team</title>
+    <link rel="icon" type="image/png" href="patch@4x.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-space': '#050914',
+                        'nd-blue': '#0C2340',
+                        'dome-gold': '#C99700',
+                        'metal-gold': '#AE9142',
+                        'platinum': '#E5E4E2',
+                        'silver': '#C0C0C0',
+                        'bronze': '#CD7F32'
+                    },
+                    fontFamily: {
+                        'space': ['Orbitron', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'sponsors-hero': "linear-gradient(to bottom, rgba(5, 9, 20, 0.2), rgba(5, 9, 20, 1)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')",
+                        'tech-pattern': "linear-gradient(to right, rgba(5, 9, 20, 0.95), rgba(12, 35, 64, 0.9)), url('https://www.transparenttextures.com/patterns/carbon-fibre.png')"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050914;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050914;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0C2340;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #AE9142;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-75 {
+            transition-delay: 75ms;
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-150 {
+            transition-delay: 150ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-225 {
+            transition-delay: 225ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        /* Cinematic Tint Reveal for the 40% overlay */
+        @keyframes fade-in-tint {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .reveal-tint {
+            opacity: 0;
+            animation: fade-in-tint 1.5s ease-in-out forwards;
+            animation-delay: 0.3s;
+            /* Waits a split second before fading in */
+        }
+
+        .glow-gold {
+            box-shadow: 0 0 25px rgba(201, 151, 0, 0.3);
+        }
+
+        .glow-platinum {
+            box-shadow: 0 0 20px rgba(229, 228, 226, 0.2);
+        }
+
+        .glow-silver {
+            box-shadow: 0 0 15px rgba(192, 192, 192, 0.15);
+        }
+
+        .glow-bronze {
+            box-shadow: 0 0 10px rgba(205, 127, 50, 0.1);
+        }
+
+        .sponsor-card {
+            transition: all 0.4s ease;
+            filter: grayscale(10%);
+            opacity: 0.9;
+        }
+
+        .sponsor-card:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+
+        html {
+            font-size: 80%;
+            /* Scales down the entire Tailwind framework to your target 80% reference system */
+        }
+    </style>
+
+    <link rel="stylesheet" href="navbar.css">
+    <script src="navbar.js"></script>
+</head>
+
+<body class="font-inter antialiased selection:bg-dome-gold selection:text-deep-space">
+
+    <!-- Navigation -->
+    <!-- External Navbar Container -->
+    <div id="navbar-container"></div>
+    <!-- Hero Section -->
+    <!-- Hero Section -->
+    <header
+        class="relative min-h-screen w-full flex flex-col items-center justify-center text-center px-4 border-b border-nd-blue overflow-hidden">
+
+        <!-- Video Background -->
+        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+            <source src="1851190-uhd_3840_2160_25fps.mp4" type="video/mp4">
+        </video>
+
+        <!-- Dark Gradient Overlay (matches your previous image's gradient) -->
+        <div class="absolute inset-0 bg-gradient-to-b from-deep-space/20 to-deep-space z-0"></div>
+
+        <div class="max-w-4xl relative z-10">
+            <h1
+                class="reveal delay-100 font-space font-black text-5xl md:text-6xl tracking-tight text-white mb-6 uppercase">
+                interested in becoming a<span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-dome-gold to-metal-gold"> sponsor</span>?
+            </h1>
+            <p
+                class="reveal delay-200 font-inter text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+                Building rockets is expensive. The Notre Dame Rocketry Team is heavily reliant on continued support from
+                our sponsors to compete nationally, develop future engineers, and serve the Michiana community.
+            </p>
+        </div>
+    </header>
+
+    <!-- Why Sponsor Us -->
+    <section class="py-20 bg-deep-space relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <h2
+                        class="font-space font-bold text-2xl text-white uppercase tracking-wider mb-4 border-b border-nd-blue pb-4">
+                        Our Mission Impact</h2>
+                    <p class="font-inter text-gray-400 leading-relaxed text-sm md:text-base">
+                        Generous contributions from our sponsors allow us to inspire teamwork, creativity, and
+                        innovation within our members. NDRT values any amount of time, support, or financial
+                        contributions to help us continue our mission.
+                    </p>
+                </div>
+                <div class="reveal delay-100">
+                    <h2
+                        class="font-space font-bold text-2xl text-white uppercase tracking-wider mb-4 border-b border-nd-blue pb-4">
+                        Why Partner With Us?</h2>
+                    <p class="font-inter text-gray-400 leading-relaxed text-sm md:text-base">
+                        As a sponsor, you share heavily in our accomplishments. Sponsors benefit from massive social
+                        media and online exposure, active mentorship opportunities, and direct recruiting access to the
+                        university's most talented pool of aerospace engineers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Display Showcase -->
+    <section id="sponsor-tiers" class="py-20 bg-[#03060d] border-t border-nd-blue/50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-space font-black text-4xl text-white uppercase tracking-widest">Our Supporters</h2>
+                <div class="h-1 w-24 bg-dome-gold mx-auto mt-6"></div>
+            </div>
+
+            <!-- TIER 1: Golden Dome (Massive) -->
+            <div class="mb-24 reveal">
+                <div class="flex items-center gap-4 mb-8 justify-center">
+                    <div class="h-[1px] w-12 bg-dome-gold"></div>
+                    <h3 class="font-space text-2xl text-dome-gold font-bold uppercase tracking-widest text-center">
+                        Golden Dome Sponsors</h3>
+                    <div class="h-[1px] w-12 bg-dome-gold"></div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-8">
+
+                    <!-- GOLDEN DOME SPONSOR CARD -->
+                    <!-- To add another Golden Dome sponsor, copy from here down to the ending </a> tag -->
+                    <a href="https://www.ansys.com/" target="_blank"
+                        class="flex flex-col md:flex-row bg-nd-blue/20 border border-dome-gold/50 rounded-xl overflow-hidden glow-gold group hover:-translate-y-1 transition-all duration-300 block">
+                        <!-- Image Container -->
+                        <div
+                            class="w-full md:w-1/3 bg-white p-12 flex items-center justify-center sponsor-card border-r border-dome-gold/30">
+                            <!-- Replace src with your image path -->
+                            <img src="ansys-logo.png" alt="Ansys Logo"
+                                class="max-w-full h-auto max-h-48 object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <!-- Text Container -->
+                        <div class="w-full md:w-2/3 p-8 md:p-12 flex flex-col justify-center">
+                            <h4
+                                class="font-space text-3xl text-white font-bold mb-4 group-hover:text-dome-gold transition-colors duration-300">
+                                Ansys, Inc.</h4>
+                            <p class="font-inter text-gray-400 leading-relaxed">
+                                Ansys is an industry leader in CFD simulation software that is used across the aerospace
+                                industry. The team will use Ansys' CFD software in the design of air frames for USLI, as
+                                well as studying fluid flow across the injector, chamber, and piping within Engine Alpha
+                                and future iterations for NDXP.
+                            </p>
+                        </div>
+                    </a>
+                    <!-- END GOLDEN DOME SPONSOR CARD -->
+
+                </div>
+            </div>
+
+            <!-- TIER 2: Platinum (Large) -->
+            <div class="mb-24 reveal delay-100">
+                <div class="flex items-center gap-4 mb-8 justify-center">
+                    <div class="h-[1px] w-12 bg-platinum"></div>
+                    <h3 class="font-space text-xl text-platinum font-bold uppercase tracking-widest text-center">
+                        Platinum Sponsors</h3>
+                    <div class="h-[1px] w-12 bg-platinum"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- PLATINUM SPONSOR CARD -->
+                    <!-- To add more, copy this <a> block and paste it below. The grid will auto-align it. -->
+                    <a href="SPONSOR_LINK_HERE" target="_blank"
+                        class="h-48 bg-white border border-platinum/30 rounded-lg flex items-center justify-center sponsor-card glow-platinum hover:border-platinum p-8 group">
+                        <img src="Lockheed Martin" alt="Platinum Sponsor"
+                            class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                    </a>
+
+                    <!-- PLATINUM SPONSOR CARD -->
+                    <a href="SPONSOR_LINK_HERE" target="_blank"
+                        class="h-48 bg-white border border-platinum/30 rounded-lg flex items-center justify-center sponsor-card glow-platinum hover:border-platinum p-8 group">
+                        <img src="Alro Steel.png" alt="Platinum Sponsor"
+                            class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- TIER 3: Silver (Medium) -->
+            <div class="mb-20 reveal delay-200">
+                <div class="flex items-center gap-4 mb-8 justify-center">
+                    <div class="h-[1px] w-12 bg-silver"></div>
+                    <h3 class="font-space text-lg text-silver font-bold uppercase tracking-widest text-center">Silver
+                        Sponsors</h3>
+                    <div class="h-[1px] w-12 bg-silver"></div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+                    <!-- SILVER SPONSOR CARD -->
+                    <!-- Copy and paste this block to add more Silver sponsors -->
+                    <a href="SPONSOR_LINK_HERE" target="_blank"
+                        class="h-32 bg-white border border-silver/20 rounded-lg flex items-center justify-center sponsor-card glow-silver hover:border-silver/80 p-4 group">
+                        <img src="image-28.png" alt="Silver Sponsor"
+                            class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                    </a>
+
+                    <!-- SILVER SPONSOR CARD -->
+                    <a href="SPONSOR_LINK_HERE" target="_blank"
+                        class="h-32 bg-white border border-silver/20 rounded-lg flex items-center justify-center sponsor-card glow-silver hover:border-silver/80 p-4 group">
+                        <img src="blue.webp" alt="Silver Sponsor"
+                            class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                    </a>
+
+                    <!-- SILVER SPONSOR CARD -->
+                    <a href="SPONSOR_LINK_HERE" target="_blank"
+                        class="h-32 bg-white border border-silver/20 rounded-lg flex items-center justify-center sponsor-card glow-silver hover:border-silver/80 p-4 group">
+                        <img src="YOUR_IMAGE_PATH_HERE.png" alt="Silver Sponsor"
+                            class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                    </a>
+
+                    <!-- SILVER SPONSOR CARD -->
+                    <a href="SPONSOR_LINK_HERE" target="_blank"
+                        class="h-32 bg-white border border-silver/20 rounded-lg flex items-center justify-center sponsor-card glow-silver hover:border-silver/80 p-4 group">
+                        <img src="YOUR_IMAGE_PATH_HERE.png" alt="Silver Sponsor"
+                            class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- TIER 4: Bronze (Small) -->
+            <div class="reveal delay-300">
+                <div class="flex items-center gap-4 mb-8 justify-center">
+                    <div class="h-[1px] w-12 bg-bronze"></div>
+                    <h3 class="font-space text-sm text-bronze font-bold uppercase tracking-widest text-center">Bronze
+                        Sponsors</h3>
+                    <div class="h-[1px] w-12 bg-bronze"></div>
+                </div>
+
+                <div class="grid grid-cols-3 md:grid-cols-6 gap-3">
+
+                    <!-- BRONZE SPONSOR CARD -->
+                    <!-- Copy and paste this block to add more Bronze sponsors -->
+                    <a href="SPONSOR_LINK_HERE" target="_blank"
+                        class="h-20 bg-white border border-bronze/20 rounded-md flex items-center justify-center sponsor-card glow-bronze hover:border-bronze/60 p-2 group">
+                        <img src="YOUR_IMAGE_PATH_HERE.png" alt="Bronze Sponsor"
+                            class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300">
+                    </a>
+
+                    <!-- BRONZE SPONSOR CARD -->
+                    <a href="SPONSOR_LINK_HERE" target="_blank"
+                        class="h-20 bg-white border border-bronze/20 rounded-md flex items-center justify-center sponsor-card glow-bronze hover:border-bronze/60 p-2 group">
+                        <img src="YOUR_IMAGE_PATH_HERE.png" alt="Bronze Sponsor"
+                            class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300">
+                    </a>
+
+                    <!-- BRONZE SPONSOR CARD -->
+                    <a href="SPONSOR_LINK_HERE" target="_blank"
+                        class="h-20 bg-white border border-bronze/20 rounded-md flex items-center justify-center sponsor-card glow-bronze hover:border-bronze/60 p-2 group">
+                        <img src="YOUR_IMAGE_PATH_HERE.png" alt="Bronze Sponsor"
+                            class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300">
+                    </a>
+
+                    <!-- BRONZE SPONSOR CARD -->
+                    <a href="SPONSOR_LINK_HERE" target="_blank"
+                        class="h-20 bg-white border border-bronze/20 rounded-md flex items-center justify-center sponsor-card glow-bronze hover:border-bronze/60 p-2 group">
+                        <img src="YOUR_IMAGE_PATH_HERE.png" alt="Bronze Sponsor"
+                            class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300">
+                    </a>
+
+                    <!-- BRONZE SPONSOR CARD -->
+                    <a href="SPONSOR_LINK_HERE" target="_blank"
+                        class="h-20 bg-white border border-bronze/20 rounded-md flex items-center justify-center sponsor-card glow-bronze hover:border-bronze/60 p-2 group">
+                        <img src="YOUR_IMAGE_PATH_HERE.png" alt="Bronze Sponsor"
+                            class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300">
+                    </a>
+
+                    <!-- BRONZE SPONSOR CARD -->
+                    <a href="SPONSOR_LINK_HERE" target="_blank"
+                        class="h-20 bg-white border border-bronze/20 rounded-md flex items-center justify-center sponsor-card glow-bronze hover:border-bronze/60 p-2 group">
+                        <img src="YOUR_IMAGE_PATH_HERE.png" alt="Bronze Sponsor"
+                            class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300">
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Partnership Perks Table -->
+    <section id="partnership" class="py-24 bg-tech-pattern bg-cover relative border-t border-nd-blue">
+        <div class="absolute inset-0 bg-deep-space/90"></div>
+        <div class="max-w-6xl mx-auto px-6 lg:px-12 relative z-10">
+
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-space font-bold text-3xl md:text-4xl text-white uppercase tracking-wider mb-4">
+                    Sponsorship Tiers & Benefits</h2>
+                <p class="font-inter text-gray-400">All donations to the Notre Dame Rocketry Team are tax-deductible.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Bronze Tier -->
+                <div
+                    class="reveal bg-nd-blue/20 border border-bronze/40 rounded-xl p-8 hover:-translate-y-2 transition-transform duration-300 backdrop-blur-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-bronze"></div>
+                    <h3 class="font-space text-xl text-bronze font-bold uppercase tracking-widest mb-2">Bronze</h3>
+                    <p class="font-space text-white text-lg mb-6">&lt; $1,000</p>
+                    <ul class="font-inter text-sm text-gray-400 space-y-4">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-bronze mt-1"></i> Subscription to team
+                            newsletter</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-bronze mt-1"></i> Company logo on the
+                            team website</li>
+                    </ul>
+                </div>
+
+                <!-- Silver Tier -->
+                <div
+                    class="reveal delay-100 bg-nd-blue/20 border border-silver/40 rounded-xl p-8 hover:-translate-y-2 transition-transform duration-300 backdrop-blur-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-silver"></div>
+                    <h3 class="font-space text-xl text-silver font-bold uppercase tracking-widest mb-2">Silver</h3>
+                    <p class="font-space text-white text-lg mb-6">$1,000+</p>
+                    <ul class="font-inter text-sm text-gray-400 space-y-4">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-silver mt-1"></i> All Bronze tier
+                            benefits</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-silver mt-1"></i> Company logo on team
+                            newsletter</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-silver mt-1"></i> Informational session
+                            during recruiting season</li>
+                    </ul>
+                </div>
+
+                <!-- Platinum Tier -->
+                <div
+                    class="reveal delay-200 bg-nd-blue/20 border border-platinum/40 rounded-xl p-8 hover:-translate-y-2 transition-transform duration-300 backdrop-blur-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-platinum"></div>
+                    <h3 class="font-space text-xl text-platinum font-bold uppercase tracking-widest mb-2">Platinum</h3>
+                    <p class="font-space text-white text-lg mb-6">$10,000+</p>
+                    <ul class="font-inter text-sm text-gray-400 space-y-4">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-platinum mt-1"></i> All Silver tier
+                            benefits</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-platinum mt-1"></i> Year-round resume
+                            book access</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-platinum mt-1"></i> 1 meeting with
+                            leadership per semester</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-platinum mt-1"></i> Company logo on
+                            rocket for flights</li>
+                    </ul>
+                </div>
+
+                <!-- Golden Dome Tier -->
+                <div
+                    class="reveal delay-300 bg-gradient-to-b from-dome-gold/10 to-transparent border border-dome-gold rounded-xl p-8 hover:-translate-y-2 transition-transform duration-300 backdrop-blur-sm relative overflow-hidden glow-gold">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-dome-gold"></div>
+                    <div class="absolute top-4 right-4 text-dome-gold text-2xl opacity-20"><i
+                            class="fa-solid fa-crown"></i></div>
+                    <h3 class="font-space text-xl text-dome-gold font-bold uppercase tracking-widest mb-2">Golden Dome
+                    </h3>
+                    <p class="font-space text-white text-lg mb-6">$25,000+</p>
+                    <ul class="font-inter text-sm text-gray-300 space-y-4">
+                        <li class="flex gap-3"><i class="fa-solid fa-star text-dome-gold mt-1"></i> All Platinum tier
+                            benefits</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-star text-dome-gold mt-1"></i> Priority logo
+                            placement & website bio</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-star text-dome-gold mt-1"></i> Complimentary team
+                            merchandise</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-star text-dome-gold mt-1"></i> Multiple meetings
+                            with NDRT year-round</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-rocket text-dome-gold mt-1"></i> <strong>A launch
+                                dedicated to the sponsor</strong></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Contact Form & Leadership Section -->
+    <section id="contact-leadership" class="py-24 bg-deep-space relative border-t border-nd-blue">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+
+            <!-- Intro & Brochure CTA -->
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-space font-bold text-3xl md:text-4xl text-white uppercase tracking-wider mb-6">Ready for
+                    Liftoff?</h2>
+                <p class="font-inter text-gray-300 mb-8 max-w-3xl mx-auto text-lg leading-relaxed">
+                    NDRT is open to discussing support in the form of financial contributions, product discounts, and
+                    engineering mentorship. Download our complete Sponsor Partnership Brochure or reach out directly to
+                    our leadership team below to get started.
+                </p>
+                <a href="Sponsor Partnership Brochure 2026 - 2027.pdf" target="_blank"
+                    class="inline-flex px-8 py-4 bg-dome-gold text-deep-space font-space font-bold tracking-widest uppercase rounded items-center justify-center gap-3 hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(201,151,0,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                    <i class="fa-solid fa-file-pdf"></i> Download Brochure
+                </a>
+            </div>
+
+            <!-- Contact Form & Profiles Split (12-column layout for custom widths) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+                <!-- Left Side: Contact Form (Wider - 7 Columns) -->
+                <div
+                    class="lg:col-span-7 reveal bg-nd-blue/10 p-8 md:p-10 rounded-2xl border border-nd-blue/50 shadow-xl backdrop-blur-sm">
+
+                    <!-- Security Notice -->
+                    <div class="bg-nd-blue/30 border-l-4 border-dome-gold p-4 mb-8 rounded-r">
+                        <p class="font-inter text-sm text-gray-300 leading-relaxed">
+                            <strong class="text-dome-gold">Security Notice:</strong> Please do not submit highly
+                            sensitive personal information, confidential data, or critical physical mailing details
+                            through this web form. If your query requires secure transmission, use this form to initiate
+                            basic context and request an authorized secure channel.
+                        </p>
+                    </div>
+
+                    <h3 class="font-space font-bold text-2xl text-white mb-6 uppercase tracking-widest">Send Us a
+                        Message</h3>
+
+                    <form action="https://splitforms.com/api/submit" method="POST" class="space-y-6">
+                        <!-- Splitforms Hidden Fields -->
+                        <input type="hidden" name="access_key" value="0ecf7af2bf834c49a08fdda432a8293c">
+                        <input type="hidden" name="Page Source" value="Sponsors page">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                        <!-- Name and Email Side-by-Side to utilize wider form -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-400 text-xs font-space mb-2 uppercase tracking-wide"
+                                    for="name">Company / Name</label>
+                                <input type="text" id="name" name="name" required
+                                    class="w-full bg-[#03060d] border border-nd-blue text-white rounded-lg px-4 py-3 focus:outline-none focus:border-dome-gold transition-colors"
+                                    placeholder="Your Name">
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-400 text-xs font-space mb-2 uppercase tracking-wide"
+                                    for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full bg-[#03060d] border border-nd-blue text-white rounded-lg px-4 py-3 focus:outline-none focus:border-dome-gold transition-colors"
+                                    placeholder="your@email.com">
+                            </div>
+                        </div>
+
+
+
+                        <div>
+                            <label class="block text-gray-400 text-xs font-space mb-2 uppercase tracking-wide"
+                                for="message">Message</label>
+                            <textarea id="message" name="message" required rows="5"
+                                class="w-full bg-[#03060d] border border-nd-blue text-white rounded-lg px-4 py-3 focus:outline-none focus:border-dome-gold transition-colors resize-none"
+                                placeholder="How would you like to partner with us?"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full py-4 mt-2 bg-dome-gold text-deep-space font-space font-bold tracking-widest uppercase rounded-lg hover:bg-white transition-all duration-300 shadow-[0_0_15px_rgba(201,151,0,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                            Submit Inquiry
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Side: Leadership Profiles (Narrower - 5 Columns) -->
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                    <h3
+                        class="reveal delay-100 font-space font-bold text-2xl text-white mb-2 uppercase tracking-widest">
+                        Leadership Contacts</h3>
+
+                    <!-- Profile 1: President -->
+                    <div
+                        class="reveal delay-100 flex flex-row items-center bg-nd-blue/10 border border-nd-blue/50 rounded-xl overflow-hidden hover:border-dome-gold/50 transition-colors duration-300 group">
+                        <div class="w-28 h-36 flex-shrink-0 bg-black/50 overflow-hidden relative">
+                            <img src="IMG_0054 - Mary Daniher.jpeg" alt="President"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 flex flex-col justify-center">
+                            <h4 class="font-space font-bold text-white text-xl tracking-wide mb-1">Mary Daniher</h4>
+                            <p class="font-inter text-dome-gold text-xs uppercase tracking-widest font-semibold mb-3">
+                                Project Manager USLI</p>
+                            <a href="mailto:mdaniher@nd.edu"
+                                class="font-inter text-gray-400 text-sm hover:text-white transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-envelope"></i> mdaniher@nd.edu
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Profile 2: PR Officer 1 -->
+                    <div
+                        class="reveal delay-200 flex flex-row items-center bg-nd-blue/10 border border-nd-blue/50 rounded-xl overflow-hidden hover:border-white/50 transition-colors duration-300 group">
+                        <div class="w-28 h-36 flex-shrink-0 bg-black/50 overflow-hidden relative">
+                            <img src="victor.png" alt="PR Officer"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 flex flex-col justify-center">
+                            <h4 class="font-space font-bold text-white text-xl tracking-wide mb-1">Victor Edelbrink</h4>
+                            <p class="font-inter text-gray-300 text-xs uppercase tracking-widest font-semibold mb-3">
+                                Public Relations</p>
+                            <a href="mailto:hedelbri@nd.edu"
+                                class="font-inter text-gray-400 text-sm hover:text-white transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-envelope"></i> hedelbri@nd.edu
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Profile 3: PR Officer 2 -->
+                    <div
+                        class="reveal delay-300 flex flex-row items-center bg-nd-blue/10 border border-nd-blue/50 rounded-xl overflow-hidden hover:border-white/50 transition-colors duration-300 group">
+                        <div class="w-28 h-36 flex-shrink-0 bg-black/50 overflow-hidden relative">
+                            <img src="joseph.png" alt="PR Officer"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 flex flex-col justify-center">
+                            <h4 class="font-space font-bold text-white text-xl tracking-wide mb-1">Joseph Collins</h4>
+                            <p class="font-inter text-gray-300 text-xs uppercase tracking-widest font-semibold mb-3">
+                                Public Relations</p>
+                            <a href="mailto:jcolli28@nd.edu"
+                                class="font-inter text-gray-400 text-sm hover:text-white transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-envelope"></i> jcolli28@nd.edu
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-[#03060d] pt-16 pb-8 border-t border-nd-blue">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4">
+                    <a href="index.html" class="hover:opacity-80 transition-opacity duration-300">
+                        <img src="NDRT logo.png" alt="NDRT Logo" class="h-8 w-auto drop-shadow-md">
+                    </a>
+                </div>
+                <p class="font-inter text-sm text-gray-500 mb-6">
+                    Notre Dame Rocketry Team
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/ndrocketryteam/" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/ndrt" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@ndrocketryteam" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Navigation</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="index.html" class="hover:text-dome-gold transition-colors">Home</a></li>
+                    <li><a href="about us.html" class="hover:text-dome-gold transition-colors">About Us</a></li>
+                    <li><a href="leadership.html" class="hover:text-dome-gold transition-colors">Leadership</a></li>
+                    <li><a href="sponsors.html" class="hover:text-dome-gold transition-colors">Sponsors</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Resources</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="Sponsor Partnership Brochure 2026 - 2027.pdf"
+                            class="hover:text-dome-gold transition-colors"><i class="fa-regular fa-file-pdf mr-2"></i>
+                            Sponsorship Brochure</a></li>
+                    <li><button id="openReportsModalBtn" class="hover:text-dome-gold transition-colors text-left"><i
+                                class="fa-solid fa-lock mr-2"></i> Request Reports</button></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Contact</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-dome-gold"></i>
+                        <a href="https://maps.google.com/?q=257+Fitzpatrick+Hall+of+Engineering,+Notre+Dame,+IN+46556"
+                            target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                            257 Fitzpatrick Hall of Engineering<br>Notre Dame, IN 46556<br>United States
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-dome-gold"></i>
+                        <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-6 lg:px-12 border-t border-nd-blue pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-inter text-xs text-gray-600">
+                &copy; <span id="year"></span> Notre Dame Rocketry Team. All rights reserved.
+            </p>
+            <p class="font-inter text-xs text-gray-600">
+                Ad Astra.
+            </p>
+        </div>
+    </footer>
+    <!-- Request Reports Modal -->
+    <div id="reportsModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6">
+        <!-- Dark Blur Backdrop -->
+        <div id="reportsModalBackdrop"
+            class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer transition-opacity"></div>
+
+        <!-- Modal Content Container -->
+        <div
+            class="relative w-full max-w-3xl bg-[#03060d] border border-nd-blue rounded-xl shadow-2xl p-6 md:p-10 transform transition-all overflow-y-auto max-h-[90vh]">
+
+            <!-- Close Button -->
+            <button id="closeReportsModalBtn"
+                class="absolute top-4 right-4 text-gray-400 hover:text-dome-gold transition-colors p-2">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+
+            <!-- Header -->
+            <h2 class="font-space font-bold text-2xl md:text-3xl text-white mb-4 uppercase tracking-wide">
+                NASA Student Launch Reports
+            </h2>
+
+            <!-- Description -->
+            <p class="font-inter text-gray-400 mb-8 leading-relaxed text-sm md:text-base">
+                While our detailed NASA Student Launch reports and technical documents are not available to the general
+                public, we gladly share them with current sponsors, prospective partners, and fellow collegiate rocketry
+                teams upon request. Please fill out the form below detailing why you need access, and our team will
+                review your request.
+            </p>
+
+            <!-- Request Form connected to SplitForms -->
+            <form action="https://splitforms.com/api/submit" method="POST" class="flex flex-col gap-6">
+                <!-- Required Hidden Fields -->
+                <input type="hidden" name="access_key" value="0ecf7af2bf834c49a08fdda432a8293c">
+                <input type="hidden" name="Page Source" value="Request Reports Modal">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Full Name -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-name" class="font-space text-xs text-gray-500 uppercase tracking-widest">Full
+                            Name *</label>
+                        <input type="text" id="req-name" name="Name" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                    <!-- Organization / Affiliation -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-org"
+                            class="font-space text-xs text-gray-500 uppercase tracking-widest">Organization / Team
+                            *</label>
+                        <input type="text" id="req-org" name="Organization" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Email -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-email" class="font-space text-xs text-gray-500 uppercase tracking-widest">Email
+                            Address *</label>
+                        <input type="email" id="req-email" name="Email" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                    <!-- Phone (Optional) -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-phone" class="font-space text-xs text-gray-500 uppercase tracking-widest">Phone
+                            Number <span class="text-gray-600 lowercase normal-case ml-1">(Optional)</span></label>
+                        <input type="tel" id="req-phone" name="Phone"
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                </div>
+
+                <!-- Reason for Request -->
+                <div class="flex flex-col gap-2">
+                    <label for="req-reason" class="font-space text-xs text-gray-500 uppercase tracking-widest">Reason
+                        for Request *</label>
+                    <textarea id="req-reason" name="Reason for Request" rows="4" required
+                        placeholder="Please explain why you are requesting access to this data (e.g., 'Reviewing team structure for a potential sponsorship' or 'Cross-team technical review')..."
+                        class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 resize-none"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full px-8 py-4 bg-dome-gold text-black font-space font-bold tracking-widest uppercase rounded hover:bg-white transition-colors duration-300 flex items-center justify-center gap-3 mt-2 shadow-[0_0_15px_rgba(201,151,0,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Scroll to Top Button -->
+    <script src="scroll_to_top_script.js"></script>
+    <script src="ParallaxEffect.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Modal Elements
+            const openModalBtn = document.getElementById("openReportsModalBtn");
+            const closeModalBtn = document.getElementById("closeReportsModalBtn");
+            const modal = document.getElementById("reportsModal");
+            const modalBackdrop = document.getElementById("reportsModalBackdrop");
+
+            // Function to open modal
+            const openModal = (e) => {
+                e.preventDefault(); // Prevents page from jumping to top
+                modal.classList.remove("hidden");
+                // Disable scrolling on the main page while modal is open
+                document.body.style.overflow = "hidden";
+            };
+
+            // Function to close modal
+            const closeModal = () => {
+                modal.classList.add("hidden");
+                // Re-enable scrolling on the main page
+                document.body.style.overflow = "auto";
+            };
+
+            // Event Listeners
+            if (openModalBtn) {
+                openModalBtn.addEventListener("click", openModal);
+            }
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener("click", closeModal);
+            }
+            if (modalBackdrop) {
+                // Clicking the dark background outside the modal closes it
+                modalBackdrop.addEventListener("click", closeModal);
+            }
+
+            // Pressing the "Escape" key closes the modal
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+
+</html>

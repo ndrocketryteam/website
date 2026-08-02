@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Notre Dame Rocketry Team</title>
+    <link rel="icon" type="image/png" href="patch@4x.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-space': '#050914',
+                        'nd-blue': '#0C2340',
+                        'dome-gold': '#C99700',
+                        'metal-gold': '#AE9142',
+                    },
+                    fontFamily: {
+                        'space': ['Orbitron', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'contact-hero': "url('img_0159.jpg')",
+                        'grid-pattern': "linear-gradient(to right, rgba(5, 9, 20, 0.95), rgba(12, 35, 64, 0.9)), url('https://www.transparenttextures.com/patterns/carbon-fibre.png')"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050914;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050914;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0C2340;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #AE9142;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-75 {
+            transition-delay: 75ms;
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-150 {
+            transition-delay: 150ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-225 {
+            transition-delay: 225ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        /* Cinematic Tint Reveal for the 40% overlay */
+        @keyframes fade-in-tint {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .reveal-tint {
+            opacity: 0;
+            animation: fade-in-tint 1.5s ease-in-out forwards;
+            animation-delay: 0.3s;
+            /* Waits a split second before fading in */
+        }
+
+        /* Form Input Styling */
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(201, 151, 0, 0.3);
+            border-color: #C99700;
+        }
+
+        /* Map Grayscale Filter */
+        .map-container iframe {
+            filter: grayscale(100%) invert(90%) contrast(1.2);
+            transition: all 0.5s ease;
+        }
+
+        .map-container:hover iframe {
+            filter: grayscale(0%) invert(0%) contrast(1);
+        }
+
+        /* FAQ Details Marker Hiding */
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        html {
+            font-size: 80%;
+            /* Scales down the entire Tailwind framework to your target 80% reference system */
+        }
+    </style>
+
+    <link rel="stylesheet" href="navbar.css">
+    <script src="navbar.js"></script>
+</head>
+
+<body class="font-inter antialiased selection:bg-dome-gold selection:text-deep-space">
+
+    <!-- Navigation -->
+    <!-- External Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <header
+        class="relative min-h-screen w-full bg-contact-hero bg-cover bg-center bg-no-repeat bg-fixed overflow-hidden flex flex-col items-center justify-center text-center px-4 border-b border-nd-blue">
+        <!-- 1. The scrolling dark bottom-fade -->
+        <div class="absolute inset-0 z-0 pointer-events-none"
+            style="background: linear-gradient(to bottom, rgba(5, 9, 20, 0.2) 0%, rgba(5, 9, 20, 0.2) 70%, rgba(5, 9, 20, 1) 100%);">
+        </div>
+
+        <!-- 2. The animated dark overlay for text readability -->
+        <div class="absolute inset-0 bg-deep-space/40 reveal-tint z-0 pointer-events-none"></div>
+
+        <!-- 3. Text wrapper with parallax ID -->
+        <div id="hero-text" class="max-w-4xl relative z-10 will-change-transform">
+            <h1
+                class="reveal delay-100 font-space font-black text-5xl md:text-6xl tracking-tight text-white mb-6 uppercase">
+                Contact <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-dome-gold to-metal-gold">us</span>
+            </h1>
+            <p
+                class="reveal delay-200 font-inter text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+                Whether you're looking to join the team, discuss sponsorship, or learn more about our engineering
+                projects, we are ready to connect.
+            </p>
+        </div>
+    </header>
+    <!-- Main Content Section -->
+    <section class="py-24 bg-grid-pattern bg-cover relative">
+        <div class="absolute inset-0 bg-deep-space/95"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+                <!-- Left Column: Form & Team Link -->
+                <div class="flex flex-col gap-10">
+
+                    <!-- Team Leads Redirect Box -->
+                    <div
+                        class="reveal bg-nd-blue/20 border border-nd-blue rounded-xl p-8 backdrop-blur-sm relative overflow-hidden group">
+                        <div
+                            class="absolute right-0 top-0 w-32 h-32 bg-dome-gold/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2">
+                        </div>
+                        <h3 class="font-space font-bold text-xl text-white uppercase tracking-widest mb-2">Direct
+                            Channel</h3>
+                        <p class="font-inter text-gray-400 text-sm mb-6">
+                            Looking to speak with a specific project lead or squad director? View our complete
+                            leadership roster to contact them directly.
+                        </p>
+                        <a href="leadership.html"
+                            class="inline-flex items-center gap-3 text-dome-gold font-space text-sm font-bold uppercase tracking-widest group-hover:text-white transition-colors duration-300">
+                            View Leadership Directory <i
+                                class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="reveal delay-100">
+                        <!-- Security Notice -->
+                        <div class="bg-nd-blue/30 border-l-4 border-dome-gold p-4 mb-6 rounded-r">
+                            <p class="font-inter text-s text-gray-300 leading-relaxed">
+                                <strong class="text-dome-gold">Security Notice:</strong> Please do not submit highly
+                                sensitive personal information, confidential data, or critical physical mailing details
+                                through this web form. If your query requires secure transmission, use this form to
+                                initiate basic context and request an authorized secure channel.
+                            </p>
+                        </div>
+                        <h2 class="font-space font-bold text-2xl text-white uppercase tracking-wider mb-6">Contact form
+                        </h2>
+
+
+
+                        <!-- Form Start -->
+                        <form action="https://splitforms.com/api/submit" method="POST" class="flex flex-col gap-6">
+                            <input type="hidden" name="access_key" value="0ecf7af2bf834c49a08fdda432a8293c">
+                            <input type="hidden" name="Page Source" value="General contact page">
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="flex flex-col gap-2">
+                                    <label for="name"
+                                        class="font-space text-xs text-gray-500 uppercase tracking-widest">Full
+                                        Name</label>
+                                    <input type="text" id="name" name="name" required
+                                        class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <label for="email"
+                                        class="font-space text-xs text-gray-500 uppercase tracking-widest">Email
+                                        Address</label>
+                                    <input type="email" id="email" name="email" required
+                                        class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-2">
+                                <label for="subject"
+                                    class="font-space text-xs text-gray-500 uppercase tracking-widest">Subject</label>
+                                <select id="subject" name="subject"
+                                    class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 appearance-none">
+                                    <option value="general">General Inquiry</option>
+                                    <option value="sponsorship">Sponsorship & Partnerships</option>
+                                    <option value="recruiting">Joining the Team</option>
+                                    <option value="media">Media & PR (Tech Editor/PR Officer)</option>
+                                </select>
+                            </div>
+
+                            <div class="flex flex-col gap-2">
+                                <label for="message"
+                                    class="font-space text-xs text-gray-500 uppercase tracking-widest">Message</label>
+                                <textarea id="message" name="message" rows="5" required
+                                    class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 resize-none"></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full md:w-auto px-8 py-4 bg-dome-gold text-deep-space font-space font-bold tracking-widest uppercase rounded hover:bg-white transition-colors duration-300 flex items-center justify-center gap-3 mt-2 shadow-[0_0_15px_rgba(201,151,0,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                                submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Column: Coordinates & Map -->
+                <div class="flex flex-col gap-10 reveal delay-200">
+
+                    <!-- Contact Info Block (Google Maps Link Wrapper) -->
+                    <a href="https://maps.google.com/?q=257+Fitzpatrick+Hall+of+Engineering,+Notre+Dame,+IN+46556"
+                        target="_blank" rel="noopener noreferrer"
+                        class="bg-nd-blue/10 border border-nd-blue rounded-xl p-6 flex items-start gap-4 hover:border-dome-gold/50 transition-colors duration-300 group">
+                        <div
+                            class="w-12 h-12 rounded-full bg-deep-space border border-dome-gold flex items-center justify-center text-dome-gold flex-shrink-0 group-hover:bg-dome-gold group-hover:text-deep-space transition-colors duration-300">
+                            <i class="fa-solid fa-location-crosshairs text-xl"></i>
+                        </div>
+                        <div>
+                            <h4
+                                class="font-space font-bold text-white uppercase tracking-widest text-sm mb-2 group-hover:text-dome-gold transition-colors">
+                                Address <i
+                                    class="fa-solid fa-arrow-up-right-from-square text-xs ml-1 opacity-50 group-hover:opacity-100"></i>
+                            </h4>
+                            <p
+                                class="font-inter text-gray-400 text-sm leading-relaxed group-hover:text-white transition-colors">
+                                257 Fitzpatrick Hall of Engineering<br>
+                                University of Notre Dame<br>
+                                Notre Dame, IN 46556<br>
+                                United States
+                            </p>
+                        </div>
+                    </a>
+
+                    <!-- Google Maps Embed -->
+                    <div class="flex-grow flex flex-col">
+                        <h2 class="font-space font-bold text-2xl text-white uppercase tracking-wider mb-6">Facility
+                            Location</h2>
+                        <div
+                            class="w-full h-full min-h-[350px] bg-nd-blue/20 border border-nd-blue rounded-xl overflow-hidden p-2 map-container relative">
+                            <!-- Overlay to make it look like a targeting screen -->
+                            <div
+                                class="absolute inset-0 pointer-events-none border-[1px] border-dome-gold/20 m-6 z-10 flex items-center justify-center">
+                                <div class="w-4 h-4 border-t-2 border-l-2 border-dome-gold absolute top-0 left-0"></div>
+                                <div class="w-4 h-4 border-t-2 border-r-2 border-dome-gold absolute top-0 right-0">
+                                </div>
+                                <div class="w-4 h-4 border-b-2 border-l-2 border-dome-gold absolute bottom-0 left-0">
+                                </div>
+                                <div class="w-4 h-4 border-b-2 border-r-2 border-dome-gold absolute bottom-0 right-0">
+                                </div>
+                                <i class="fa-solid fa-crosshairs text-dome-gold/30 text-4xl"></i>
+                            </div>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.9398863673723!2d-86.2372554!3d41.6991907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8816cd0c8db4253d%3A0x6b1db9eb5eb3fdd5!2sFitzpatrick+Hall+of+Engineering!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus"
+                                class="w-full h-full rounded-lg" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-[#03060d] border-t border-nd-blue relative">
+        <div class="max-w-4xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center mb-12 reveal">
+                <h2 class="font-space font-bold text-5xl text-white uppercase tracking-wider mb-4">Frequently Asked
+                    Questions</h2>
+                <p class="font-inter text-gray-400">Quick answers to help direct your inquiry to the right place.</p>
+            </div>
+
+            <div class="space-y-4 reveal delay-100">
+                <!-- FAQ 1 -->
+                <details
+                    class="group bg-deep-space border border-nd-blue rounded-lg p-6 transition-all duration-300 hover:border-dome-gold/50 cursor-pointer">
+                    <summary
+                        class="flex justify-between items-center font-space font-bold text-white tracking-wide outline-none">
+                        Are you looking to join the team?
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-dome-gold">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <div class="mt-4 pt-4 border-t border-nd-blue/50 font-inter text-gray-400 text-sm leading-relaxed">
+                        We are always searching for passionate engineers, researchers, and innovators. If you want to
+                        help us build the future of aerospace, head over to our <a href="join us.html"
+                            class="text-dome-gold hover:text-white transition-colors underline underline-offset-4">Join
+                            Us</a> page to learn about our recruitment cycles, available positions, and how to apply.
+                    </div>
+                </details>
+
+                <!-- FAQ 2 -->
+                <details
+                    class="group bg-deep-space border border-nd-blue rounded-lg p-6 transition-all duration-300 hover:border-dome-gold/50 cursor-pointer">
+                    <summary
+                        class="flex justify-between items-center font-space font-bold text-white tracking-wide outline-none">
+                        Do you participate in STEM engagements or community outreach?
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-dome-gold">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <div class="mt-4 pt-4 border-t border-nd-blue/50 font-inter text-gray-400 text-sm leading-relaxed">
+                        Absolutely. We love sharing our passion for rocketry with the community! From local school
+                        visits to regional science fairs, our team is dedicated to inspiring the next generation of
+                        engineers. Please visit our <a href="usli.html"
+                            class="text-dome-gold hover:text-white transition-colors underline underline-offset-4">Outreach</a>
+                        page to read more about our initiatives and to submit an event request.
+                    </div>
+                </details>
+
+                <!-- FAQ 3 -->
+                <details
+                    class="group bg-deep-space border border-nd-blue rounded-lg p-6 transition-all duration-300 hover:border-dome-gold/50 cursor-pointer">
+                    <summary
+                        class="flex justify-between items-center font-space font-bold text-white tracking-wide outline-none">
+                        Are you looking to sponsor the Notre Dame Rocketry Team?
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-dome-gold">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <div class="mt-4 pt-4 border-t border-nd-blue/50 font-inter text-gray-400 text-sm leading-relaxed">
+                        Our sponsors make everything we do possible. Partnering with NDRT gives your organization access
+                        to top-tier engineering talent and unparalleled brand visibility on our vehicles and at
+                        nationwide competitions. Head over to our <a href="sponsors.html"
+                            class="text-dome-gold hover:text-white transition-colors underline underline-offset-4">Sponsors</a>
+                        page to view our sponsorship tiers, download our partnership packet, and learn how we can
+                        collaborate.
+                    </div>
+                </details>
+
+                <!-- FAQ 4 -->
+                <details
+                    class="group bg-deep-space border border-nd-blue rounded-lg p-6 transition-all duration-300 hover:border-dome-gold/50 cursor-pointer">
+                    <summary
+                        class="flex justify-between items-center font-space font-bold text-white tracking-wide outline-none">
+                        Can we send you physical mail or hardware?
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-dome-gold">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <div class="mt-4 pt-4 border-t border-nd-blue/50 font-inter text-gray-400 text-sm leading-relaxed">
+                        Yes, however, please do not ship items directly without prior confirmation. Reach out to us
+                        using the contact form above first. We will coordinate a secure shipping address, handling
+                        instructions, and delivery windows with our logistics and lab safety team.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#03060d] pt-16 pb-8 border-t border-nd-blue">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4">
+                    <a href="index.html" class="hover:opacity-80 transition-opacity duration-300">
+                        <img src="NDRT logo.png" alt="NDRT Logo" class="h-8 w-auto drop-shadow-md">
+                    </a>
+                </div>
+                <p class="font-inter text-sm text-gray-500 mb-6">
+                    Notre Dame Rocketry Team
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/ndrocketryteam/" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/ndrt" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@ndrocketryteam" target="_blank" rel="noopener noreferrer"
+                        class="w-10 h-10 rounded-full bg-nd-blue flex items-center justify-center text-white hover:bg-dome-gold hover:text-deep-space transition-colors duration-300"><i
+                            class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Navigation</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="index.html" class="hover:text-dome-gold transition-colors">Home</a></li>
+                    <li><a href="about us.html" class="hover:text-dome-gold transition-colors">About Us</a></li>
+                    <li><a href="leadership.html" class="hover:text-dome-gold transition-colors">Leadership</a></li>
+                    <li><a href="sponsors.html" class="hover:text-dome-gold transition-colors">Sponsors</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Resources</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li><a href="Sponsor Partnership Brochure 2026 - 2027.pdf"
+                            class="hover:text-dome-gold transition-colors"><i class="fa-regular fa-file-pdf mr-2"></i>
+                            Sponsorship Brochure</a></li>
+                    <li><button id="openReportsModalBtn" class="hover:text-dome-gold transition-colors text-left"><i
+                                class="fa-solid fa-lock mr-2"></i> Request Reports</button></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="font-space font-bold uppercase tracking-widest text-white mb-6">Contact</h4>
+                <ul class="font-inter text-sm text-gray-400 space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-dome-gold"></i>
+                        <a href="https://maps.google.com/?q=257+Fitzpatrick+Hall+of+Engineering,+Notre+Dame,+IN+46556"
+                            target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                            257 Fitzpatrick Hall of Engineering<br>Notre Dame, IN 46556<br>United States
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-dome-gold"></i>
+                        <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-6 lg:px-12 border-t border-nd-blue pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-inter text-xs text-gray-600">
+                &copy; <span id="year"></span> Notre Dame Rocketry Team. All rights reserved.
+            </p>
+            <p class="font-inter text-xs text-gray-600">
+                Ad Astra.
+            </p>
+        </div>
+    </footer>
+    <!-- Request Reports Modal -->
+    <div id="reportsModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6">
+        <!-- Dark Blur Backdrop -->
+        <div id="reportsModalBackdrop"
+            class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer transition-opacity"></div>
+
+        <!-- Modal Content Container -->
+        <div
+            class="relative w-full max-w-3xl bg-[#03060d] border border-nd-blue rounded-xl shadow-2xl p-6 md:p-10 transform transition-all overflow-y-auto max-h-[90vh]">
+
+            <!-- Close Button -->
+            <button id="closeReportsModalBtn"
+                class="absolute top-4 right-4 text-gray-400 hover:text-dome-gold transition-colors p-2">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+
+            <!-- Header -->
+            <h2 class="font-space font-bold text-2xl md:text-3xl text-white mb-4 uppercase tracking-wide">
+                NASA Student Launch Reports
+            </h2>
+
+            <!-- Description -->
+            <p class="font-inter text-gray-400 mb-8 leading-relaxed text-sm md:text-base">
+                While our detailed NASA Student Launch reports and technical documents are not available to the general
+                public, we gladly share them with current sponsors, prospective partners, and fellow collegiate rocketry
+                teams upon request. Please fill out the form below detailing why you need access, and our team will
+                review your request.
+            </p>
+
+            <!-- Request Form connected to SplitForms -->
+            <form action="https://splitforms.com/api/submit" method="POST" class="flex flex-col gap-6">
+                <!-- Required Hidden Fields -->
+                <input type="hidden" name="access_key" value="0ecf7af2bf834c49a08fdda432a8293c">
+                <input type="hidden" name="Page Source" value="Request Reports Modal">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Full Name -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-name" class="font-space text-xs text-gray-500 uppercase tracking-widest">Full
+                            Name *</label>
+                        <input type="text" id="req-name" name="Name" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                    <!-- Organization / Affiliation -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-org"
+                            class="font-space text-xs text-gray-500 uppercase tracking-widest">Organization / Team
+                            *</label>
+                        <input type="text" id="req-org" name="Organization" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Email -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-email" class="font-space text-xs text-gray-500 uppercase tracking-widest">Email
+                            Address *</label>
+                        <input type="email" id="req-email" name="Email" required
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                    <!-- Phone (Optional) -->
+                    <div class="flex flex-col gap-2">
+                        <label for="req-phone" class="font-space text-xs text-gray-500 uppercase tracking-widest">Phone
+                            Number <span class="text-gray-600 lowercase normal-case ml-1">(Optional)</span></label>
+                        <input type="tel" id="req-phone" name="Phone"
+                            class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300">
+                    </div>
+                </div>
+
+                <!-- Reason for Request -->
+                <div class="flex flex-col gap-2">
+                    <label for="req-reason" class="font-space text-xs text-gray-500 uppercase tracking-widest">Reason
+                        for Request *</label>
+                    <textarea id="req-reason" name="Reason for Request" rows="4" required
+                        placeholder="Please explain why you are requesting access to this data (e.g., 'Reviewing team structure for a potential sponsorship' or 'Cross-team technical review')..."
+                        class="bg-[#03060d] border border-nd-blue rounded-md px-4 py-3 text-white font-inter transition-all duration-300 resize-none"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full px-8 py-4 bg-dome-gold text-black font-space font-bold tracking-widest uppercase rounded hover:bg-white transition-colors duration-300 flex items-center justify-center gap-3 mt-2 shadow-[0_0_15px_rgba(201,151,0,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- Scroll to Top Button -->
+    <script src="scroll_to_top_script.js"></script>
+    <script src="ParallaxEffect.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Modal Elements
+            const openModalBtn = document.getElementById("openReportsModalBtn");
+            const closeModalBtn = document.getElementById("closeReportsModalBtn");
+            const modal = document.getElementById("reportsModal");
+            const modalBackdrop = document.getElementById("reportsModalBackdrop");
+
+            // Function to open modal
+            const openModal = (e) => {
+                e.preventDefault(); // Prevents page from jumping to top
+                modal.classList.remove("hidden");
+                // Disable scrolling on the main page while modal is open
+                document.body.style.overflow = "hidden";
+            };
+
+            // Function to close modal
+            const closeModal = () => {
+                modal.classList.add("hidden");
+                // Re-enable scrolling on the main page
+                document.body.style.overflow = "auto";
+            };
+
+            // Event Listeners
+            if (openModalBtn) {
+                openModalBtn.addEventListener("click", openModal);
+            }
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener("click", closeModal);
+            }
+            if (modalBackdrop) {
+                // Clicking the dark background outside the modal closes it
+                modalBackdrop.addEventListener("click", closeModal);
+            }
+
+            // Pressing the "Escape" key closes the modal
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        // Set year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+
+</html>

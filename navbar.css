@@ -1,0 +1,88 @@
+/* navbar.css */
+#mobile-fullscreen-menu {
+    clip-path: circle(0px at calc(100% - 44px) 52px);
+    transition: clip-path 0.7s cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+#mobile-fullscreen-menu.menu-active {
+    clip-path: circle(150% at calc(100% - 44px) 52px);
+}
+
+.mobile-nav-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#mobile-fullscreen-menu.menu-active .mobile-nav-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-item-1 {
+    transition-delay: 0.2s;
+}
+
+.delay-item-2 {
+    transition-delay: 0.3s;
+}
+
+.delay-item-3 {
+    transition-delay: 0.4s;
+}
+
+.delay-item-4 {
+    transition-delay: 0.5s;
+}
+
+.delay-item-5 {
+    transition-delay: 0.6s;
+}
+
+.delay-item-6 {
+    transition-delay: 0.7s;
+}
+
+.ham-line {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    transform-origin: center;
+}
+
+.menu-btn-active .line-1 {
+    transform: translateY(6.8px) rotate(45deg);
+    background-color: #C99700;
+}
+
+.menu-btn-active .line-2 {
+    opacity: 0;
+    transform: scale(0);
+    /* Shrinks the middle line slightly for a smoother transition */
+}
+
+.menu-btn-active .line-3 {
+    transform: translateY(-6.8px) rotate(-45deg);
+    background-color: #C99700;
+}
+
+.mobile-accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-accordion-content.accordion-open {
+    grid-template-rows: 1fr;
+}
+
+.mobile-accordion-inner {
+    overflow: hidden;
+}
+
+.accordion-chevron {
+    transition: transform 0.3s ease;
+}
+
+.accordion-open-parent .accordion-chevron {
+    transform: rotate(180deg);
+    color: #C99700;
+}
