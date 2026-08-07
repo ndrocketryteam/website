@@ -72,8 +72,8 @@ const navbarHTML = `
                 </button>
                 <div class="mobile-accordion-content">
                     <div class="mobile-accordion-inner flex flex-col gap-4 pt-4 pl-4 font-inter text-lg font-normal capitalize tracking-normal">
-                        <a href="usli.html" class="text-gray-400 hover:text-white flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-gray-600"></span> NASA USLI</a>
-                        <a href="ndxp.html" class="text-gray-400 hover:text-white flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-gray-600"></span> Project NDXP</a>
+                        <a href="usli.html" class="text-gray-400 hover:text-white flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-gray-600"></span> USLI</a>
+                        <a href="ndxp.html" class="text-gray-400 hover:text-white flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-gray-600"></span> NDXP</a>
                         <a href="outreach.html" class="text-gray-400 hover:text-white flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-gray-600"></span> Outreach</a>
                     </div>
                 </div>
