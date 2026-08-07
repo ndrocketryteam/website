@@ -137,25 +137,27 @@
             /* Scales down the entire Tailwind framework to your target 80% reference system */
         }
     </style>
-        <link rel="stylesheet" href="navbar.css">
-        <script src="navbar.js"></script>
-    
+    <link rel="stylesheet" href="navbar.css">
+    <script src="navbar.js"></script>
+
 </head>
 
 <body class="font-inter antialiased selection:bg-dome-gold selection:text-deep-space">
-    <div id="navbar-container"></div>        
+    <div id="navbar-container"></div>
 
     <!-- Header Section -->
     <!-- bg-fixed makes the background stuck, overflow-hidden hides the text as it flies up -->
     <header
         class="relative min-h-screen w-full bg-leadership-hero bg-cover bg-center bg-no-repeat bg-fixed overflow-hidden flex flex-col items-center justify-center text-center px-4 border-b border-nd-blue">
-        
+
         <!-- 1. The scrolling dark bottom-fade -->
-        <div class="absolute inset-0 z-0 pointer-events-none" style="background: linear-gradient(to bottom, rgba(5, 9, 20, 0.2) 0%, rgba(5, 9, 20, 0.2) 70%, rgba(5, 9, 20, 1) 100%);"></div>
+        <div class="absolute inset-0 z-0 pointer-events-none"
+            style="background: linear-gradient(to bottom, rgba(5, 9, 20, 0.2) 0%, rgba(5, 9, 20, 0.2) 70%, rgba(5, 9, 20, 1) 100%);">
+        </div>
 
         <!-- 2. The animated dark overlay for text readability -->
         <div class="absolute inset-0 bg-deep-space/40 reveal-tint z-0 pointer-events-none"></div>
-        
+
         <!-- Added id="hero-text" and will-change-transform for the parallax script -->
         <div id="hero-text" class="max-w-4xl relative z-10 will-change-transform">
             <h1
@@ -227,14 +229,15 @@
                 <!-- Lead 1 -->
                 <!-- Margaret Meim -->
                 <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
-                    data-name="Margaret Meim" data-position="Electrical Lead" data-email="mei@nd.edu" data-linkedin=""
-                    data-year="2028" data-hometown="Sunnyvale, California" data-major="Electrical Engineering"
+                    data-name="Margaret Mei" data-position="Electrical Lead" data-email="mei@nd.edu"
+                    data-linkedin="https://www.linkedin.com/in/margaret-mei" data-year="2028"
+                    data-hometown="Sunnyvale, California" data-major="Electrical Engineering"
                     data-minor="Engineering Corporate Practice"
                     data-summer="This past summer, I studied abroad in Ireland."
                     data-fact="I really like tomatoes, and I have grown my own in my garden."
                     data-interests="I enjoy playing sports and creating music." data-casual="mmei casual.jpeg">
                     <div class="w-full aspect-square overflow-hidden rounded-lg mb-4 relative">
-                        <img src="Headshot - Margaret Mei.heic" alt="Margaret Meim"
+                        <img src="mm.png" alt="Margaret Meim"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <h3 class="font-space font-bold text-2xl text-white tracking-wider mb-1">Margaret Meim</h3>
@@ -412,8 +415,9 @@
                 <!-- NDXP Lead 2 -->
                 <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
                     data-name="Owen Chacon" data-position="NDXP Fluids Lead" data-email="ochacon@nd.edu"
-                    data-linkedin="" data-year="2027" data-hometown="Los Angeles, California"
-                    data-major="Aerospace Engineering" data-minor="None"
+                    data-linkedin="https://www.linkedin.com/in/owen-chacon-431493289?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+                    data-year="2027" data-hometown="Los Angeles, California" data-major="Aerospace Engineering"
+                    data-minor="None"
                     data-summer="This past summer, I did research for NDXP while making paint colors for Los Angeles’ buildings like Dodger Stadium!"
                     data-fact="I have been running since I was 7 years old and ran the LA marathon when I was 12."
                     data-interests="I enjoy golfing and mountain biking." data-casual="IMG_0915 - Owen C.jpeg">
@@ -522,8 +526,8 @@
                 <!-- Eddie-Tomas Baute -->
                 <div class="reveal delay-100 profile-card p-6 rounded-xl flex flex-col items-center group cursor-pointer"
                     data-name="Eddie-Tomas Baute" data-position="Tech Editor" data-email="ebaute@nd.edu"
-                    data-linkedin="" data-year="2028" data-hometown="Hialeah, Florida"
-                    data-major="Mechanical Engineering" data-minor="None"
+                    data-linkedin="https://www.linkedin.com/in/eddie-tomas-baute" data-year="2028"
+                    data-hometown="Hialeah, Florida" data-major="Mechanical Engineering" data-minor="None"
                     data-summer="This past summer, I practiced writing LaTeX documents and went to the beach with my friends."
                     data-fact="I love Oreos." data-interests="I enjoy playing football and spending time with friends."
                     data-casual="Eddie_Baute_Casual - Eddie-Tomas Baute.jpeg">
@@ -853,7 +857,7 @@
 
     <!-- Scroll Reveal Animation Script -->
     <script>
-        
+
 
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
